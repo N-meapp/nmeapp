@@ -1,0 +1,344 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="fonts-loaded no-touch">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <meta content="Best restaurant near me, Good restaurant near me, 5star restaurant near me" name="keywords">
+  <meta name="description"
+    content=" Through the n-me app brands, companies may directly connect with their target market by using it as a complete platform for listing businesses and services.It makes it simple for companies and customers to communicate directly and smoothly by doing away with middleman.">
+  <meta name="author" content="Giving customers quick access to local businesses.">
+  <meta name="google-site-verification" content="FEci3zbweUPJYtA9SPb_GBwMF2PgzRURKa9arhL5ROE"/>
+  <title>Nmeapp Bussiness & Service listing mobile application</title>
+  <link rel="icon" type="image/x-icon" href="images/nmeappwhite.png" / >
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+  
+
+
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/style.scss" rel="stylesheet" />
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MQ52KRC5');
+  </script>
+
+
+</head>
+
+<body id="page-top">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQ52KRC5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+  <!-- https://codepen.io/cjr85/pen/RwZNRmo?editors=1100 -->
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+    <!-- <div class="temp"></div> -->
+    <div class="container px-5 " >
+      <a class="navbar-brand fw-bold" href="/"><img class="app-badge" src="{% static 'images/nmeappblack.png' %}" alt="..." /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="bi-list"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- <div class="main" style=" display: flex; gap: 10rem;"> -->
+          <!-- <div class="nav-redirect"> -->
+            <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+              <li class="nav-item {% if request.path == '/'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/">Home</a></li>
+              <li class="nav-item {% if request.path == '/about'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/about">About</a></li>
+              <li class="nav-item {% if request.path == '/register'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/register">Register now</a></li>
+              <li class="nav-item {% if request.path == '/blog'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/blog">Blogs</a></li>
+              <li class="nav-item {% if request.path == '/faq'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/faq">FAQ</a></li>
+              <li class="nav-item {% if request.path == '/services'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/services">Services</a></li>
+              <li class="nav-item {% if request.path == '/contact'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/contact">Contact</a></li>
+            </ul>
+          <!-- </div> -->
+          <!-- <div class="navlinks"> -->
+            <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal"
+            data-bs-target="#feedbackModal">
+            <span class="d-flex align-items-center">
+              <i class="bi-chat-text-fill me-2"></i>
+              <span class="small">Send Feedback</span>
+            </span>
+          </button>
+          <a href="https://www.instagram.com/nme_app/?hl=en" target="_blank"
+            class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
+            <i class="bi bi-instagram"></i>
+          </a>
+  
+          <a href="https://www.facebook.com/profile.php?id=100076151802998" target="_blank"
+            class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://x.com/nmeapp" target="_blank"
+            class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x"
+              viewBox="0 0 16 16">
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+            </svg>
+          </a>
+          <!-- </div> -->
+        </div>
+        
+        
+      </div>
+    <!-- </div> -->
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+
+
+
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Subscribe to our newsletter so we can update you with services and offers.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>N-me</h3>
+            <p>Hilite Business Park,
+              Near Hilite Mall,<br> Poovangal,
+              Kozhikode<br>Kochi, Thiruvananthapuram, Pondichery<br>Coimbatore,Chennai, Bengaluru<br>Dubai, Qatar,
+              Oman<br></p>
+
+            <p class="mt-2 footer-phone"><strong>Phone:</strong> +91 9072919991, +91 9745109190</p>
+            <!-- <p style="margin-left: 53px;"></p> -->
+
+            <p class="mt-2"> <strong>Email:</strong> nmesmartech@gmail.com</p>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/about">About</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/register">Register Now</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/blog">Blogs</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/faq">FAQ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/services">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/contact">Contact</a></li>
+
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Backend Offerings</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> Web Development</li>
+              <li><i class="bx bx-chevron-right"></i>App Development</li>
+              <li><i class="bx bx-chevron-right"></i>Digital Marketing</li>
+              <li><i class="bx bx-chevron-right"></i>Graphic Designing</li>
+              <li><i class="bx bx-chevron-right"></i>Branding</li>
+
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Our social network is a platform to connect with basic needs and wants of human being.</p>
+            <div class="social-links mt-3">
+
+              <a href="https://www.instagram.com/nme_app/?hl=en">
+                <div class="btn btn-primary rounded-pill ">
+                  <i class="bi bi-instagram"></i>
+                </div>
+              </a>
+
+              <a href="https://www.instagram.com/nme_app/?hl=en">
+                <div class="btn btn-primary rounded-pill ">
+                  <i class="bi bi-facebook"></i>
+                </div>
+              </a>
+
+
+              <a href="https://www.instagram.com/nme_app/?hl=en">
+                <div class="btn btn-primary rounded-pill ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-twitter-x" viewBox="0 0 16 16">
+                    <path
+                      d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+
+      <div class="credits">
+        Copyright © 2024 &nbsp;<a href="">N-me App.</a> All rights reserved.
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+
+
+
+
+
+
+  <!-- Feedback Modal-->
+  <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-gradient-primary-to-secondary p-4">
+          <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">Send feedback</h5>
+          <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body border-0 p-4">
+          <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="mailto:info@nmeapp.com" method="post">
+            <!-- Name input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+                data-sb-validations="required" />
+              <label for="name">Full name</label>
+              <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+            </div>
+            <!-- Email address input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="email" type="email" placeholder="name@example.com"
+                data-sb-validations="required,email" />
+              <label for="email">Email address</label>
+              <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+              <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+            </div>
+            <!-- Phone number input-->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
+                data-sb-validations="required" />
+              <label for="phone">Phone number</label>
+              <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
+                style="height: 10rem" data-sb-validations="required"></textarea>
+              <label for="message">Message</label>
+              <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+            </div>
+
+            <div class="d-none" id="submitSuccessMessage">
+              <div class="text-center mb-3">
+                <div class="fw-bolder">Form submission successful!</div>
+                To activate this form, sign up at
+                <br />
+                <a href=""></a>
+              </div>
+            </div>
+
+            <div class="d-none" id="submitErrorMessage">
+              <div class="text-center text-danger mb-3">Error sending message!</div>
+            </div>
+
+            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton"
+                type="submit">Submit</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a href="/register" class="reg">
+    <div class="float" style="right: 10px;">
+      
+        Register Now
+      
+      
+      <!-- <p class=""></p> -->
+    </div>
+  </a>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+
+    <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+      integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/jquery.tabs.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"
+    ></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+<script src="script.js"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

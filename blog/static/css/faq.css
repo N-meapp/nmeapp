@@ -1,0 +1,19 @@
+
+
+
+.subscribe-media{
+    font-size: 24px; margin: 0 0 20px 0; padding: 0; line-height: 1; font-weight: 600; color: #4e4039;
+    font-family: "Newsreader", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  .subscribe{
+    background-color: #fef8f5;
+  }
+  .subscribe-footer{
+    background-color: #fef8f5 !important;
+  }
+  .media{
+    background: -webkit-linear-gradient(#2937f0, #9f1ae2) !important;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  

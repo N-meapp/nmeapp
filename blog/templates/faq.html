@@ -1,0 +1,654 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmeapp Bussiness & Service listing mobile application</title>
+    <link rel="icon" type="image/x-icon" href="./assets/nmeappwhite.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/navbar.css">
+    <link rel="stylesheet" href="./css/faq.css">
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body class=" bg-white text-gray-800">
+
+<header
+    class="fixed top-0 left-0 w-full h-20 bg-white shadow-lg z-50 flex items-center justify-between lg::pl-40 pr-10 sm:px-10">
+    <div class="flex items-center space-x-2 pl-10 md:pl-0">
+      <a href="/"><img alt="NME company logo" src="{% static 'images/nmeappblack.png' %}" width="65" /></a>
+    </div>
+    <nav class="hidden space-x-10 text-sm md:flex">
+      <a class=" text-black font-bold hover:text-gray-500" href="/">
+        Home
+      </a>
+      <a class="text-black font-bold hover:text-gray-500" href="/about">
+        About
+      </a>
+      <a class="text-black font-bold hover:text-gray-500" href="/register">
+        Register
+      </a>
+      <a class=" text-black font-bold hover:text-gray-500" href="/blog">
+        Blogs
+      </a>
+      <a class=" text-black active font-bold hover:text-gray-500 "    style="background-color: #0000000f;
+      color: #003d6a !important;
+      border-radius: 5rem;
+      padding-inline: 20px !important;
+      font-weight: bold;"      href="/faq">
+        FAQ
+      </a>
+      <a class=" text-black active font-bold hover:text-gray-500" href="/services">
+        Services
+      </a>
+      <a class="text-black font-bold hover:text-gray-500" href="/contact">
+        Contact
+      </a>
+    </nav>
+    <a class="modal-button hidden px-4 py-2 text-white rounded-lg  text-lg rounded-l-full rounded-b-full hover:rounded-full transition transform duration-300 hover:shadow-xl hover:scale-105 md:inline-block"
+      data-modal-target="#modalBox-3">
+      
+    </a>
+    <button class="block md:hidden text-blue-600 text-2xl" onclick="toggleNavbar()">
+      <i class="fas fa-bars">
+      </i>
+    </button>
+  </header>
+  <nav class="hidden fixed top-20 left-0 w-full bg-white shadow-lg z-40 md:hidden" id="mobile-nav">
+    <ul class="flex flex-col items-center space-y-4 py-4">
+      <li>
+        <a class=" text-black font-bold hover:text-gray-500" href="/">
+          Home
+        </a>
+      </li>
+      <li>
+        <a class="text-black font-bold hover:text-gray-500" href="/about">
+          About
+        </a>
+      </li>
+      <li>
+        <a class="text-black font-bold hover:text-gray-500" href="/register">
+          Register
+        </a>
+      </li>
+      <li>
+        <a class=" text-black font-bold hover:text-gray-500" href="/blog">
+          Blogs
+        </a>
+      </li>
+      <li>
+        <a class="text-black active font-bold hover:text-gray-500" href="/faq">
+          FAQ
+        </a>
+      </li>
+      <li>
+        <a class="text-black active font-bold hover:text-gray-500" href="/services">
+          Services
+        </a>
+      </li>
+      <li>
+        <a class="text-black font-bold
+           hover:text-gray-500" href="./contact.html">
+          Contact
+        </a>
+      </li>
+      <li>
+        <a class="modal-button px-4 py-2 text-white rounded-lg  transition transform duration-300 hover:shadow-xl hover:scale-105"
+          data-modal-target="#modalBox-3">
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+
+<div class="container mx-auto px-4 py-40">
+    <div class="text-center">
+        <p class="text-blue-500 font-bold">FAQ</p>
+        <h1 class="text-4xl font-bold mt-2">Who You Are?</h1>
+        <div class="flex justify-center mt-4 space-x-4">
+            <button class="px-4 py-2 bg-[#92a0e9] text-[black] rounded w-32" id="cust" onclick="showSection('customer')">Customer</button>
+            <button class="px-4 py-2 bg-[#92a0e9] text-[black] rounded w-32" id="usr" onclick="showSection('user')">User</button>
+        </div>
+
+        <!-- Customer Section -->
+        <div id="customer" class="section hidden mt-4 ml-20 mr-20">
+          <div class="detail grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-5 gap-4 justify-center mt-8">
+            <a href="#" class="text-gray-500 hover:text-blue-500 text-sm sm:text-base text-center deactive-tab" id="customer-nmeapp-id" onclick="showFAQ('nme-app-faq','customer-nmeapp-id')">NME APP</a>
+            <a href="#" class="text-gray-500 hover:text-blue-500 text-sm sm:text-base text-center deactive-tab" id="customer-benifits-id" onclick="showFAQ('nme-app-benefits','customer-benifits-id')">BENEFITS</a>
+            <!-- <a href="#" class="text-gray-500 hover:text-blue-500 text-sm sm:text-base text-center deactive-tab" onclick="showFAQ('customer-payments', this)">CAREERS</a> -->
+            <a href="#" class="text-gray-500 hover:text-blue-500 text-sm sm:text-base text-center deactive-tab" id="customer-features-id" onclick="showFAQ('nme-app-features','customer-features-id')">FEATURES</a>
+            <a href="#" class="text-gray-500 hover:text-blue-500 text-sm sm:text-base text-center deactive-tab" id="customer-reg-id"  onclick="showFAQ('nme-app-registration','customer-reg-id')">REGISTRATION</a>
+            <a href="#" class="text-gray-500 hover:text-blue-500 text-sm sm:text-base text-center deactive-tab" id="customer-safety-id" onclick="showFAQ('nme-app-safety','customer-safety-id')">SAFETY</a>
+        </div>
+        
+            <div class="mt-8">
+
+              <!-- nme-app -->
+                <div id="customer-general" class=" nme-app-faq faq-section pt-3 ">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      Why NME App?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    The NME app avoids intermediaries, enabling a direct connection between users and businesses. It offers a platform for entrepreneurs, freelancers and professionals to showcase their services and to reach a wider audience, making it an inclusive and valuable tool for all types of businesses.
+
+                  </p>
+                </div>
+                <div id="customer-general" class=" nme-app-faq faq-section pt-3 ">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      What is the diffrence between nme app and other business listing platforms?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    Unlike other platforms, the NME app eliminates intermediaries, providing a direct and seamless connection between users and vendors. With no hidden charges, NME treats all businesses equally, regardless of their size.
+                  </p>
+              </div>
+              <!-- endnme-app -->
+               <!-- benefits -->
+                <div id="customer-poster" class=" nme-app-benefits faq-section pt-3 hidden">
+                    <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer "
+                        onclick="toggleDropdown(this)">
+                        What are the benefits to customers by listing businesses and services on NME APP?
+                        <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                    </h3>
+                    <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                      Listing your business on NME allows customers to easily find and contact you, review your services, and directly interact with you. It increases visibility, attracts new customers, and provides a platform to showcase your services.                    </p>
+                </div>
+                
+                <div id="customer-poster" class="nme-app-benefits faq-section pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer pt-3"
+                      onclick="toggleDropdown(this)">
+                      Is there any option to run ads in the NME APP ?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    Yes, NME offers advertising features, including slider ads and an offer section. Businesses can use these features to promote their services, discounts, or special offers to a wider audience within the app.
+                  </p>
+                </div>
+
+                <div id="customer-poster" class="nme-app-benefits faq-section pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer pt-3"
+                      onclick="toggleDropdown(this)">
+                      As a business owner or service provider, can I connect with other businesses and service providers on the NME app?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    As a business or service provider, connecting with others on NME enables B2B (business-to-business), B2C (business-to-customer), and C2C (customer-to-customer) interactions. These connections foster collaborations, partnerships, and networking. Engaging in these exchanges drives growth and mutual success.
+                  </p>
+                </div>
+
+              <!-- endbenefits -->
+               <!-- career -->
+                <!-- <div id="customer-payments" class="faq-section hidden">
+                    <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                        onclick="toggleDropdown(this)">
+                        What is your shipping policy12?
+                        <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src=/assets/img/upload.1.png" alt="Dropdown Arrow">
+                    </h3>
+                    <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta felis pretium est ultricies tincidunt...
+                    </p>
+                </div> -->
+                <!-- features -->
+                <div id="customer-shipping" class="nme-app-features faq-section  pt-3 hidden">
+                    <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                        onclick="toggleDropdown(this)">
+                        How can I contact NME APP for support?
+                        <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                    </h3>
+                    <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                      NME offers 24/7 customer support, enabling customers to reach out anytime. Whether day or night, assistance is always available. You can contact the support team whenever you need help
+                    </p>
+                </div>
+
+                <div id="customer-shipping" class="nme-app-features faq-section  pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      How can I make my business and services stand out from others?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    To make your business stand out, you can use advertising options such as Slider Ads or the Offer Section in the NME app. These features enhance visibility and attract more customers. Boost your business presence and reach a wider audience effectively.
+                  </p>
+              </div>
+
+                <!-- registration -->
+                <div id="customer-returns" class="nme-app-registration faq-section  pt-3 hidden">
+                    <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                        onclick="toggleDropdown(this)">
+                        How do I get registered in the NME app
+                        <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                    </h3>
+                    <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                      Registering is simple! Provide basic details like your business name, contact number, location, and social media links. You can also add a website during registration if available. Completing the registration process grants you access to a variety of exciting features. It's a one-time process that opens up many opportunities for your business.
+                    </p>
+                </div>
+
+                <div id="customer-returns" class="nme-app-registration faq-section  pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      Are there any conditions to list my business and services on NME APP?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    There are no specific conditions beyond providing accurate and truthful information about your business. Ensure your business complies with local regulations and operates legally.
+                  </p>
+                </div>
+
+                <div id="customer-returns" class="nme-app-registration faq-section  pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      do i need to renew my registration on NME APP?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    You can complete the registration quickly by providing all the necessary details to list your profile.                  </p>
+                </div>
+
+                <div id="customer-returns" class="nme-app-registration faq-section  pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      How long does it take to complete the registration process?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    You can complete the registration quickly by providing all the necessary details to list your profile.                  </p>
+                </div>
+
+                <div id="customer-returns" class="nme-app-registration faq-section  pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      Can I register multiple services on the NME app?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    Yes, you can list multiple businesses or services, each with a separate profile, to represent various offerings. This allows you to manage different businesses and services under distinct profiles for better organization.
+                  </p>
+                </div>
+                <!-- safety -->
+
+                <div id="customer-refunds" class="nme-app-safety faq-section pt-3 hidden">
+                    <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                        onclick="toggleDropdown(this)">
+                        Is my personal information safe on NME APP?
+                        <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                    </h3>
+                    <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                      Yes, NME APP takes privacy seriously and ensures that all personal information is securely stored and not shared without your consent.
+                    </p>
+                </div>
+
+                <div id="customer-refunds" class="nme-app-safety faq-section pt-3 hidden">
+                  <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                      onclick="toggleDropdown(this)">
+                      Does NME APP share my data with third parties?
+                      <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+                  </h3>
+                  <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                    No, NME APP does not share your personal data with any third parties. Your data is completely safe and secure within the NME app.
+                  </p>
+              </div>
+
+            </div>
+
+            
+
+        </div>
+        <!-- close customer section -->
+
+
+
+
+        
+       <!-- User Section -->
+       <div id="user" class="section hidden mt-4 ml-20 mr-20">
+        <div class="detail grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-5 gap-4 justify-center mt-8">
+        <a href="#" class="text-gray-500 hover:text-blue-500 deactive-tab" id="user-nmeapp-id"  onclick="showFAQ('user-nmeapp','user-nmeapp-id')">NME APP</a>
+        <a href="#" class="text-gray-500 hover:text-blue-500 deactive-tab" id="user-benifits-id" onclick="showFAQ('user-benefits','user-benifits-id')">BENEFITS</a>
+        <!-- <a href="#" class="text-gray-500 hover:text-blue-500" onclick="showFAQ('user-payments')">CAREERS</a> -->
+        <a href="#" class="text-gray-500 hover:text-blue-500 deactive-tab" id="user-features-id" onclick="showFAQ('user-features','user-features-id')">FEATURES</a>
+        <a href="#" class="text-gray-500 hover:text-blue-500 deactive-tab" id="user-reg-id" onclick="showFAQ('user-registration','user-reg-id')">REGISTRATION</a>
+        <a href="#" class="text-gray-500 hover:text-blue-500 deactive-tab" id="user-safety-id"  onclick="showFAQ('user-safety','user-safety-id')">SAFETY</a>
+       </div>
+    <div class="mt-8">
+      <!-- n-me app -->
+        <div id="user-general" class="user-nmeapp faq-section  pt-3 user-nme-app">
+            <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                onclick="toggleDropdown(this)">
+                What is NME APP?
+                <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+            </h3>
+            <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+              NME (Near Me) is a business and services listing application by N-ME 360. It enables businesses and products to reach their target audience directly, cutting out intermediaries. Any company, big or small, can register effortlessly and showcase its offerings to potential customers.
+            </p>
+        </div>
+
+        <div id="user-general" class="user-nmeapp faq-section  pt-3 user-nme-app">
+          <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+              onclick="toggleDropdown(this)">
+              Is NME APP free?
+              <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+          </h3>
+          <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+            Yes, NME is completely free to use for users. There are no hidden charges for searching businesses or contacting service providers through the app and no login credentials are required to access its features.
+          </p>
+        </div>
+
+        <div id="user-general" class="user-nmeapp faq-section  pt-3 user-nme-app">
+          <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+              onclick="toggleDropdown(this)">
+              How do I download NME APP?
+              <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+          </h3>
+          <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+            You can download the NME app from the Google Play Store for Android devices or the App Store for iOS devices. Search for "NME" in the App Store or Play Store, select the app, and tap "Install" to download it.
+          </p>
+        </div>
+
+        <!-- benifits -->
+        <div id="user-poster" class="faq-section pt-3 hidden user-benefits">
+            <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                onclick="toggleDropdown(this)">
+                How does the NME app help me daily?
+                <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+            </h3>
+            <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+              NME makes your daily life easier by helping you quickly find and connect with local businesses and service providers. Whether for home repairs, dining, or any other service, NME saves time and simplifies the process with direct access to reliable options.
+            </p>
+        </div>
+
+        <div id="user-poster" class="faq-section pt-3 hidden user-benefits">
+          <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+              onclick="toggleDropdown(this)">
+              What types of businesses and services are listed on NME APP?
+              <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+          </h3>
+          <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+            NME lists all types of businesses and services, including local shops, freelancers, home service providers, restaurants, educational services, health professionals, and more.
+          </p>
+        </div>
+
+        <div id="user-poster" class="faq-section hidden pt-3 user-benefits">
+          <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+              onclick="toggleDropdown(this)">
+              Can I contact a business and service provider directly?
+              <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+          </h3>
+          <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+            Yes, users can contact businesses and service providers directly through the contact details provided on their profiles, which may include phone numbers, social media links, and location information.
+          </p>
+        </div>
+
+        <!-- careers -->
+        <!-- <div id="user-payments" class="faq-section hidden">
+            <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                onclick="toggleDropdown(this)">
+                What is your shipping policy?
+                <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src=/assets/img/upload.1.png" alt="Dropdown Arrow">
+            </h3>
+            <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta felis pretium est ultricies tincidunt...
+            </p>
+        </div> -->
+
+        <!-- features -->
+
+        <div id="user-shipping" class="faq-section hidden pt-3 user-features">
+            <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                onclick="toggleDropdown(this)">
+                Is there any additional fee for using businesses and services in NME?
+                <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+            </h3>
+            <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+              No, using the NME app to search for businesses or services is completely free. There are no charges for accessing or browsing listings. You can find what you need at no cost.
+            </p>
+        </div>
+
+        <div id="user-shipping" class="faq-section hidden pt-3 user-features">
+          <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+              onclick="toggleDropdown(this)">
+              Are you providing any offers on businesses and services?
+              <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+          </h3>
+          <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+            You can explore various offers from businesses and service providers in the Offer Section of the NME app. This section highlights special deals and promotions. Stay updated on the latest offers to make the most of your purchases and services.
+          </p>
+        </div>
+
+        <div id="user-shipping" class="faq-section hidden pt-3 user-features">
+          <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+              onclick="toggleDropdown(this)">
+              Can I change or modify my business and services details on NME APP?
+              <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+          </h3>
+          <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+            Yes, you can update or modify your business and service details wYes, NME offers advertising features, including slider ads and an offer section. Businesses can use these features to promote their services, discounts, or special offers to a wider audience within the app.
+          </p>
+        </div>
+        <!-- registration -->
+
+        <div id="user-returns" class="faq-section hidden pt-3 user-registration">
+            <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                onclick="toggleDropdown(this)">
+                What information do I need to provide for using the NME app?
+                <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+            </h3>
+            <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+              You don’t need to provide any personal information to use the NME app. Simply enable location services, and you’re ready to use it!
+            </p>
+        </div>
+        <!-- safety -->
+
+        <div id="user-refunds" class="faq-section hidden pt-3 user-safety">
+            <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+                onclick="toggleDropdown(this)">
+                the data provided in NME APP genuine and trustworthy?
+                <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+            </h3>
+            <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+              Yes, NME APP strives to ensure that all business listings are genuine. We encourage businesses to update their details regularly and maintain transparency to provide trustworthy information.
+            </p>
+        </div>
+
+        <div id="user-refunds" class="faq-section hidden pt-3 user-safety">
+          <h3 class="question text-lg font-semibold p-4 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 flex justify-between items-center cursor-pointer"
+              onclick="toggleDropdown(this)">
+              Does NME offer support in case of safety concerns?
+              <img class="dropdown-icon w-6 h-6 transform transition-transform duration-300" src="{% static 'images/img/upload.1.png' %}" alt="Dropdown Arrow">
+          </h3>
+          <p class="answer hidden mt-2 px-4 py-2 bg-gray-50 rounded-lg text-gray-600">
+            Yes, NME APP offers support for safety concerns. If you face any issues, you can contact our support team, and we will assist in resolving the matter.
+          </p>
+      </div>
+
+    </div>
+</div>
+</div>
+</div>
+  <!-- Subscribe Section -->
+  <!-- <section id="subscribe" class=" text-white py-12 subscribe">
+    <div class="container mx-auto px-4 justify-items-center ">
+       <div class="text-center mb-8 ">
+        <h1 class="subscribe-media">
+          Join Our Newsletter
+        </h1>
+        <p class="mt-4 text-black">
+          Subscribe to our newsletter so we can update you with services and offers.
+        </p>
+      </div> 
+      <form action="https://api.web3forms.com/submit" id="form" method="POST">
+        <input
+          name="access_key"
+          type="hidden"
+          value="001dca4d-f800-4342-9bfe-2c62d301c8a9"
+        />
+        <input
+          name="subject"
+          type="hidden"
+          value="New Submission from your Website"
+        />
+        <input id="" name="botcheck" style="display: none" type="checkbox" />
+        <div class="justify-center items-center gap-1.5 flex sm:flex-row">
+          <input
+            class="w-96 p-2 border border-gray-300 rounded-lg"
+            name="phone"
+            placeholder=""
+            required=""
+            type="text"
+          />
+          <button
+            class="sm:w-[100px] px-3.5 py-2 bg-blue-400 hover:bg-blue-600 transition-all duration-700 ease-in-out rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex media"
+            type="submit"
+          >
+            <span
+              class="px-1.5 text-gray-900 text-sm font-medium leading-6 whitespace-nowrap "
+              >Subscribe</span
+            >
+          </button>
+        </div>
+      </form>
+    </div>
+  </section> -->
+
+  <!-- Footer -->
+  <footer id="footer" class="bg-gray-900 text-gray-500 py-12 subscribe-footer">
+    <div class="container mx-auto px-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-[black]">N-me</h3>
+          <p class="text-[#00000096]">
+            Hilite Business Park, Near Hilite Mall,<br />
+            Kozhikode<br />Kochi, Thiruvananthapuram, Pondichery<br />Coimbatore,
+            Chennai, Bengaluru<br />Dubai, Qatar, Oman<br />
+          </p>
+          <p class="mt-2 text-[#00000096]">
+            <strong>Phone:</strong> +91 9072919991, +91 9745109190
+          </p>
+          <p class="mt-2 text-[#00000096]"><strong>Email:</strong> nmesmartech@gmail.com</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-4 text-black">Useful Links</h4>
+          <ul>
+            <li class="mb-2">
+              <i class="bx bx-chevron-right"></i>
+              <a href="./index.html" class="hover:underline text-[#00000096]">Home</a>
+            </li>
+            <li class="mb-2">
+              <i class="bx bx-chevron-right"></i>
+              <a href="./About.html" class="hover:underline text-[#00000096]">About</a>
+            </li>
+            <li class="mb-2">
+              <i class="bx bx-chevron-right"></i>
+              <a href="./Register.html" class="hover:underline text-[#00000096]">Register Now</a>
+            </li>
+            <li class="mb-2">
+              <i class="bx bx-chevron-right"></i>
+              <a href="./blogs.html" class="hover:underline text-[#00000096]">Blogs</a>
+            </li>
+            <li class="mb-2">
+              <i class="bx bx-chevron-right"></i>
+              <a href="./faq.html" class="hover:underline text-[#00000096]">FAQ</a>
+            </li>
+            <li class="mb-2">
+              <i class="bx bx-chevron-right"></i>
+              <a href="./service.html" class="hover:underline text-[#00000096]">Services</a>
+            </li>
+            <li class="mb-2">
+              <i class="bx bx-chevron-right"></i>
+              <a href="contact.html" class="hover:underline text-[#00000096]">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-4 text-black">Backend Offerings</h4>
+          <ul>
+            <li class="mb-2 text-[#00000096]">
+              <i class="bx bx-chevron-right text-[#00000096]"></i> Web Development
+            </li>
+            <li class="mb-2 text-[#00000096]">
+              <i class="bx bx-chevron-right text-[#00000096]"></i> App Development
+            </li>
+            <li class="mb-2 text-[#00000096]">
+              <i class="bx bx-chevron-right text-[#00000096]"></i> Digital Marketing
+            </li>
+            <li class="mb-2 text-[#00000096]">
+              <i class="bx bx-chevron-right text-[#00000096]"></i> Graphic Designing
+            </li>
+            <li class="mb-2 text-[#00000096]"><i class="bx bx-chevron-right text-black"></i> Branding</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-4 text-black">
+            Our Social Networks
+          </h4>
+          <p class="text-[#00000096]">
+            Our social network is a platform to connect with basic needs and
+            wants of human being.
+          </p>
+          <div class="social-links mt-3 flex space-x-4 items-center">
+            <a href="https://www.instagram.com/nme_app/?hl=en">
+              <div class="btn btn-primary rounded-pill">
+                <i class="bi bi-instagram text-black"></i>
+              </div>
+            </a>
+
+            <a href="https://www.facebook.com/p/NME-APP-100076151802998/">
+              <div class="btn btn-primary rounded-pill">
+                <i class="bi bi-facebook text-black"></i>
+              </div>
+            </a>
+
+            <a href="https://x.com/nmeapp">
+              <div class="btn btn-primary rounded-pill">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-twitter-x text-black"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"
+                  />
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto px-4 mt-8 text-center">
+      <div class="text-gray-500">
+        Copyright © 2024
+        <a href="" class="text-blue-500 hover:underline">N-me App.</a> All
+        rights reserved.
+      </div>
+    </div>
+  </footer>
+         
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="{% static 'js/faq.js' %}"></script>
+    <script src="./assets/js/index.js"></script>
+    
+
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="./assets/js/customerusertoggle.js"></script>
+</body>
+</html>

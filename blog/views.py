@@ -17,6 +17,9 @@ def services(request):
 def faq(request):
     return render (request,'faq.html')
 
+# def sitemap(request):
+#     return render (request,'sitemap.xml')
+
 def blog_list(request):
     blogs = Post.objects.all().order_by('-created_at')  # Get all blogs ordered by latest
     paginator = Paginator(blogs, 8)  # 8 blogs per page

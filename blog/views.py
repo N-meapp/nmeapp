@@ -17,6 +17,9 @@ def services(request):
 def faq(request):
     return render (request,'faq.html')
 
+def privacy(request):
+    return render (request,'privacy_nmeapp.html')
+
 # def sitemap(request):
 #     return render (request,'sitemap.xml')
 

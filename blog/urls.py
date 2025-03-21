@@ -18,6 +18,9 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('faq', views.faq, name='faq'),
     path('blog', views.blog_list, name='blog'),
+    path('privacy_nmeapp', views.privacy, name='privacy_nmeapp'),
+
+    
     # path('sitemap', views.sitemap, name='sitemap'),
 
 

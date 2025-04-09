@@ -8497,8 +8497,8 @@ fieldset:disabled .btn {
     position: absolute;
   }
   .navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
   }
   .navbar-expand-lg .navbar-nav-scroll {
     overflow: visible;
@@ -11791,9 +11791,14 @@ fieldset:disabled .btn {
   padding-left: 1.5rem !important;
 }
 
-.px-5 {
+/* .px-5 {
   padding-right: 3rem !important;
   padding-left: 3rem !important;
+} */
+
+.navalign{
+  padding-right: 3rem ;
+  padding-left: 3rem ;
 }
 
 .py-0 {
@@ -14006,10 +14011,6 @@ fieldset:disabled .btn {
 
   .me-lg-2 {
     margin-right: 0.5rem !important;
-  }
-
-  .me-lg-3 {
-    margin-right: 1rem !important;
   }
 
   .me-lg-4 {
@@ -19898,4 +19899,11 @@ background: #d69d007b;
 }
 .btn-prime:hover{
   background-color: #ADD8E6;
+}
+
+@media (min-width: 992px) {
+  .navalign {
+    padding-right: 0rem !important;
+    padding-left: 2rem !important;
+}
 }

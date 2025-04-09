@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-52da-#m3+q2qlp_9k48dm$#$ue_@^1du(v+)-d*t9br8wu)@dz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nmeapp.in', 'www.nmeapp.in']
+# ALLOWED_HOSTS = ['nmeapp.in', 'www.nmeapp.in']
+ALLOWED_HOSTS = []
+
 
 
 CSRF_TRUSTED_ORIGINS = [

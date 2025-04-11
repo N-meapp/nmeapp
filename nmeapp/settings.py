@@ -60,7 +60,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'django.contrib.sitemaps'
+    'django.contrib.sitemaps',
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 
@@ -167,3 +169,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dd6caczi8',
+    'API_KEY': '718852635219182',
+    'API_SECRET': 'GGpwQtxxbSiIAHuV0bOVX9mQ6JA',
+}
+
+cloudinary.config( 
+    cloud_name = CLOUDINARY_STORAGE['CLOUD_NAME'],  
+    api_key = CLOUDINARY_STORAGE['API_KEY'],  
+    api_secret = CLOUDINARY_STORAGE['API_SECRET']
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

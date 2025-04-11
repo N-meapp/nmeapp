@@ -155,7 +155,7 @@
               <div class="card">
                 {% if blog.image %}
                 <img
-                  src="{{ blog.image.url }}"
+                  src="{{ blog.image }}"
                   class="card-img-top"
                   alt="Blog Image"
                 />
@@ -170,7 +170,7 @@
                   </p>
                   <div class="key">
                     <button
-                      onclick="showLargeModal(`{{blog.keyword}}`,`{{ blog.image.url }}`,`{{blog.modal_head}}`,`{{blog.modal_paragraph|linebreaksbr}}`)"
+                      onclick="showLargeModal(`{{blog.keyword}}`,`{{ blog.image }}`,`{{blog.modal_head}}`,`{{blog.modal_paragraph|linebreaksbr}}`)"
                       class="btn btn-prime"
                     >
                       Read More

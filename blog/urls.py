@@ -18,11 +18,13 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('faq', views.faq, name='faq'),
     path('blog', views.blog_list, name='blog'),
+    path('dashboard', views.admin_panel, name='dashboard'),
     path('privacy_nmeapp', views.privacy, name='privacy_nmeapp'),
-
-    
+    path('blog_post', views.blog_post, name='blog_post'),
+    path('delete_blog/<int:id>', views.delete_blog, name='delete_blog'),
+    path('delete_message/<int:id>', views.delete_message, name='delete_message'),
     # path('sitemap', views.sitemap, name='sitemap'),
+    path('login/', views.login, name='login'),
+    path('admin_register/', views.admin_register, name='admin_register'),
 
-
-    # path('about/', views.about, name='about'),
 ]

@@ -1,11 +1,13 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 class Post(models.Model):
-    image = models.ImageField(upload_to='media', null=True, blank=True)
+    image = CloudinaryField('image', folder="nmeapp_blogs/",blank=True, null=True) 
     card_head = models.CharField(max_length=100,null=True, blank=True)
     modal_head = models.CharField(max_length=100,null=True, blank=True)
-    date = models.DateField()
+    date = models.CharField(max_length=100,null=True, blank=True)
     card_paragraph = models.TextField(null=True, blank=True)
     modal_paragraph = models.TextField(null=True, blank=True)
     keyword = models.CharField(max_length=100,null=True, blank=True)
@@ -26,3 +28,9 @@ class Contact(models.Model):
         return self.name
     
 
+class Login(models.Model):
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.username

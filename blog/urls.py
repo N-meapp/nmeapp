@@ -21,10 +21,12 @@ urlpatterns = [
     path('dashboard', views.admin_panel, name='dashboard'),
     path('privacy_nmeapp', views.privacy, name='privacy_nmeapp'),
     path('blog_post', views.blog_post, name='blog_post'),
+    path('update_blog', views.update_blog, name='update_blog'),
     path('delete_blog/<int:id>', views.delete_blog, name='delete_blog'),
     path('delete_message/<int:id>', views.delete_message, name='delete_message'),
     # path('sitemap', views.sitemap, name='sitemap'),
-    path('login/', views.login, name='login'),
+    path('login', views.login, name='login'),
+    path('logout/', views.logout, name='logout'), 
     path('admin_register/', views.admin_register, name='admin_register'),
 
 ]

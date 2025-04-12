@@ -36,3 +36,27 @@ function showFunction(fade) {
       }
   }
 }
+
+
+
+
+function openUpdateModal(id, cardHead, modalHead, cardParagraph, modalParagraph, keyword,image) {
+  // Debug log — open the browser console to verify
+  console.log("Opening modal with ID:", id);
+
+  // Set form fields
+  document.getElementById('updateId').value = id;
+  document.getElementById('updateCardHead').value = cardHead;
+  document.getElementById('updateModalHead').value = modalHead;
+  document.getElementById('updateCardParagraph').value = cardParagraph;
+  document.getElementById('updateModalParagraph').value = modalParagraph;
+  document.getElementById('updateKeyword').value = keyword;
+
+
+
+  // Show the modal (Bootstrap 5)
+  const modal = new bootstrap.Modal(document.getElementById('updateModal'));
+  modal.show();
+}
+
+

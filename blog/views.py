@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from. models import*
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
@@ -82,10 +82,54 @@ def admin_panel(request):
             "blog":blog,
             "contact":contact
         }
+        print("Dashboard accessed, session name:", request.session.get("name"))
         return render (request,'admin_panel.html',context)
-    else:
-        return redirect('login/')
 
+    else:
+        print("No session found, returning simple response")
+        # return HttpResponse("You are not logged in.")
+        return render(request, 'login.html')
+
+def update_blog(request):
+    if request.method == 'POST':
+        blog_id = request.POST.get('id')
+        print(f"Received blog ID: {blog_id}")
+        if not blog_id:
+            return HttpResponse("Blog ID not received", status=400)
+        
+        blog = get_object_or_404(Post, id=blog_id)
+        
+        # Update text fields
+        blog.card_head = request.POST.get('card_head')
+        blog.modal_head = request.POST.get('modal_head')
+        blog.card_paragraph = request.POST.get('card_paragraph')
+        blog.modal_paragraph = request.POST.get('modal_paragraph')
+        blog.keyword = request.POST.get('keyword')
+
+        # Check for new image
+        new_image = request.FILES.get('image')
+        if new_image:
+            # Extract public_id from existing image URL
+            if blog.image:
+                try:
+                    public_id = blog.image.split("/")[-1].split(".")[0]
+                    cloudinary.uploader.destroy(public_id)
+                except Exception as e:
+                    print(f"Error deleting old image: {e}")
+
+            # Upload new image
+            cloudinary_response = cloudinary.uploader.upload(new_image)
+            cloudinary_url = cloudinary_response.get("secure_url")
+            blog.image = cloudinary_url
+
+        blog.save()
+        return redirect('dashboard')
+
+    return redirect('dashboard')
+
+        
+
+     
 
 def delete_blog(request,id):
     blog = Post.objects.get(id = id)
@@ -119,15 +163,19 @@ def admin_register(request):
 
 
 def login(request):
+    print("Login view HIT!", request.method)
     if request.method == 'POST':
         username = request.POST.get('username')
         raw_password = request.POST.get('password')
 
+        print(username, raw_password)
+
         try:
             user = Login.objects.get(username=username)
         except Login.DoesNotExist:
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
+            return render(request, 'login.html', {'show_alert': True})
 
+        
         if check_password(raw_password, user.password):
             request.session["name"] = username
 
@@ -135,10 +183,12 @@ def login(request):
             response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate'
             response['Pragma'] = 'no-cache'
             response['Expires'] = '0'
+            print("Login successful, session name:", request.session.get("name"))
 
             return response
         else:
             return render(request, 'login.html', {'error': 'Invalid credentials'})
+    
 
     else:
         if "name" in request.session:
@@ -151,3 +201,8 @@ def login(request):
             response['Pragma'] = 'no-cache'
             response['Expires'] = '0'
             return response
+        
+
+def logout(request):
+    request.session.flush()  # Clears all session data
+    return render(request, 'login.html',)

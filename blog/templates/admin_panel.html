@@ -7,7 +7,16 @@
     <title>Document</title>
   <link rel="stylesheet" href="{% static 'css/admin.css' %}">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+ <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+
 
 
 
@@ -30,12 +39,11 @@
                 <button onclick="showFunction('viewblog')" class="nav-item" id="viewblog-id">View All Blogs</button></br>
                 <button onclick="showFunction('enquiry')" class="nav-item" id="enquiry-id">Enquiry</button></br>
                 <!-- <button onclick="showFunction('addblog')" class="nav-item" id="offersection-id">side-div</button></br> -->
-                <button class="logout-btn">logout</button>
+                <button class="logout-btn"><a href="{% url 'logout' %}"><i class="bi bi-box-arrow-left"></i>   Logout</a></button>
             </div>
             <div class="working-div">
                 <div class="table-content grow" id="addblog">
                     <div class="addblognew">
-                        
                         <form action="{% url 'blog_post' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             
@@ -95,6 +103,8 @@
                                     <th>Keyword</th>
                                     <th>Image</th>
                                     <th>Actions</th>
+                                    <th>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,13 +121,67 @@
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm" onclick="openUpdateModal('{{ blog.id }}', '{{ blog.card_head|escapejs }}', '{{ blog.modal_head|escapejs }}', '{{ blog.card_paragraph|escapejs }}', '{{ blog.modal_paragraph|escapejs }}', '{{ blog.keyword|escapejs }}','{{ blog.image|escapejs }}')">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                    </td>
+                                    
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
+
+                        <!-- Update Modal -->
+                        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <form method="POST" action="{% url 'update_blog' %}" class="modal-content" id="updateForm" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="updateModalLabel">Update Blog</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                <div class="mb-3">
+                                    <label for="updateCardHead" class="form-label">Card Head</label>
+                                    <input type="text" class="form-control" name="card_head" id="updateCardHead">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateModalHead" class="form-label">Modal Head</label>
+                                    <input type="text" class="form-control" name="modal_head" id="updateModalHead">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="hidden" name="id" id="updateId">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateCardParagraph" class="form-label">Card Paragraph</label>
+                                    <textarea class="form-control" name="card_paragraph" id="updateCardParagraph" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateModalParagraph" class="form-label">Modal Paragraph</label>
+                                    <textarea class="form-control" name="modal_paragraph" id="updateModalParagraph" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateKeyword" class="form-label">Keyword</label>
+                                    <input type="text" class="form-control" name="keyword" id="updateKeyword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateKeyword" class="form-label">Image</label>
+                                    <input type="file" class="form-control" name="image" id="updateimage">
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn update-btn">Update</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+  
                     </div>
                 </div>
-
+  
                 <div class="table-content grow" id="enquiry" style="display: none;">
                     <div class="table-list">
                         <table class="blog-table">
@@ -129,7 +193,6 @@
                                     <th>message</th>
                                     <th></th>
 
-                        
                                 </tr>
                             </thead>
                             <tbody>
@@ -154,7 +217,11 @@
             </div>
         </div>
     </div>
-
+    {% if show_alert %}
+    <script>
+        alert("Invalid credentials. Please try again.");
+    </script>
+    {% endif %}
     <script src="{% static 'js/admin.js' %}"></script>
 
 

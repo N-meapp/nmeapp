@@ -161,7 +161,9 @@ def admin_register(request):
     return render(request, 'admin_register.html')
 
 
-
+from django.utils import timezone
+from datetime import timedelta
+from datetime import datetime
 def login(request):
     print("Login view HIT!", request.method)
     if request.method == 'POST':
@@ -169,27 +171,63 @@ def login(request):
         raw_password = request.POST.get('password')
 
         print(username, raw_password)
-
-        try:
-            user = Login.objects.get(username=username)
-        except Login.DoesNotExist:
-            return render(request, 'login.html', {'show_alert': True})
-
-        
-        if check_password(raw_password, user.password):
-            request.session["name"] = username
-
-            response = redirect('dashboard')
-            response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate'
-            response['Pragma'] = 'no-cache'
-            response['Expires'] = '0'
-            print("Login successful, session name:", request.session.get("name"))
-
-            return response
+        if "name" in request.session:
+            print('haaaaaaiiii')
         else:
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
-    
+            print('loggiinnn pageee')
 
+        holder = Login.objects.first()
+
+        current_time = timezone.now()
+        if holder.last_failed_login is not None:
+            if timezone.is_naive(holder.last_failed_login):
+                # Assume naive datetime is in your current timezone (e.g., Asia/Kolkata)
+                aware_last_failed_login = timezone.make_aware(holder.last_failed_login, timezone.get_current_timezone())
+            else:
+                aware_last_failed_login = holder.last_failed_login
+
+            if current_time < aware_last_failed_login + timedelta(hours=2) and holder.rate_limit == 5:
+                print('Wait for a 2 hour time period')
+                return render(request, 'login.html', {'ratelimit': True})
+        
+            else:
+                if holder.rate_limit >=5:
+                    holder.rate_limit = 0
+                    holder.save()
+                
+                try:
+                    user = Login.objects.get(username=username)
+                except Login.DoesNotExist:
+                    holder.rate_limit +=1
+                    holder.last_failed_login = timezone.now()
+                    holder.save()
+                    return render(request, 'login.html', {'show_alert': True})
+                    # return render(request, 'login.html', {'show_alert': True})
+
+                
+                if check_password(raw_password, user.password):
+                    request.session["name"] = username
+                    print(request.session['name'],'nameeeeee')
+                    holder.rate_limit = 0
+                    holder.save()
+                    response = redirect('dashboard')
+                    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate'
+                    response['Pragma'] = 'no-cache'
+                    response['Expires'] = '0'
+                    print("Login successful, session name:", request.session.get("name"))
+
+                    return redirect('dashboard')
+                else:
+                    holder = Login.objects.first()
+                    print('the holder is',holder)
+                    holder.rate_limit +=1
+                    holder.last_failed_login = timezone.now()
+                    holder.save()
+                    print('the rate limit :',user.rate_limit)
+                    return render(request, 'login.html', {'error': 'Invalid credentials'})
+        else:
+            return redirect('login')
+    
     else:
         if "name" in request.session:
             print("Already logged in:", request.session['name'])
@@ -201,8 +239,7 @@ def login(request):
             response['Pragma'] = 'no-cache'
             response['Expires'] = '0'
             return response
-        
 
 def logout(request):
     request.session.flush()  # Clears all session data
-    return render(request, 'login.html',)
+    return redirect('login')

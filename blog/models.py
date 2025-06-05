@@ -27,10 +27,11 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
     
-
 class Login(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True)
+    password = models.CharField(max_length=100)  # plain text
+    rate_limit = models.IntegerField(default=0)
+    last_failed_login = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.username

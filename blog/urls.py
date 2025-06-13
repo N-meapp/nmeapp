@@ -27,6 +27,6 @@ urlpatterns = [
     # path('sitemap', views.sitemap, name='sitemap'),
     path('login', views.login, name='login'),
     path('logout/', views.logout, name='logout'), 
-    path('admin_register/', views.admin_register, name='admin_register'),
+    # path('admin_register/', views.admin_register, name='admin_register'),
 
 ]

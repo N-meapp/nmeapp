@@ -38,18 +38,31 @@ def blog_list(request):
 
     return render(request, 'blog.html', {'page_obj': page_obj})
 
+from django.http import JsonResponse
+from .forms import ContactForm
+# def contact(request):
+
+#     if request.method == "POST":
+#         name = request.POST.get('name')
+#         subject = request.POST.get('subject')
+#         email = request.POST.get('email')
+#         message = request.POST.get('message')
+
+#         contact_data=Contact(name=name,subject=subject,email=email,message=message)
+#         contact_data.save()
+#     return render (request,'contact.html')
 
 def contact(request):
-
     if request.method == "POST":
-        name = request.POST.get('name')
-        subject = request.POST.get('subject')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-
-        contact_data=Contact(name=name,subject=subject,email=email,message=message)
-        contact_data.save()
-    return render (request,'contact.html')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'contact.html', {'form': ContactForm(), 'success': True})
+        else:
+            return render(request, 'contact.html', {'form': form})
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
 
 
 
@@ -226,8 +239,10 @@ def login(request):
                     print('the rate limit :',user.rate_limit)
                     return render(request, 'login.html', {'error': 'Invalid credentials'})
         else:
+            holder.last_failed_login = current_time
+            holder.save()
             return redirect('login')
-    
+
     else:
         if "name" in request.session:
             print("Already logged in:", request.session['name'])

@@ -5,12 +5,15 @@
 {% block content %}
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.184593946854!2d75.83194621459363!3d11.24782729200265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65bbe50ea0b7d%3A0xc4e01eaa6234847e!2sHiLITE%20Business%20Park%2C%20Poovangal%2C%20Pantheeramkavu%2C%20Kerala%20673014!5e0!3m2!1sen!2sin!4v1643355043808!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
+<style>
+  .error-text { color: red; font-size: 0.9rem; }
+</style>
 
 
 <main class="flexbox-col">
 
   <div class="form-wrapper">
-    <form id="form" name="emailform" action="" method="post">
+    <!-- <form id="form" name="emailform" action="" method="post">
         {% csrf_token %}
       <h3 class="form-title">Get In Touch</h3>
       <div class="form-input-grid">
@@ -19,28 +22,29 @@
           <div class="form-input-wrapper flexbox-left">
             <i class="uil uil-user"></i>
             <input class="form-input" id="name" name="name" type="text" placeholder="name" aria-label="" required>
+            <div id="error-name" class="error-text"></div>
           </div>
         </div>
         <div>
-        <!-- <p class="form-text">Password*</p> -->
         <div class="form-input-wrapper flexbox-left">
           <i class="uil uil-asterisk"></i>
           <input class="form-input" id="txt" name="subject" type="text" placeholder="subject" aria-label="" required>
+          <div id="error-subject" class="error-text"></div>
         </div>
       </div>
     </div>
     <div class="form-input-max">
-      <!-- <p class="form-text">Email*</p> -->
       <div class="form-input-wrapper flexbox-left">
         <i class="uil uil-at"></i>
         <input class="form-input" id="email" name="email" type="email" placeholder="Email" aria-label="" required>
+        <div id="error-email" class="error-text"></div>
       </div>
     </div>
     <div class="form-input-max">
-      <!-- <p class="fo9lrm-text">Message* (Max 500)</p> -->
       <div id="textarea" class="form-input-wrapper flexbox-left-start">
         <i class="uil uil-comment-dots"></i>
         <textarea class="form-input" id="message" name="message" placeholder="Your message" maxlength="500" aria-label="" required></textarea>
+        <div id="error-message" class="error-text"></div>
       </div>
      </div>
      <div class="form-input-max flexbox-left">
@@ -48,10 +52,84 @@
         <button id="form-button" type="submit" class="button btn-primary sendbtn"><i class="uil uil-envelope-heart"></i> Send<div class="btn-secondary"></div></button>
        </div>
      </div>
-   </form>
+   </form> -->
+    <form id="form" name="emailform" action="" method="post">
+    {% csrf_token %}
+    {% if success %}
+        <p class="success-message" style="color: green">Your message has been sent successfully!</p>
+    {% endif %}
+
+    <h3 class="form-title">Get In Touch</h3>
+    <div class="form-input-grid">
+        <!-- Name Field -->
+        <div>
+        <div class="form-input-wrapper flexbox-left">
+            <i class="uil uil-user"></i>
+            <input class="form-input" id="name" name="name" type="text" placeholder="name"
+                value="{{ form.name.value|default_if_none:'' }}">
+        </div>
+        <div id="error-name" class="error-text mt-2">
+            {% for error in form.name.errors %}
+            <small>{{ error }}</small>
+            {% endfor %}
+        </div>
+        </div>
+
+        <!-- Subject Field -->
+        <div>
+        <div class="form-input-wrapper flexbox-left">
+            <i class="uil uil-asterisk"></i>
+            <input class="form-input" id="subject" name="subject" type="text" placeholder="subject"
+                value="{{ form.subject.value|default_if_none:'' }}">
+        </div>
+        <div id="error-subject" class="error-text mt-2">
+            {% for error in form.subject.errors %}
+            <small>{{ error }}</small>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-input-max">
+        <div class="form-input-wrapper flexbox-left">
+        <i class="uil uil-at"></i>
+        <input class="form-input" id="email" name="email" type="email" placeholder="Email"
+                value="{{ form.email.value|default_if_none:'' }}">
+        </div>
+        <div id="error-email" class="error-text mt-2">
+        {% for error in form.email.errors %}
+            <small>{{ error }}</small>
+        {% endfor %}
+        </div>
+    </div>
+
+    <!-- Message Field -->
+    <div class="form-input-max">
+        <div id="textarea" class="form-input-wrapper flexbox-left-start">
+        <i class="uil uil-comment-dots"></i>
+        <textarea class="form-input" id="message" name="message" placeholder="Your message" maxlength="500">{{ form.message.value|default_if_none:'' }}</textarea>
+        </div>
+        <div id="error-message" class="error-text mt-2">
+        {% for error in form.message.errors %}
+            <small>{{ error }}</small>
+        {% endfor %}
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-input-max flexbox-left">
+        <div class="button-wrapper">
+        <button id="form-button" type="submit" class="button btn-primary sendbtn">
+            <i class="uil uil-envelope-heart"></i> Send
+            <div class="btn-secondary"></div>
+        </button>
+        </div>
+    </div>
+    </form>
+
+   <div id="success-message" style="color: green;"></div>
   </div>
-
-
 
 </main>
 
@@ -396,3 +474,4 @@
       
 
 {% endblock %}
+

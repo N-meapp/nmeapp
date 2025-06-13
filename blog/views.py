@@ -220,7 +220,7 @@ def login(request):
                 
                 if check_password(raw_password, user.password):
                     request.session["name"] = username
-                    print(request.session['name'],'nameeeeee')
+                    # print(request.session['name'],'nameeeeee')
                     holder.rate_limit = 0
                     holder.save()
                     response = redirect('dashboard')
@@ -232,11 +232,11 @@ def login(request):
                     return redirect('dashboard')
                 else:
                     holder = Login.objects.first()
-                    print('the holder is',holder)
+                    
                     holder.rate_limit +=1
                     holder.last_failed_login = timezone.now()
                     holder.save()
-                    print('the rate limit :',user.rate_limit)
+                    # print('the rate limit :',user.rate_limit)
                     return render(request, 'login.html', {'error': 'Invalid credentials'})
         else:
             holder.last_failed_login = current_time
@@ -245,7 +245,6 @@ def login(request):
 
     else:
         if "name" in request.session:
-            print("Already logged in:", request.session['name'])
             return redirect('dashboard')
         else:
             print("Login attempt")

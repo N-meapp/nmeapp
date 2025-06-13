@@ -204,7 +204,7 @@
                                     <td>{{ contact.message|truncatechars:30}}</td>
                                     
                                     <td class="action">
-                                        <a href="delete_message/{{ contact.id }}" onclick="return confirm('Are you sure you want to delete this item?');">
+                                        <a href="/delete_message/{{ contact.id }}" onclick="return confirm('Are you sure you want to delete this item?');">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>

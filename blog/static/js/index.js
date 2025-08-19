@@ -1,60 +1,62 @@
-document.addEventListener("DOMContentLoaded", function (){
-    const cardArray = document.getElementsByClassName('item')
-
-    let flag=0
 
 
-    for(let i=0;i<cardArray.length;i++){
-     
+document.addEventListener("DOMContentLoaded", function () {
+  const cardArray = document.getElementsByClassName('item')
 
-        setTimeout(() => {
-            if(cardArray[i].classList.contains('active')){
+  let flag = 0
 
-                cardArray[i].classList.remove('')
 
-                
-                
-            }else{
-                cardArray[i].classList.add('active')
-                
-                
-            }
-        }, i*200);
-        
-        
+  for (let i = 0; i < cardArray.length; i++) {
+
+
+    setTimeout(() => {
+      if (cardArray[i].classList.contains('active')) {
+
+        cardArray[i].classList.remove('')
+
+
+
+      } else {
+        cardArray[i].classList.add('active')
+
+
+      }
+    }, i * 200);
+
+
+  }
+
+
+
+
+  setInterval(function () {
+
+    for (let i = 0; i < cardArray.length; i++) {
+      // console.log('first',first[i]);
+      // console.log('second',second[i]);
+
+      setTimeout(() => {
+        if (cardArray[i].classList.contains('active')) {
+
+          cardArray[i].classList.remove('active')
+
+
+
+        } else {
+          cardArray[i].classList.add('active')
+
+
+        }
+      }, i * 200);
+
+
     }
 
-  
+  }, 5000)
 
 
-    setInterval(function(){
 
-        for(let i=0;i<cardArray.length;i++){
-            // console.log('first',first[i]);
-            // console.log('second',second[i]);
-
-            setTimeout(() => {
-                if(cardArray[i].classList.contains('active')){
-
-                    cardArray[i].classList.remove('active')
-
-                    
-                    
-                }else{
-                    cardArray[i].classList.add('active')
-                    
-                    
-                }
-            }, i*200);
-            
-            
-        }
-
-    },5000)
-
-
-    
-  })
+})
 
 
 
@@ -89,63 +91,62 @@ document.addEventListener("DOMContentLoaded", function (){
 //dropdown control
 
 
-function controlDropdown(questionNo){
+function controlDropdown(questionNo) {
 
-    let  questionArray = ['first answer','secondAnswer', 'third Answer','fourth answer']
-    
-  
-    const faqFooter = document.getElementsByClassName('faq-section')
-    const specificQuestion = document.getElementById(questionNo)
-    const ansBox = specificQuestion.querySelector('.ansbox')
-    const dropDown = specificQuestion.querySelector('.dropdown')
-    const pTag = ansBox.querySelector('p')
-    
-    const allQuestions = document.getElementsByClassName('allquestions')
-    
-    let x = -1
-    let y = -1
-    for(let i=0; i<allQuestions.length;i++){
-  
-     let prevAnsBox =  allQuestions[i].querySelector('.ansbox');
-     let prevDropDown = allQuestions[i].querySelector('.dropdown');
-     let prevPTag = prevAnsBox.querySelector('p')
-  
-      if(prevAnsBox.style.height=='40%'){
-          console.log('dcreasing height',i);
-          x=i;
-        setTimeout(() => {
-          prevPTag.textContent = '';
-        }, 100);
-        prevAnsBox.style.height = '0%';
-        prevAnsBox.style.padding= '0px';
-        prevDropDown.style.transform = 'rotate(0deg)';
-  
-      }
-      if(questionNo.includes(i)){
-        console.log('Increasing height',i);
-        y=i
-        // console.log('haiiii',prevAnsBox,ansBox);
-        //   console.log(questionNo,'ddfdfdddddddddddd');
-        // setTimeout(() => {
-          pTag.textContent = questionArray[i];
-        // }, 1000);
-        ansBox.style.height = '40%';
-        ansBox.style.padding= '25px';
-        dropDown.style.transform = 'rotate(180deg)';
-        faqFooter[0].style.marginTop = '300px';
-        
-  
-      }
-    }
-    if(x==y){
+  let questionArray = ['first answer', 'secondAnswer', 'third Answer', 'fourth answer']
+
+
+  const faqFooter = document.getElementsByClassName('faq-section')
+  const specificQuestion = document.getElementById(questionNo)
+  const ansBox = specificQuestion.querySelector('.ansbox')
+  const dropDown = specificQuestion.querySelector('.dropdown')
+  const pTag = ansBox.querySelector('p')
+
+  const allQuestions = document.getElementsByClassName('allquestions')
+
+  let x = -1
+  let y = -1
+  for (let i = 0; i < allQuestions.length; i++) {
+
+    let prevAnsBox = allQuestions[i].querySelector('.ansbox');
+    let prevDropDown = allQuestions[i].querySelector('.dropdown');
+    let prevPTag = prevAnsBox.querySelector('p')
+
+    if (prevAnsBox.style.height == '40%') {
+      console.log('dcreasing height', i);
+      x = i;
       setTimeout(() => {
         prevPTag.textContent = '';
-      }, 500);
-      ansBox.style.height = '0%';
-      ansBox.style.padding= '0px';
-      dropDown.style.transform = 'rotate(0deg)';
-      faqFooter[0].style.marginTop = '150px';
+      }, 100);
+      prevAnsBox.style.height = '0%';
+      prevAnsBox.style.padding = '0px';
+      prevDropDown.style.transform = 'rotate(0deg)';
+
+    }
+    if (questionNo.includes(i)) {
+      console.log('Increasing height', i);
+      y = i
+      // console.log('haiiii',prevAnsBox,ansBox);
+      //   console.log(questionNo,'ddfdfdddddddddddd');
+      // setTimeout(() => {
+      pTag.textContent = questionArray[i];
+      // }, 1000);
+      ansBox.style.height = '40%';
+      ansBox.style.padding = '25px';
+      dropDown.style.transform = 'rotate(180deg)';
+      faqFooter[0].style.marginTop = '300px';
+
+
     }
   }
-    
-  
+  if (x == y) {
+    setTimeout(() => {
+      prevPTag.textContent = '';
+    }, 500);
+    ansBox.style.height = '0%';
+    ansBox.style.padding = '0px';
+    dropDown.style.transform = 'rotate(0deg)';
+    faqFooter[0].style.marginTop = '150px';
+  }
+}
+

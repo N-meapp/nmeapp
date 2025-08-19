@@ -5,13 +5,12 @@ document.addEventListener("DOMContentLoaded", function (){
 
 
     for(let i=0;i<cardArray.length;i++){
-        // console.log('first',first[i]);
-        // console.log('second',second[i]);
+     
 
         setTimeout(() => {
             if(cardArray[i].classList.contains('active')){
 
-                cardArray[i].classList.remove('active')
+                cardArray[i].classList.remove('')
 
                 
                 

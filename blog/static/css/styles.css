@@ -28,10 +28,10 @@
     gap: 50px;
 }
 .active{
-    background-color: #00000021;
+    /* background-color: #00000021; */
   color:#003e6a !important;
-  border-radius: 4rem;
-  padding-inline: 16px !important;
+  /* border-radius: 4rem; */
+  /* padding-inline: 16px !important; */
   font-weight: bold;
 }
 .active-page{

@@ -44,10 +44,10 @@ ALLOWED_HOSTS = ['nmeapp.in', 'www.nmeapp.in','127.0.0.1']
 
 
 
-# CSRF_TRUSTED_ORIGINS = [
-#         'http://nmeapp.in',
-#         'https://nmeapp.in'  # Add both HTTP and HTTPS if using SSL
-#         ]
+CSRF_TRUSTED_ORIGINS = [
+        'http://nmeapp.in',
+        'https://nmeapp.in'  # Add both HTTP and HTTPS if using SSL
+        ]
 
 
 # Application definition

@@ -1,370 +1,225 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class="fonts-loaded no-touch">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <meta content="Best restaurant near me, Good restaurant near me, 5star restaurant near me" name="keywords">
-  <meta title="n-meapp/ business and services listing platform/ connect users directly" name="description"
-    content=" The nme app refers to  near me and is a digital platform for  business and services listings. It helps users to connect directly with different types of business and services.people can find both small and large businesses and services easily through the nme app.  The app supports many categories for everyday needs. It helps businesses grow by reaching more customers. The nme app is simple and easy to use for everyone. It is available on android, IOS, and  the web.the platform is expanding its reach across the world,. nme app truly helps people find everything near me.">
-  <meta name="author" content="Giving customers quick access to local businesses.">
-  <meta name="google-site-verification" content="FEci3zbweUPJYtA9SPb_GBwMF2PgzRURKa9arhL5ROE"/>
-  <title>Nmeapp Bussiness & Service listing mobile application</title>
-  <link rel="icon" type="image/x-icon" href="images/nmeappwhite.png" / >
 
+  <!-- BASIC META -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap"
-    rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- TITLE -->
+  <title>N-Me App</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <!-- TAILWIND -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- PROJECT CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 
-  
-
-
-  <link href="css/styles.css" rel="stylesheet" />
-  <link href="css/style.scss" rel="stylesheet" />
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L70H3PF92N"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F7T4TRB5SS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F7T4TRB5SS');
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Saied K Muhammed",
-  "jobTitle": "Founder & CEO",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Cybexel Technologies Pvt.Ltd",
-    "url": "https://cybexel.com/"
-  },
-  "sameAs": [
-    "https://www.linkedin.com/in/saied-k-muhammed/",
-    
-  ],
-  "image": "https://cybexel.com/images/ceo4.png"
-}
-</script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 
 </head>
 
-<body id="page-top">
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQ52KRC5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<body  class="bg-[#f3f4f6]">
 
 
-  <!-- https://codepen.io/cjr85/pen/RwZNRmo?editors=1100 -->
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
-    <!-- <div class="temp"></div> -->
-    <div class="container navalign" >
-      <a class="navbar-brand fw-bold" href="/"><img class="app-badge" src="{% static 'images/nmeappblack.png' %}" alt="..." /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="bi-list"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <!-- <div class="main" style=" display: flex; gap: 10rem;"> -->
-          <!-- <div class="nav-redirect"> -->
-            <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-              <li class="nav-item {% if request.path == '/'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/">Home</a></li>
-              <li class="nav-item {% if request.path == '/about'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/about">About</a></li>
-              <li class="nav-item {% if request.path == '/register'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/register">Register now</a></li>
-              <li class="nav-item {% if request.path == '/blog'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/blog">Blogs</a></li>
-              <li class="nav-item {% if request.path == '/faq'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/faq">FAQ</a></li>
-              <li class="nav-item {% if request.path == '/services'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/services">Services</a></li>
-              <li class="nav-item {% if request.path == '/contact'%} active  {% endif %}"><a class="nav-link me-lg-3" href="/contact">Contact</a></li>
-            </ul>
-          <!-- </div> -->
-          <!-- <div class="navlinks"> -->
-            <button class="btn btn-primary rounded-pill px-0 mb-2 mb-lg-0" data-bs-toggle="modal"
-            data-bs-target="#feedbackModal">
-            <span class="d-flex align-items-center">
-              <i class="bi-chat-text-fill me-2"></i>
-              <span class="small">Send Feedback</span>
-            </span>
-          </button>
-          <a href="https://www.instagram.com/nme_app/?hl=en" target="_blank"
-            class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
-            <i class="bi bi-instagram"></i>
-          </a>
-  
-          <a href="https://www.facebook.com/profile.php?id=100076151802998" target="_blank"
-            class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
-            <i class="bi bi-facebook"></i>
-          </a>
-          <a href="https://x.com/nmeapp" target="_blank"
-            class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x"
-              viewBox="0 0 16 16">
-              <path
-                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-            </svg>
-          </a>
-          <!-- </div> -->
-        </div>
-        
-        
-      </div>
-    <!-- </div> -->
-  </nav>
-
+  <!-- ================= PAGE CONTENT ================= -->
   {% block content %}
   {% endblock %}
 
+  <!-- NEWSLETTER + FOOTER WRAPPER -->
+  <section class="w-full max-w-[1440px] px-4  mx-auto mt-24">
+    <!-- OUTER CARD -->
+    <div class="w-full bg-gradient-to-br from-[#FFFFFF] to-[#D2DAFF]
+             rounded-[40px]
+             flex flex-col
+             overflow-hidden border-white border-[5px]">
 
+      <!-- NEWSLETTER (TOP) -->
+      <div class="py-20 px-6 text-center rounded-t-[40px]">
+        <h2 class="text-[30px] md:text-[36px] font-semibold text-black">
+          Join Our Newsletter
+        </h2>
 
+        <p class="mt-4 text-[16px] text-black font-medium max-w-xl mx-auto">
+          Subscribe to our newsletter so we can update you with services and offers.
+        </p>
 
+        <!-- INPUT + BUTTON -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div class="flex items-center bg-white rounded-full px-6 py-3
+                    w-full sm:w-[360px]
+                    shadow-[0_4px_8px_rgba(0,0,0,0.08)]">
+            <!-- ICON -->
+            <img src="./static/images/msg.png" class="w-[24px] h-[24px]">
 
-
-
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Subscribe to our newsletter so we can update you with services and offers.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
+            <input type="email" placeholder="Enter your email"
+              class="w-full outline-none text-[14px] pl-4 font-manrope text-[#BBBBBB] placeholder-gray-400" />
           </div>
+
+          <button class="px-10 py-3 rounded-full
+                       bg-gradient-to-r from-[#5b6cff] to-[#3b4bff]
+                       text-white font-semibold text-[16px]
+                       shadow-[0_6px_12px_rgba(59,75,255,0.35)]
+                       hover:opacity-90 transition">
+            Subscribe
+          </button>
         </div>
       </div>
-    </div>
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>N-me</h3>
-            <p>
-              Kochi,
-             <br> Thiruvananthapuram<br>Coimbatore,Chennai, Bengaluru<br>Dubai<br></p>
+      <!-- FOOTER (BOTTOM) -->
+      <footer class="bg-black text-white px-4 sm:px-20 py-16 mt-auto rounded-[40px]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-[40px] text-center sm:text-left">
 
-            <p class="mt-2 footer-phone"><strong>Phone:</strong> +91 9072919991, +91 9745109190</p>
-            <!-- <p style="margin-left: 53px;"></p> -->
+          <!-- BRAND -->
+          <div class="mx-auto sm:mx-0 w-[315px]">
+            <div
+              class="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-5">
+              <div class="w-[77px] h-[56px] ">
+                <img src="./static/images/footer_logo.png">
+              </div>
+              <h3 class="text-[21.29px] md:text-[30px] font-roboto font-bold">N - ME APP</h3>
+            </div>
 
-            <p class="mt-2"> <strong>Email:</strong> info@nmeapp.in, cybexeltechnologies@gmail.com</p>
-          </div>
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/about">About</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/register">Register Now</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/blog">Blogs</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/faq">FAQ</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/services">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/contact">Contact</a></li>
+            <h1 class="text-[16px] text-white font-medium   mx-auto sm:mx-0">
+              All your needs are simplified, secure and just a tap away in one app
+            </h1>
 
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Backend Offerings</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> Web Development</li>
-              <li><i class="bx bx-chevron-right"></i>App Development</li>
-              <li><i class="bx bx-chevron-right"></i>Digital Marketing</li>
-              <li><i class="bx bx-chevron-right"></i>Graphic Designing</li>
-              <li><i class="bx bx-chevron-right"></i>Branding</li>
-
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Social Networks</h4>
-            <p>Our social network is a platform to connect with basic needs and wants of human being.</p>
-            <div class="social-links mt-3">
-
-              <a href="https://www.instagram.com/nme_app/?hl=en">
-                <div class="btn btn-primary rounded-pill ">
-                  <i class="bi bi-instagram"></i>
-                </div>
-              </a>
-
-              <a href="https://www.facebook.com/profile.php?id=100076151802998">
-                <div class="btn btn-primary rounded-pill ">
-                  <i class="bi bi-facebook"></i>
-                </div>
-              </a>
-
-
-              <a href="https://x.com/nmeapp">
-                <div class="btn btn-primary rounded-pill ">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-twitter-x" viewBox="0 0 16 16">
-                    <path
-                      d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-                  </svg>
-                </div>
-              </a>
+            <div class="flex justify-center sm:justify-start gap-4 mt-6 text-gray-400 text-lg">
+              <span class="w-[20px] h-[20px]"><img src="./static/images/instagram.png"></span>
+              <span class="w-[20px] h-[20px]"><img src="./static/images/facebook.png"></span>
+              <span class="w-[20px] h-[20px]"><img src="./static/images/twitter.png"></span>
+              <span class="w-[24px] h-[24px]"><img src="./static/images/youtube.png"></span>
             </div>
           </div>
 
-        </div>
-      </div>
-    </div>
+          <!-- MOBILE ROW WRAPPER -->
+          <div class="grid grid-cols-2 gap-6 sm:contents">
 
-    <div class="container py-4">
-  <div class="credits text-center text-sm text-gray-500">
-    © <script>document.write(new Date().getFullYear())</script> N-me App. All rights reserved. | Designed by 
-    <a href="https://cybexel.com/" target="_blank" class="text-[#8bc83f] hover:underline">
-      Cybexel
-    </a>
-  </div>
+            <!-- QUICK LINKS -->
+<div class="sm:mx-0 md:ml-[4.5rem]">
+  <h2 class="font-semibold text-[16px] md:text-[24px] mb-5 ml-4">
+    Quick Links
+  </h2>
+ <ul class="space-y-3 text-[14px] md:text-[16px] font-medium font-manrope md:text-left footer-list">
+  <li><a href="index.html" class="transition-colors duration-200">Home</a></li>
+  <li><a href="about.html" class="transition-colors duration-200">About</a></li>
+  <li><a href="blog.html" class="transition-colors duration-200">Blogs</a></li>
+  <li><a href="faq.html" class="transition-colors duration-200">FAQ</a></li>
+  <li><a href="services.html" class="transition-colors duration-200">Service</a></li>
+  <li><a href="contact.html" class="transition-colors duration-200">Contact</a></li>
+</ul>
 </div>
 
-  </footer><!-- End Footer -->
 
-
-
-
-
-
-
-  <!-- Feedback Modal-->
-  <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-gradient-primary-to-secondary p-4">
-          <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">Send feedback</h5>
-          <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body border-0 p-4">
-          <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="mailto:info@nmeapp.com" method="post">
-            <!-- Name input-->
-            <div class="form-floating mb-3">
-              <input class="form-control" id="name" type="text" placeholder="Enter your name..."
-                data-sb-validations="required" />
-              <label for="name">Full name</label>
-              <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-            </div>
-            <!-- Email address input-->
-            <div class="form-floating mb-3">
-              <input class="form-control" id="email" type="email" placeholder="name@example.com"
-                data-sb-validations="required,email" />
-              <label for="email">Email address</label>
-              <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-              <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-            </div>
-            <!-- Phone number input-->
-            <div class="form-floating mb-3">
-              <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
-                data-sb-validations="required" />
-              <label for="phone">Phone number</label>
-              <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+            <!-- SERVICES -->
+            <div class="mx-auto sm:mx-0">
+              <h2 class="font-semibold text-[16px] md:text-[24px] mb-5 md:ml-6">
+                Backend Offerings
+              </h2>
+              <ul class="space-y-3 text-[14px] sm:text-[16px] font-medium font-manrope footer-list">
+  <li>Web Development</li>
+  <li>App Development</li>
+  <li>Digital Marketing</li>
+  <li>Graphic Designing</li>
+  <li>Branding</li>
+</ul>
             </div>
 
-            <div class="form-floating mb-3">
-              <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
-                style="height: 10rem" data-sb-validations="required"></textarea>
-              <label for="message">Message</label>
-              <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-            </div>
+          </div>
 
-            <div class="d-none" id="submitSuccessMessage">
-              <div class="text-center mb-3">
-                <div class="fw-bolder">Form submission successful!</div>
-                To activate this form, sign up at
-                <br />
-                <a href=""></a>
-              </div>
-            </div>
-
-            <div class="d-none" id="submitErrorMessage">
-              <div class="text-center text-danger mb-3">Error sending message!</div>
-            </div>
-
-            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton"
-                type="submit">Submit</button></div>
-          </form>
-        </div>
-      </div>
+          <!-- CONTACT -->
+          <div class="mx-auto sm:mx-0 ">
+            <h2 class="font-semibold text-[16px] md:text-[24px] mb-5">Get in Touch</h2>
+            <ul class="space-y-5 text-[14px] sm:text-[16px] font-medium font-manrope text-white text-left no-bullet">
+  <!-- Email -->
+  <li class="grid grid-cols-[80px_1fr] sm:grid-cols-[90px_1fr] gap-0 items-start">
+    <span class="whitespace-nowrap">Email:</span>
+    <div class="flex flex-col">
+      <span>info@nmeapp.in,</span>
+      <span>cybexeltechnologies@gmail.com</span>
     </div>
-  </div>
+  </li>
 
-
-  <a href="/register" class="reg">
-    <div class="float" style="right: 10px;">
-      
-        Register Now
-      
-      
-      <!-- <p class=""></p> -->
+  <!-- Phone -->
+  <li class="grid grid-cols-[80px_1fr] sm:grid-cols-[90px_1fr] gap-0 items-start">
+    <span class="whitespace-nowrap">Phone:</span>
+    <div class="flex flex-col">
+      <span>+91 9072919991,</span>
+      <span>+91 9745109190</span>
     </div>
-  </a>
+  </li>
+
+  <!-- Location -->
+  <li class="grid grid-cols-[80px_1fr] sm:grid-cols-[90px_1fr] gap-0 items-start">
+    <span class="whitespace-nowrap">Location:</span>
+    <div class="flex flex-col leading-relaxed">
+      <span>Kochi,</span>
+      <span>Thiruvananthapuram</span>
+      <span>Coimbatore, Chennai, Bengaluru</span>
+      <span>Dubai</span>
+    </div>
+  </li>
+</ul>
+
+
+          </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="mt-12 pt-6 text-center text-[16px] text-white font-manrope">
+          <div class="mx-auto w-full sm:w-[95%] border-t-[2px] border-white mb-6"></div>
+          © 2025 N-me App. All rights reserved.
+        </div>
+
+      </footer>
+
+    </div>
+  </section>
+<style>
+.footer-list li {
+  position: relative;
+  padding-left: 1.5rem; /* Space for the bullet */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Bullet hidden initially */
+.footer-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;               /* Place bullet at left edge */
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 1.2rem;     /* Increase bullet size (adjust as needed) */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* On hover: move text right and show bullet */
+.footer-list li:hover {
+  transform: translateX(0.5rem); /* Slide text slightly right */
+}
+
+.footer-list li:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0); /* Bullet slides in */
+}
+</style>
 
 
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script src="js/bs-animation.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-      integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/jquery.tabs.min.js"></script>
-    <script src="js/parallax.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script
-      type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"
-    ></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-<script src="script.js"></script>
-<script src="{% static 'js/index.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 </body>
-
 </html>

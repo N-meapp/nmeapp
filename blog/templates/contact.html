@@ -1,477 +1,527 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
-
 {% block content %}
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.184593946854!2d75.83194621459363!3d11.24782729200265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65bbe50ea0b7d%3A0xc4e01eaa6234847e!2sHiLITE%20Business%20Park%2C%20Poovangal%2C%20Pantheeramkavu%2C%20Kerala%20673014!5e0!3m2!1sen!2sin!4v1643355043808!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
-<style>
-  .error-text { color: red; font-size: 0.9rem; }
-</style>
+<!-- ================= TOP VIDEO HERO ================= -->
+<div
+  class="hero-border relative max-w-[363px] md:max-w-[1400px] mx-auto mt-4 h-[720px]
+         overflow-hidden rounded-[40px]">
 
 
-<main class="flexbox-col">
 
-  <div class="form-wrapper">
-    <!-- <form id="form" name="emailform" action="" method="post">
-        {% csrf_token %}
-      <h3 class="form-title">Get In Touch</h3>
-      <div class="form-input-grid">
-        <div>
-         
-          <div class="form-input-wrapper flexbox-left">
-            <i class="uil uil-user"></i>
-            <input class="form-input" id="name" name="name" type="text" placeholder="name" aria-label="" required>
-            <div id="error-name" class="error-text"></div>
-          </div>
-        </div>
-        <div>
-        <div class="form-input-wrapper flexbox-left">
-          <i class="uil uil-asterisk"></i>
-          <input class="form-input" id="txt" name="subject" type="text" placeholder="subject" aria-label="" required>
-          <div id="error-subject" class="error-text"></div>
-        </div>
-      </div>
-    </div>
-    <div class="form-input-max">
-      <div class="form-input-wrapper flexbox-left">
-        <i class="uil uil-at"></i>
-        <input class="form-input" id="email" name="email" type="email" placeholder="Email" aria-label="" required>
-        <div id="error-email" class="error-text"></div>
-      </div>
-    </div>
-    <div class="form-input-max">
-      <div id="textarea" class="form-input-wrapper flexbox-left-start">
-        <i class="uil uil-comment-dots"></i>
-        <textarea class="form-input" id="message" name="message" placeholder="Your message" maxlength="500" aria-label="" required></textarea>
-        <div id="error-message" class="error-text"></div>
-      </div>
-     </div>
-     <div class="form-input-max flexbox-left">
-      <div class="button-wrapper">
-        <button id="form-button" type="submit" class="button btn-primary sendbtn"><i class="uil uil-envelope-heart"></i> Send<div class="btn-secondary"></div></button>
-       </div>
-     </div>
-   </form> -->
-    <form id="form" name="emailform" action="" method="post">
-    {% csrf_token %}
-    {% if success %}
-        <p class="success-message" style="color: green">Your message has been sent successfully!</p>
-    {% endif %}
 
-    <h3 class="form-title">Get In Touch</h3>
-    <div class="form-input-grid">
-        <!-- Name Field -->
-        <div>
-        <div class="form-input-wrapper flexbox-left">
-            <i class="uil uil-user"></i>
-            <input class="form-input" id="name" name="name" type="text" placeholder="name"
-                value="{{ form.name.value|default_if_none:'' }}">
-        </div>
-        <div id="error-name" class="error-text mt-2">
-            {% for error in form.name.errors %}
-            <small>{{ error }}</small>
-            {% endfor %}
-        </div>
-        </div>
 
-        <!-- Subject Field -->
-        <div>
-        <div class="form-input-wrapper flexbox-left">
-            <i class="uil uil-asterisk"></i>
-            <input class="form-input" id="subject" name="subject" type="text" placeholder="subject"
-                value="{{ form.subject.value|default_if_none:'' }}">
-        </div>
-        <div id="error-subject" class="error-text mt-2">
-            {% for error in form.subject.errors %}
-            <small>{{ error }}</small>
-            {% endfor %}
-        </div>
-        </div>
-    </div>
 
-    <!-- Email Field -->
-    <div class="form-input-max">
-        <div class="form-input-wrapper flexbox-left">
-        <i class="uil uil-at"></i>
-        <input class="form-input" id="email" name="email" type="email" placeholder="Email"
-                value="{{ form.email.value|default_if_none:'' }}">
-        </div>
-        <div id="error-email" class="error-text mt-2">
-        {% for error in form.email.errors %}
-            <small>{{ error }}</small>
-        {% endfor %}
-        </div>
-    </div>
+<!-- GRADIENT BACKGROUND -->
+<!-- GRADIENT BACKGROUND (CLIPPED PROPERLY) -->
+<div
+  class="absolute inset-0 z-0 rounded-[40px] overflow-hidden bg-move-box"
+  style="background: linear-gradient(135deg, #E4EEFF, #7D99FF);">
+</div>
 
-    <!-- Message Field -->
-    <div class="form-input-max">
-        <div id="textarea" class="form-input-wrapper flexbox-left-start">
-        <i class="uil uil-comment-dots"></i>
-        <textarea class="form-input" id="message" name="message" placeholder="Your message" maxlength="500">{{ form.message.value|default_if_none:'' }}</textarea>
-        </div>
-        <div id="error-message" class="error-text mt-2">
-        {% for error in form.message.errors %}
-            <small>{{ error }}</small>
-        {% endfor %}
-        </div>
-    </div>
+<!-- SHIMMER / SOFT LIGHT -->
+<div class="absolute inset-0 shimmer opacity-30 z-10 pointer-events-none"></div>
 
-    <!-- Submit Button -->
-    <div class="form-input-max flexbox-left">
-        <div class="button-wrapper">
-        <button id="form-button" type="submit" class="button btn-primary sendbtn">
-            <i class="uil uil-envelope-heart"></i> Send
-            <div class="btn-secondary"></div>
-        </button>
-        </div>
-    </div>
-    </form>
 
-   <div id="success-message" style="color: green;"></div>
+  <!-- 🔥 PERFECT BOTTOM BLEND (NO EDGE VISIBLE) -->
+  <div class="absolute bottom-0 left-0 w-full h-48
+              bg-gradient-to-b
+              from-transparent
+              via-[#F6F7FB]/60
+              to-[#F6F7FB]
+              z-20 pointer-events-none">
   </div>
 
-</main>
+  <!-- CONTENT -->
+  <div class="relative z-50 p-6 md:p-10 h-full flex flex-col">
+
+    
+<nav class="flex justify-between items-center w-full relative">
+
+  <!-- Logo -->
+  <a href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}" class="h-12" />
+  </a>
+
+  <div class="flex items-center gap-3">
+
+    <!-- DESKTOP NAV -->
+    <ul class="hidden md:flex gap-10 px-10 py-5 rounded-full
+           bg-white/40 backdrop-blur-xl border border-white/60">
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'home' %}" class="hover:text-blue-600">Home</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'about' %}" class="hover:text-blue-600">About</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'blogs' %}" class="hover:text-blue-600">Blogs</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'faq' %}" class="hover:text-blue-600">FAQs</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'services' %}" class="hover:text-blue-600">Services</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'contact' %}" class="text-blue-600 font-semibold">Contact</a>
+  </li>
+
+</ul>
 
 
+    <!-- MOBILE BUTTON -->
+    <button id="menuBtn"
+      class="md:hidden w-12 h-12 rounded-xl bg-[#3C49FF]
+      flex flex-col items-center justify-center">
+      <span class="w-6 h-0.5 bg-white mb-1.5"></span>
+      <span class="w-6 h-0.5 bg-white mb-1.5"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+    </button>
 
+    <!-- CHAT ICON (DESKTOP ONLY) -->
+    <div class="hidden md:flex h-12 w-12 rounded-full
+      bg-gradient-to-br from-blue-500 to-blue-700
+      shadow-md items-center justify-center">
+      <img src="{% static 'images/icon1.png' %}" class="w-6" />
+    </div>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="absolute top-[70px] left-1/2 -translate-x-1/2
+           w-[335px] h-[294px]
+           md:hidden
+           backdrop-blur-xl bg-white/30
+           rounded-2xl shadow-2xl
+           border border-white/60
+           origin-top scale-y-0 opacity-0
+           pointer-events-none
+           transition-all duration-300 z-50 py-2">
 
-<!--contact section end-->
+  <a href="{% url 'home' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Home</a>
+  <a href="{% url 'about' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">About</a>
+  <a href="{% url 'blogs' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Blogs</a>
+  <a href="{% url 'faq' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">FAQs</a>
+  <a href="{% url 'services' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Services</a>
+  <a href="{% url 'contact' %}" class="block font-manrope text-[16px] px-6 py-3 text-blue-600">Contact</a>
 
-{% comment %} 
-<div class="container">
+</div>
+  </div>
+</nav>
 
-    <div class="section-content pt-0">
-        <div class="title-wrap" data-aos="fade-up">
-            <h2 class="section-title text-center display-4">Where To Find Us?</h2>
-        </div>
-        <div class="row text-center mt-4">
-            <div class="col-md-3" data-aos="fade-up">
-                <i class="fa fa-location fs-40 py-4 d-block"></i>
-                <h5>LOCATION</h5>
-            <p>Hilite Business Park,
-                    Near Hilite Mall,<br> Poovangal,
-                    Kozhikode<br>Kochi, Thiruvananthapuram, Pondichery<br>Coimbatore,Chennai, Bengaluru<br>Dubai, Qatar, Oman<br></p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-                <span class="lnr lnr-clock fs-40 py-4 d-block"></span>
-                <h5>WORKING TIME</h5>
-                <p class="text-muted">Monday to Sunday<br>24 x 7</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
-                <span class="lnr lnr-phone fs-40 py-4 d-block"></span>
-                <h5>CALL US</h5>
-                <p class="text-muted">+91 9072919991 <br>+91 9745109190 </p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="600">
-                <span class="lnr lnr-phone fs-40 py-4 d-block"></span>
-                <h5>EMAIL</h5>
-                <p class="text-muted">nmesmartech@gmail.com</p>
-            </div>
+    <!-- HERO TEXT -->
+    <div class="flex flex-col items-center justify-center text-center mt-32  mx-auto">
+      <h2 class="text-[26.83px] md:text-[48px] font-semibold text-[#1A1A1A]">
+        Get In <span class="text-blue-600">Touch </span><br>
+        
+      </h2>
 
-        </div>
+      <p class="mt-4 text-[18px] font-medium text-[#1A1A1A]">
+Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'd love to hear from you.    </p>
     </div>
 
-</div> {% endcomment %}
+  </div>
+</div>
 
+<!-- CONTACT SECTION -->
+<div class="relative z-40 max-w-[1582px] mx-auto -mt-32 px-6 md:px-10 mb-20 max-md:mt-[-18rem]">
 
-
-<!-- Franchise  section start -->
-
-<section class="service-sec"> 
-
-
-  <div class="container service-co">
-    <div class="row justify-content-center ">
-        <div class="col-12">
-            <div class="section-title text-center mb-4 pb-2">
-                <h2 class="display-4 lh-1 mb-4">Our Locations </h2>
-
-            </div>
-        </div><!--end col-->
-    </div><!--end row-->
-  
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-              
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Calicut</h5>
-                   <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/calicut.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-  
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Kochi</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <div class="big-icon h1 text-custom">
-                    <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                     <img class="loc-img"  src="{% static 'images/img/kochi.png' %}" alt="">
-            </div>
-            </div>
-        </div><!--end col-->
-        
-        
-        
-         <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Trivandrum</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/trivandrum.png' %}">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        
-        
-         <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Mangalore</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/mangalapuram.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        
-        
-        
-         <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Bangalore</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/bangalore.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        
-        
-         <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Chennai</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/chennai.png' %}"alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        
-         <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Pondicherry</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/pondichery.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Coimbatore</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/Coimbatore.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Tirunelveli</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/tirunnalveli.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Dubai</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/dubai.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Qatar</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/qatar1.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-            <div class="card service-wrapper rounded border-0 shadow p-4">
-                
-                <div class="content mt-4 location-title">
-                    <h5 class="font-alt">Oman</h5>
-                    <!-- <p class="text-muted mt-3 mb-0">N-me maintaining a dedicated team in Changaramkulam for the care and  service across Trissur.</p> -->
-                    <div class="mt-3">
-                        <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!-- <div class="big-icon h1 text-custom">
-                    <span class="uim-svg" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div> -->
-                 <div class="big-icon h1 text-custom">
-                        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
-                         <img class="loc-img"  src="{% static 'images/img/oman.png' %}" alt="">
-                </div>
-            </div>
-        </div><!--end col-->
-        
-        
-        
-        
-        
-
-       
-    </div><!--end row-->
+<div class="absolute top-0 left-0 w-full h-[600px] z-0 overflow-hidden pointer-events-none">
+  <div class="absolute top-[-150px] left-1/2 -translate-x-1/2 w-[140%] h-[500px] 
+               rounded-[100%] opacity-80">
   </div>
   
-  
-  
-  
-  </section>
-  
-  
-  
-  <!-- Franchise section end -->
+  <!-- <div class="absolute inset-0 bg-gradient-to-b from-[#F3F3F3] via-[#F3F3F3]/50 to-transparent h-[400px]"></div> -->
+</div>
+
+
+<!-- CONTENT -->
+<div class="relative z-10 max-w-[1400px] mx-auto
+            pt-10  sm:px-6 lg:px-0">
+
+  <div class="grid grid-cols-1 lg:grid-cols-2
+              gap-12 lg:gap-16 items-center">
+
+    <!-- LEFT CONTENT -->
+    <div class="max-w-2xl mx-auto text-center lg:text-left">
+
+      <h2 class="text-[20px] md:text-[48px]
+                 leading-[1.2] font-semibold text-[#1A1A1A]">
+        Have any confusion feel<br>free to write us
+        
+      </h2>
+
+      <p class="mt-6 text-[14px] md:text-[18px]
+                leading-[1.6] text-[#1A1A1A] font-medium
+                max-w-[443px] mx-auto lg:mx-0">
+        From questions about features to support needs,
+        our team is here to help.
+      </p>
+
+      <!-- APP IMAGE -->
+      <div class="relative mt-10 lg:mt-14
+                  w-full max-w-[573px]
+                  h-auto mx-auto max-md:hidden">
+        <img src="./static/images/phone2.png"
+             class="w-full h-auto object-contain" />
+      </div>
+    </div>
+
+    <!-- RIGHT FORM CARD -->
+<div class="bg-[#f4f6fb] rounded-[40px]
+            px-6 sm:px-8 lg:px-12
+            py-10 sm:py-12
+            border-[5px] border-white
+            w-full max-w-[632px] mx-auto">
+
+
+<form method="POST" action="{% url 'contact_submit' %}" class="space-y-6">
+  {% csrf_token %}
+
+  <div>
+    <label class="block mb-2 font-semibold">Name</label>
+    <input type="text" name="name" required
+      class="w-full h-[56px] px-6 rounded-[20px] border focus:ring-2">
+  </div>
+
+  <div>
+    <label class="block mb-2 font-semibold">Email</label>
+    <input type="email" name="email" required
+      class="w-full h-[56px] px-6 rounded-[20px] border focus:ring-2">
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label class="block mb-2 font-semibold">Phone</label>
+      <input type="text" name="phone"
+        class="w-full h-[56px] px-6 rounded-[20px] border">
+    </div>
+
+    <div>
+      <label class="block mb-2 font-semibold">Subject</label>
+      <input type="text" name="subject" required
+        class="w-full h-[56px] px-6 rounded-[20px] border">
+    </div>
+  </div>
+
+  <div>
+    <label class="block mb-2 font-semibold">Write Something</label>
+    <textarea name="message" rows="4" required
+      class="w-full px-6 py-4 rounded-[20px] border resize-none"></textarea>
+  </div>
+
+  <button type="submit"
+    class="w-full h-[58px] rounded-full bg-blue-600 text-white font-semibold">
+    Send Message
+  </button>
+</form>
+
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<section class="max-w-[1400px] mx-auto px-4 sm:px-6 md:py-24">
+
+  <!-- TITLE -->
+  <div class="text-center mb-16">
+    <h2 class="text-[32px] md:text-[36px] font-semibold text-[#1a1a1a]">
+      Our Locations
+    </h2>
+    <h1 class="mt-2 text-[#1a1a1a] text-[16px] font-medium">
+      Find us in the heart of India
+    </h1>
+  </div>
+
+  <!-- TOP GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-[632px_1fr] gap-12 lg:gap-16 items-center">
+
+  <!-- MAP CARD -->
+  <div class="relative w-full max-w-[632px] h-[360px] sm:h-[436px] rounded-[28px] overflow-hidden bg-[#f3f6fb] mx-auto">
+
+    <!-- GOOGLE MAP -->
+    <iframe
+      id="mapIframe"
+      src="https://www.google.com/maps/embed?pb=PLACEHOLDER_KOCHI"
+      class="absolute inset-0 w-full h-full border-0"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <!-- PIN -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <img src="./static/images/location.png" class="w-[54px] h-[68px] -mt-24" />
+    </div>
+
+    <!-- LOCATION LABEL -->
+    <div class="absolute bottom-20 sm:bottom-32 left-1/2 -translate-x-1/2 bg-white w-[220px] sm:w-[253px] h-[64px] sm:h-[71px] rounded-full shadow flex items-center justify-center">
+      <h2 id="mapTitle" class="text-[20px] sm:text-[24px] font-semibold">
+        Kochi
+      </h2>
+    </div>
+  </div>
+
+  <!-- LOCATION BUTTONS -->
+  <div class="grid grid-cols-2 gap-6 justify-items-center lg:justify-items-start">
+
+    <!-- Kochi -->
+    <div class="w-[158px] h-[63px] md:w-[297px] md:h-[120px] border-[2.66px]
+                md:border-[5px] border-white rounded-[22px]
+                bg-gradient-to-b from-[#4f6bff] to-[#8aa2ff] text-[14px] md:text-[24px] font-semibold font-poppins text-white
+                flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
+         data-city="Kochi"
+         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_KOCHI">
+      Kochi
+    </div>
+
+    <!-- Trivandrum -->
+    <div class="w-[158px] h-[63px] md:w-[297px] md:h-[120px] border-[2.66px]
+                md:border-[5px] border-white rounded-[22px]
+                bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
+                flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
+         data-city="Trivandrum"
+         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_TRIVANDRUM">
+      Trivandrum
+    </div>
+
+    <!-- Coimbatore -->
+    <div class="w-[158px] h-[63px] md:w-[297px] md:h-[120px] border-[2.66px]
+                md:border-[5px] border-white rounded-[22px]
+                bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
+                flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
+         data-city="Coimbatore"
+         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_COIMBATORE">
+      Coimbatore
+    </div>
+
+    <!-- Bangalore -->
+    <div class="w-[158px] h-[63px] md:w-[297px] md:h-[120px] border-[2.66px]
+                md:border-[5px] border-white rounded-[22px]
+                bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
+                flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
+         data-city="Bangalore"
+         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_BANGALORE">
+      Bangalore
+    </div>
+
+    <!-- Chennai -->
+    <div class="w-[158px] h-[63px] md:w-[297px] md:h-[120px] border-[2.66px]
+                md:border-[5px] border-white rounded-[22px]
+                bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
+                flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
+         data-city="Chennai"
+         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_CHENNAI">
+      Chennai
+    </div>
+
+    <!-- Dubai -->
+    <div class="w-[158px] h-[63px] md:w-[297px] md:h-[120px] border-[2.66px]
+                md:border-[5px] border-white rounded-[22px]
+                bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
+                flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
+         data-city="Dubai"
+         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_DUBAI">
+      Dubai
+    </div>
+
+  </div>
+</div>
+
+<!-- JS to handle card clicks -->
+<script>
+  const cards = document.querySelectorAll('[data-city]');
+  const iframe = document.getElementById('mapIframe');
+  const mapTitle = document.getElementById('mapTitle');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+
+      // Reset all cards to default style
+      cards.forEach(c => {
+        c.classList.remove('from-[#4f6bff]', 'to-[#8aa2ff]', 'text-white');
+        c.classList.add('from-white', 'to-[#D2DAFF]/60', 'text-black');
+      });
+
+      // Activate clicked card
+      card.classList.remove('from-white', 'to-[#D2DAFF]/60', 'text-black');
+      card.classList.add('from-[#4f6bff]', 'to-[#8aa2ff]', 'text-white');
+
+      // Update iframe and label
+      const city = card.getAttribute('data-city');
+      const link = card.getAttribute('data-link');
+      mapTitle.textContent = city;
+      iframe.src = link;
+    });
+  });
+</script>
+
+
+  <!-- BOTTOM INFO CARDS -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10
+              mt-24 max-w-[1322px] mx-auto px-2 sm:px-0">
+
+    <!-- CARD -->
+    <div class="rounded-[28px] border-[5px] border-white p-10
+                bg-gradient-to-b from-[#f3f6fb] to-[#A4C2FF]
+                text-center shadow min-h-[318px]
+                flex flex-col items-center justify-center">
+      <div class="w-[83.75px] h-[83.75px] md:w-[104px] md:h-[104px] flex items-center justify-center mb-6">
+        <img src="./static/images/call.png" />
+      </div>
+      <h2 class=" font-medium md:font-semibold text-[20px] md:text-[24px]">+91 9072919991</h2>
+      <p class="mt-2 text-[14px] md:text-[18px] font-medium text-[#1A1A1A]">
+        Mon–Sat from 9:30am to 6pm
+      </p>
+    </div>
+
+    <!-- CARD -->
+    <div class="rounded-[28px] border-[5px] border-white p-10
+                bg-gradient-to-b from-[#f3f6fb] to-[#bcd2ff]
+                text-center shadow min-h-[318px]
+                flex flex-col items-center justify-center">
+      <div class="w-[83.75px] h-[83.75px] md:w-[104px] md:h-[104px] flex items-center justify-center mb-6">
+        <img src="./static/images/mail.png" />
+      </div>
+      <h2 class=" font-medium md:font-semibold text-[20px] md:text-[24px]">info@nmeapp.in</h2>
+      <p class="mt-2 text-[14px] md:text-[18px] font-medium text-[#1A1A1A]">
+        Reach out to our sales team for more information.
+      </p>
+    </div>
+
+    <!-- CARD -->
+    <div class="rounded-[28px] border-[5px] border-white p-10
+                bg-gradient-to-b from-[#f3f6fb] to-[#bcd2ff]
+                text-center shadow min-h-[318px]
+                flex flex-col items-center justify-center">
+      <div class="w-[83.75px] h-[83.75px] md:w-[104px] md:h-[104px] flex items-center justify-center mb-6">
+        <img src="./static/images/loc2.png" />
+      </div>
+      <h2 class=" font-medium md:font-semibold text-[20px] md:text-[24px]">Come say hello</h2>
+      <p class="mt-2 text-[14px] md:text-[18px] font-medium text-[#1A1A1A]">
+        Kochi, Thiruvananthapuram, Coimbatore, Chennai, Bengaluru, Dubai
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="w-full flex justify-center md:py-28 px-4">
+  <!-- SECTION CONTAINER -->
+  <div class="flex flex-col lg:flex-row gap-10 items-center
+         w-full max-w-[1320px]
+         h-auto lg:h-[534px]">
+
+    <div class="relative w-full max-w-[582px]
+       h-[420px] md:h-[460px]
+       rounded-[40px]
+       bg-gradient-to-t from-[#A4C2FF] via-[#DDE8FF]/60 to-[#f3f4f6]/5
+       flex justify-center
+       overflow-visible
+       border-fade
+       shadow-[0_4px_5px_0_rgba(0,0,0,0.25)]">
+
+      <!-- PHONE WRAPPER -->
+      <div class="absolute bottom-[8px] md:bottom-0
+             w-[307px] md:w-[447px]
+             h-[302px] md:h-[537px]">
+
+        <!-- SCREEN -->
+        <div class="absolute
+               top-[14px] md:top-[25px]
+               left-[40px] md:left-[18px]
+               w-[230px] md:w-[407px]
+               h-[289px] md:h-[507px]
+               overflow-hidden
+               rounded-t-[30px]
+               z-10">
+
+          <!-- Video -->
+          <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline
+  controls
+  preload="auto"
+  poster="{% static 'images/video-poster.jpg' %}"
+  class="w-full h-full object-cover object-top bg-black"
+>
+  <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
+</video>
+
+
+          <div class="absolute bottom-0 left-0 w-full h-[30px] pointer-events-none z-20"
+     style="background: radial-gradient(
+       ellipse 120% 200% at 50% 120%,
+       rgba(21, 80, 198, 0.5) 0%,
+       rgba(21, 80, 198, 0.35) 25%,
+       rgba(21, 80, 198, 0.15) 45%,
+       transparent 65%
+     );">
+</div>
+
+
+        </div>
+
+        <!-- PHONE FRAME -->
+        <img src="./static/images/phoneframe.png" alt="Phone Frame"
+          class="absolute inset-0 w-full h-full object-contain z-30 pointer-events-none" />
+      </div>
+</div>
+
+
+    <!-- RIGHT CARD -->
+    <div class="relative w-full max-w-[718px]
+           h-auto lg:h-[461px]
+           rounded-[40px]
+           bg-gradient-to-t from-[#A4C2FF] via-[#DDE8FF]/60 to-[#f3f4f6]/5
+           shadow-[0_4px_5px_0_rgba(0,0,0,0.25)]
+           flex flex-col items-center justify-center
+           text-center px-6 md:px-16 py-12 border-fade">
+
+      <h2 class="text-[26px] md:text-[36px] font-semibold text-[#1a1a1a]">
+        Get the App Now!
+      </h2>
+
+      <p class="mt-4 text-[14px] md:text-[16px]
+              font-medium text-[#1A1A1A]
+              max-w-[480px]">
+        Join thousands of users who simplified their daily life
+      </p>
+
+      <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6">
+        <img src="./static/images/app.png" class="h-[48px] md:h-[56px]" />
+        <img src="./static/images/playstore.png" class="h-[48px] md:h-[56px]" />
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 
 
-            <!-- App badge section-->
-            <section class="bg-gradient-primary-to-secondary"  id="download">
-                <div class="container px-5" style="height: 200px;">
-                  <h2 class="text-center text-white font-alt mb-4">Get the app now!</h2>
-                  <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
-                    <a class="me-lg-3 mb-4 mb-lg-0"
-                      href="https://play.google.com/store/apps/details?id=com.smart.nme&showAllReviews=true" target="blang"> <img
-                        class="app-badge" src="{% static 'images/img/google-play-badge.svg' %}" alt="..." /></a>
-                    <a href="https://apps.apple.com/in/app/n-me/id1614150675" target="blang"><img class="app-badge"
-                      src="{% static 'images/img/app-store-badge.svg' %}" alt="..." /></a>
-                  </div>
-                </div>
-              </section>
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
-

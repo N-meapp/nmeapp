@@ -23,6 +23,7 @@ class Contact(models.Model):
     subject = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField()
+    phone = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -35,3 +36,23 @@ class Login(models.Model):
 
     def __str__(self):
         return self.username
+
+
+class TeamMember(models.Model):
+    name = models.CharField(max_length=100)
+    designation = models.CharField(max_length=100)
+    photo = CloudinaryField('image', folder="nmeapp_members/", blank=True, null=True)
+    sentence = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Testimonial(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="testimonials/")
+    rating = models.PositiveSmallIntegerField(default=5)  # 1-5
+    opinion = models.TextField()
+
+    def __str__(self):
+        return self.name

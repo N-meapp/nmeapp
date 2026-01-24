@@ -18,9 +18,18 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('services', views.services, name='services'),
     path('contact', views.contact, name='contact'),
-    path('faq', views.faq, name='faq'),
-    path('blog', views.blog_list, name='blog'),
+    path("contact-submit/", views.contact_submit, name="contact_submit"),
     path('dashboard/', views.admin_panel, name='dashboard'),
+path("enquiry/delete/<int:id>/", views.delete_enquiry, name="delete_enquiry"),
+path("team/add/", views.add_team_member, name="add_team_member"),
+    path("team/update/<int:id>/", views.update_team_member, name="update_team_member"),
+    path("team/delete/<int:id>/", views.delete_team_member, name="delete_team_member"),
+    path('faq', views.faq, name='faq'),
+    path('blogs', views.blogs, name='blogs'),
+    path('blogs/<int:id>/', views.blog_detail, name='blog_detail'),
+    path('testimonials/add/', views.add_testimonial, name='add_testimonial'),
+    path('testimonials/edit/', views.edit_testimonial, name='edit_testimonial'),
+    path('testimonials/delete/<int:id>/', views.delete_testimonial, name='delete_testimonial'),
     path('privacy_nmeapp', views.privacy, name='privacy_nmeapp'),
     path('blog_post', views.blog_post, name='blog_post'),
     path('update_blog', views.update_blog, name='update_blog'),
@@ -31,6 +40,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'), 
     # path('admin_register/', views.admin_register, name='admin_register'),
 
-    re_path(r'^.*$', views.home, name='catch_all'),
+    # re_path(r'^.*$', views.home, name='catch_all'),
 
 ]

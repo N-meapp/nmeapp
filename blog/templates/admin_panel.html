@@ -2,227 +2,866 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
-
-
- <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-
-
-
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    rel="stylesheet"
+  />
 
 
 </head>
-<body>
-    <div class="mainbody">
-        <div class="admin-nav">
-            <div class="admin-head">
-                <h2>N-me App</h2>
-            </div>
-            <div class="admin-profile">
-                <img src="" alt="">
-                <h2>N-me App</h2>
+<body class="bg-[#F6F9F8]">
 
-            </div>
-        </div>
-        <div class="logic-div">
-            <div class="side-div">
-                <button onclick="showFunction('addblog')" class="nav-item" id="addblog-id">Add Blog</button></br>
-                <button onclick="showFunction('viewblog')" class="nav-item" id="viewblog-id">View All Blogs</button></br>
-                <button onclick="showFunction('enquiry')" class="nav-item" id="enquiry-id">Enquiry</button></br>
-                <!-- <button onclick="showFunction('addblog')" class="nav-item" id="offersection-id">side-div</button></br> -->
-                <button class="logout-btn"><a href="{% url 'logout' %}"><i class="bi bi-box-arrow-left"></i>   Logout</a></button>
-            </div>
-            <div class="working-div">
-                <div class="table-content grow" id="addblog">
-                    <div class="addblognew">
-                        <form action="{% url 'blog_post' %}" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            
-                            <div class="form-row">
-                                <label for="">Card Head</label>
-                                <input type="text" name="card_head" placeholder="enter name here">
-                            </div>
-                        
-                            <div class="form-row">
-                                <label for="">Modal Head</label>
-                                <input type="text" name="modal_head">
-                            </div>
-                        
-                            <div class="form-row">
-                                <label for="">Card Paragraph</label>
-                                <textarea name="card_paragraph" id=""></textarea>
+<div class="flex min-h-screen">
 
-                            </div>
-                        
-                            <div class="form-row">
-                                <label for="">Modal Paragraph</label>
-                                <textarea name="modal_paragraph" id=""></textarea>
-                            </div>
-                        
-                            <div class="form-row">
-                                <label for="">Keyword</label>
-                                <input type="text" name="keyword">
-                            </div>
-                        
-                            <div class="form-row">
-                                <label for="">Date</label>
-                                <input type="date" name="date">
-                            </div>
-                        
-                            <div class="form-row">
-                                <label for="">Image</label>
-                                <input type="file" name="image">
-                            </div>
-                        
-                            <div class="form-row">
-                                <button type="submit" class="save-btn">Save</button>
-                            </div>
-                        </form>
-                        
-                    </div>
-                </div>
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="w-64 bg-white shadow-lg flex flex-col">
 
-                <div class="table-content grow" id="viewblog" style="display: none;">
-                    <div class="table-list">
-                        <table class="blog-table">
-                            <thead>
-                                <tr class="heading">
-                                    <th>Card Head</th>
-                                    <th>Modal Head</th>
-                                    <th>Card Paragraph</th>
-                                    <th>Modal Paragraph</th>
-                                    <th>Keyword</th>
-                                    <th>Image</th>
-                                    <th>Actions</th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for blog in blog %}
-                                <tr>
-                                    <td>{{ blog.card_head }}</td>
-                                    <td>{{ blog.modal_head }}</td>
-                                    <td>{{ blog.card_paragraph|truncatechars:50 }}</td>
-                                    <td>{{ blog.modal_paragraph|truncatechars:50 }}</td>
-                                    <td>{{ blog.keyword }}</td>
-                                    <td>{{ blog.image }}</td>
-                                    <td class="action">
-                                        <a href="/delete_blog/{{ blog.id }}" onclick="return confirm('Are you sure you want to delete this item?');">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm" onclick="openUpdateModal('{{ blog.id }}', '{{ blog.card_head|escapejs }}', '{{ blog.modal_head|escapejs }}', '{{ blog.card_paragraph|escapejs }}', '{{ blog.modal_paragraph|escapejs }}', '{{ blog.keyword|escapejs }}','{{ blog.image|escapejs }}')">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </button>
-                                    </td>
-                                    
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-
-                        <!-- Update Modal -->
-                        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                            <form method="POST" action="{% url 'update_blog' %}" class="modal-content" id="updateForm" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="updateModalLabel">Update Blog</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                
-                                <div class="mb-3">
-                                    <label for="updateCardHead" class="form-label">Card Head</label>
-                                    <input type="text" class="form-control" name="card_head" id="updateCardHead">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="updateModalHead" class="form-label">Modal Head</label>
-                                    <input type="text" class="form-control" name="modal_head" id="updateModalHead">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="hidden" name="id" id="updateId">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="updateCardParagraph" class="form-label">Card Paragraph</label>
-                                    <textarea class="form-control" name="card_paragraph" id="updateCardParagraph" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="updateModalParagraph" class="form-label">Modal Paragraph</label>
-                                    <textarea class="form-control" name="modal_paragraph" id="updateModalParagraph" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="updateKeyword" class="form-label">Keyword</label>
-                                    <input type="text" class="form-control" name="keyword" id="updateKeyword">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="updateKeyword" class="form-label">Image</label>
-                                    <input type="file" class="form-control" name="image" id="updateimage">
-                                </div>
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn update-btn">Update</button>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-  
-                    </div>
-                </div>
-  
-                <div class="table-content grow" id="enquiry" style="display: none;">
-                    <div class="table-list">
-                        <table class="blog-table">
-                            <thead>
-                                <tr class="heading">
-                                    <th>name</th>
-                                    <th>subject</th>
-                                    <th>email</th>
-                                    <th>message</th>
-                                    <th></th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for contact in contact %}
-                                <tr>
-                                    <td>{{ contact.name }}</td>
-                                    <td>{{ contact.subject }}</td>
-                                    <td>{{ contact.email }}</td>
-                                    <td>{{ contact.message|truncatechars:30}}</td>
-                                    
-                                    <td class="action">
-                                        <a href="/delete_message/{{ contact.id }}" onclick="return confirm('Are you sure you want to delete this item?');">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Logo -->
+    <div class="h-20 flex items-center justify-center border-b">
+      <img src="/static/images/logo.png" alt="Logo" class="h-10">
     </div>
-    {% if show_alert %}
-    <script>
-        alert("Invalid credentials. Please try again.");
-    </script>
-    {% endif %}
-    <script src="{% static 'js/admin.js' %}"></script>
+
+<nav class="flex-1 px-4 py-6 space-y-2">
+<a onclick="showPage('dashboard', this)" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 cursor-pointer transition" data-page="dashboard">
+  <i class="fa-solid fa-house"></i>
+  Dashboard
+</a>
+
+<a onclick="showPage('blogs', this)" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 cursor-pointer transition" data-page="blogs">
+  <i class="fa-solid fa-pen-nib text-lg"></i>
+  Blogs
+</a>
+
+<a onclick="showPage('addedBlogs', this)" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 cursor-pointer transition" data-page="addedBlogs">
+  <i class="fa-solid fa-newspaper text-lg"></i>
+  Added Blogs
+</a>
+
+<a onclick="showPage('enquiry', this)" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 cursor-pointer transition" data-page="enquiry">
+  <i class="fa-solid fa-envelope-open-text text-lg"></i>
+  Enquiry
+</a>
+<a onclick="showPage('testimonials', this)"
+   class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 cursor-pointer transition"
+   data-page="testimonials">
+  <i class="fa-solid fa-star text-lg"></i>
+  Testimonials
+</a>
+
+
+
+</nav>
+
+
+
+
+    <!-- Bottom -->
+<div class="p-4 border-t">
+  <a href="{% url 'logout' %}" class="flex items-center gap-3 text-gray-600 hover:text-red-500">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Logout
+  </a>
+</div>
+
+
+  </aside>
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="flex-1 bg-[#F6F9F8]">
+<div id="dashboard" class="page">
+
+  <!-- HERO IMAGE HEADER -->
+  <section class="relative h-[320px] rounded-[32px] overflow-hidden mx-6 mt-6">
+    <img src="{% static 'images/admin_bg.png' %}"
+         class="absolute inset-0 w-full h-full object-cover opacity-40">
+
+    <div class="absolute inset-0 bg-black/10"></div>
+
+    <div class="relative z-10 h-full flex items-center px-8">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl font-semibold text-gray-800">
+          Find What You Need. Nearby.
+        </h1>
+        <p class="mt-4 text-lg text-gray-800">
+          N-ME helps you discover nearby facilities quickly and accurately.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM TABLE -->
+<section class="p-6">
+  <div class="bg-white rounded-3xl shadow-sm border">
+
+    <div class="flex justify-between px-6 py-5 border-b">
+      <h2 class="text-lg font-semibold">Team Members</h2>
+      <button
+        type="button"
+        onclick="openAddMemberModal()"
+        class="bg-gray-900 text-white px-5 py-2 rounded-xl">
+        + Add Member
+      </button>
+    </div>
+
+    <table class="w-full text-sm border-separate border-spacing-y-2">
+      <thead>
+        <tr class="text-gray-500">
+          <th class="text-left px-6">Member</th>
+          <th class="text-left px-6">Designation</th>
+          <th class="text-right px-6">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      {% for member in team_members %}
+        <tr class="bg-gray-50 hover:bg-gray-100">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-4">
+              <img src="{% if member.photo %}{{ member.photo.url }}{% else %}{% static 'images/user.png' %}{% endif %}" class="h-11 w-11 rounded-full object-cover">
+
+              <span class="font-medium">{{ member.name }}</span>
+            </div>
+          </td>
+
+          <td class="px-6 py-4">{{ member.designation }}</td>
+
+          <td class="px-6 py-4 text-right">
+            <button
+              type="button"
+              class="text-blue-600"
+              onclick="openTeamEditModal(this)"
+              data-id="{{ member.id }}"
+              data-name="{{ member.name }}"
+              data-designation="{{ member.designation }}"
+              data-sentence="{{ member.sentence }}"
+              data-photo="{% if member.photo %}{{ member.photo.url }}{% endif %}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36"><path fill="#525252" d="m4.22 23.2l-1.9 8.2a2.06 2.06 0 0 0 2 2.5a2 2 0 0 0 .43 0L13 32l15.84-15.78L20 7.4Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="#525252" d="m33.82 8.32l-5.9-5.9a2.07 2.07 0 0 0-2.92 0L21.72 5.7l8.83 8.83l3.28-3.28a2.07 2.07 0 0 0-.01-2.93" class="clr-i-solid clr-i-solid-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+            </button>
+
+            <form method="POST"
+                  action="{% url 'delete_team_member' member.id %}"
+                  class="inline">
+              {% csrf_token %}
+              <button class="text-red-600 ml-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28"><path fill="#e30909" d="M11.5 6h5a2.5 2.5 0 0 0-5 0M10 6a4 4 0 0 1 8 0h6.25a.75.75 0 0 1 0 1.5h-1.31l-1.217 14.603A4.25 4.25 0 0 1 17.488 26h-6.976a4.25 4.25 0 0 1-4.235-3.897L5.06 7.5H3.75a.75.75 0 0 1 0-1.5zm2.5 5.75a.75.75 0 0 0-1.5 0v8.5a.75.75 0 0 0 1.5 0zm3.75-.75a.75.75 0 0 0-.75.75v8.5a.75.75 0 0 0 1.5 0v-8.5a.75.75 0 0 0-.75-.75"/></svg></button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<div id="addMemberModal"
+     class="fixed inset-0 hidden bg-black/40 z-50 flex items-center justify-center">
+
+  <div class="bg-white rounded-2xl p-6 w-[360px]">
+
+    <h3 class="text-lg font-semibold mb-4">Add Team Member</h3>
+
+    <form method="POST"
+          action="{% url 'add_team_member' %}"
+          enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <label class="flex flex-col items-center gap-2 mb-4 cursor-pointer">
+        <img id="addMemberPreview"
+             src="{% static 'images/user.png' %}"
+             class="h-20 w-20 rounded-full object-cover border">
+        <input type="file" name="photo" class="hidden"
+               onchange="previewAddMemberPhoto(this)">
+      </label>
+
+      <input name="name" required
+             class="w-full mb-3 border px-3 py-2 rounded"
+             placeholder="Name">
+
+      <input name="designation" required
+             class="w-full mb-3 border px-3 py-2 rounded"
+             placeholder="Designation">
+
+      <textarea name="sentence"
+                class="w-full mb-4 border px-3 py-2 rounded"
+                placeholder="Short sentence"></textarea>
+
+      <div class="flex justify-end gap-3">
+        <button type="button"
+                onclick="closeAddMemberModal()"
+                class="text-gray-500">
+          Cancel
+        </button>
+        <button class="bg-black text-white px-4 py-2 rounded">
+          Add
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- EDIT TEAM MEMBER MODAL -->
+<div id="teamEditModal"
+     class="fixed inset-0 hidden bg-black/40 z-50 flex items-center justify-center">
+
+  <div class="bg-white rounded-2xl p-6 w-[360px]">
+
+    <h3 class="text-lg font-semibold mb-4">Edit Team Member</h3>
+
+    <form id="teamEditForm" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- PHOTO -->
+      <label class="flex flex-col items-center gap-2 mb-4 cursor-pointer">
+        <img id="teamEditPreview"
+             src="{% static 'images/user.png' %}"
+             class="h-20 w-20 rounded-full object-cover border">
+        <input type="file" name="photo" class="hidden"
+               onchange="previewTeamEditPhoto(this)">
+      </label>
+
+      <input id="teamEditName" name="name"
+             class="w-full mb-3 border px-3 py-2 rounded"
+             placeholder="Name" required>
+
+      <input id="teamEditDesignation" name="designation"
+             class="w-full mb-3 border px-3 py-2 rounded"
+             placeholder="Designation" required>
+
+      <textarea id="teamEditSentence" name="sentence"
+                class="w-full mb-4 border px-3 py-2 rounded"
+                placeholder="Short sentence"></textarea>
+
+      <div class="flex justify-end gap-3">
+        <button type="button"
+                onclick="closeTeamEditModal()"
+                class="text-gray-500">
+          Cancel
+        </button>
+        <button class="bg-black text-white px-4 py-2 rounded">
+          Save
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<script>
+// ---------- ADD MEMBER ----------
+function openAddMemberModal() {
+  document.getElementById("addMemberModal").classList.remove("hidden");
+}
+
+function closeAddMemberModal() {
+  document.getElementById("addMemberModal").classList.add("hidden");
+}
+
+function previewAddMemberPhoto(input) {
+  if (input.files[0]) {
+    document.getElementById("addMemberPreview").src =
+      URL.createObjectURL(input.files[0]);
+  }
+}
+
+// ---------- EDIT MEMBER ----------
+function openTeamEditModal(btn) {
+  document.getElementById("teamEditModal").classList.remove("hidden");
+
+  document.getElementById("teamEditName").value = btn.dataset.name;
+  document.getElementById("teamEditDesignation").value = btn.dataset.designation;
+  document.getElementById("teamEditSentence").value = btn.dataset.sentence || "";
+
+  document.getElementById("teamEditPreview").src =
+    btn.dataset.photo || "{% static 'images/user.png' %}";
+
+  document.getElementById("teamEditForm").action =
+    `/team/update/${btn.dataset.id}/`;
+}
+
+function closeTeamEditModal() {
+  document.getElementById("teamEditModal").classList.add("hidden");
+}
+
+function previewTeamEditPhoto(input) {
+  if (input.files[0]) {
+    document.getElementById("teamEditPreview").src =
+      URL.createObjectURL(input.files[0]);
+  }
+}
+</script>
+
+
+</div>
+
+<section id="blogs" class="page hidden p-6">
+  <div class="bg-white rounded-3xl p-6 shadow">
+    <h2 class="text-xl font-semibold mb-6">Create Blog</h2>
+
+    <form method="POST" action="{% url 'blog_post' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <label class="block mb-4">
+        <span>Blog Image</span>
+        <input type="file" name="image" required class="w-full mt-1 border rounded-lg p-2">
+      </label>
+
+      <label class="block mb-4">
+        <span>Card Head</span>
+        <input type="text" name="card_head" required class="w-full mt-1 px-4 py-2 border rounded-lg">
+      </label>
+
+      <label class="block mb-4">
+        <span>Modal Head</span>
+        <input type="text" name="modal_head" required class="w-full mt-1 px-4 py-2 border rounded-lg">
+      </label>
+
+      <label class="block mb-4">
+        <span>Date</span>
+        <input type="date" name="date" required class="w-full mt-1 px-4 py-2 border rounded-lg">
+      </label>
+
+      <label class="block mb-4">
+        <span>Card Paragraph</span>
+        <textarea name="card_paragraph" required class="w-full h-24 mt-1 px-4 py-2 border rounded-lg"></textarea>
+      </label>
+
+      <label class="block mb-4">
+        <span>Modal Paragraph</span>
+        <textarea name="modal_paragraph" required class="w-full h-24 mt-1 px-4 py-2 border rounded-lg"></textarea>
+      </label>
+
+      <label class="block mb-6">
+        <span>Keyword</span>
+        <input type="text" name="keyword" required class="w-full mt-1 px-4 py-2 border rounded-lg">
+      </label>
+
+      <button class="bg-black text-white px-6 py-2 rounded-lg">
+        Publish Blog
+      </button>
+    </form>
+  </div>
+</section>
+
+
+
+<section id="addedBlogs" class="page hidden p-6">
+  <div class="bg-white rounded-3xl p-6 shadow">
+    <h2 class="text-xl font-semibold mb-6">Added Blogs</h2>
+
+    <table class="w-full text-sm table-auto border-collapse">
+      <thead class="text-gray-500 border-b">
+        <tr>
+          <th class="py-3 text-left">Image</th>
+          <th class="py-3 text-left">Card Head</th>
+          <th class="py-3 text-left">Modal Head</th>
+          <th class="py-3 text-left">Date</th>
+          <th class="py-3 text-left">Keyword</th>
+          <th class="py-3 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+{% for b in blog %}
+<tr class="border-b hover:bg-gray-50">
+
+  <td class="py-2">
+    <img src="{{ b.image.url }}" class="w-12 h-12 rounded object-cover">
+  </td>
+
+  <td class="py-2">{{ b.card_head }}</td>
+  <td class="py-2">{{ b.modal_head }}</td>
+  <td class="py-2">{{ b.date }}</td>
+  <td class="py-2">{{ b.keyword }}</td>
+
+  <td class="py-2 flex gap-2">
+
+    <!-- EDIT -->
+    <button onclick="openEditModal(this)"
+      data-id="{{ b.id }}"
+      data-card="{{ b.card_head }}"
+      data-modal="{{ b.modal_head }}"
+      data-date="{{ b.date }}"
+      data-cardpara="{{ b.card_paragraph }}"
+      data-modalpara="{{ b.modal_paragraph }}"
+      data-keyword="{{ b.keyword }}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36"><path fill="#525252" d="m4.22 23.2l-1.9 8.2a2.06 2.06 0 0 0 2 2.5a2 2 0 0 0 .43 0L13 32l15.84-15.78L20 7.4Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="#525252" d="m33.82 8.32l-5.9-5.9a2.07 2.07 0 0 0-2.92 0L21.72 5.7l8.83 8.83l3.28-3.28a2.07 2.07 0 0 0-.01-2.93" class="clr-i-solid clr-i-solid-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+    </button>
+
+    <!-- DELETE -->
+    <form method="POST" action="{% url 'delete_blog' b.id %}">
+      {% csrf_token %}
+      <button class="text-red-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28"><path fill="#e30909" d="M11.5 6h5a2.5 2.5 0 0 0-5 0M10 6a4 4 0 0 1 8 0h6.25a.75.75 0 0 1 0 1.5h-1.31l-1.217 14.603A4.25 4.25 0 0 1 17.488 26h-6.976a4.25 4.25 0 0 1-4.235-3.897L5.06 7.5H3.75a.75.75 0 0 1 0-1.5zm2.5 5.75a.75.75 0 0 0-1.5 0v8.5a.75.75 0 0 0 1.5 0zm3.75-.75a.75.75 0 0 0-.75.75v8.5a.75.75 0 0 0 1.5 0v-8.5a.75.75 0 0 0-.75-.75"/></svg></button>
+    </form>
+
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+
+    </table>
+  </div>
+</section>
+
+<div id="editModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+  <form method="POST"
+        action="{% url 'update_blog' %}"
+        enctype="multipart/form-data"
+        class="bg-white rounded-2xl w-[80%] h-[600px] relative flex flex-col">
+
+    {% csrf_token %}
+
+    <!-- Hidden Blog ID -->
+    <input type="hidden" name="id" id="edit_id">
+
+    <!-- Header -->
+    <div class="p-6 border-b">
+      <h3 class="text-xl font-semibold">Edit Blog</h3>
+    </div>
+
+    <!-- Scrollable Content -->
+    <div class="p-6 overflow-y-auto flex-1 space-y-4">
+
+      <!-- Image -->
+      <label class="block">
+        <span class="text-gray-700">Blog Image</span>
+        <input type="file" name="image" class="w-full mt-1 border rounded-lg p-2" />
+      </label>
+
+      <label class="block">
+        <span>Card Head</span>
+        <input type="text" name="card_head" id="edit_card_head" class="w-full border p-2 rounded">
+      </label>
+
+      <label class="block">
+        <span>Modal Head</span>
+        <input type="text" name="modal_head" id="edit_modal_head" class="w-full border p-2 rounded">
+      </label>
+
+      <label class="block">
+        <span>Date</span>
+        <input type="date" name="date" id="edit_date" class="w-full border p-2 rounded">
+      </label>
+
+      <label class="block">
+        <span>Card Paragraph</span>
+        <textarea name="card_paragraph" id="edit_card_paragraph" class="w-full border p-2 rounded"></textarea>
+      </label>
+
+      <label class="block">
+        <span>Modal Paragraph</span>
+        <textarea name="modal_paragraph" id="edit_modal_paragraph" class="w-full border p-2 rounded"></textarea>
+      </label>
+
+      <label class="block">
+        <span>Keyword</span>
+        <input type="text" name="keyword" id="edit_keyword" class="w-full border p-2 rounded">
+      </label>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="p-6 border-t flex justify-end gap-3">
+      <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-gray-300 rounded">
+        Cancel
+      </button>
+      <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">
+        Save
+      </button>
+    </div>
+
+  </form>
+</div>
+
+
+<script>
+function openEditModal(btn) {
+  // Fill form values using data attributes
+  document.getElementById('edit_id').value = btn.dataset.id;
+  document.getElementById('edit_card_head').value = btn.dataset.card;
+  document.getElementById('edit_modal_head').value = btn.dataset.modal;
+  document.getElementById('edit_date').value = btn.dataset.date;
+  document.getElementById('edit_card_paragraph').value = btn.dataset.cardpara;
+  document.getElementById('edit_modal_paragraph').value = btn.dataset.modalpara;
+  document.getElementById('edit_keyword').value = btn.dataset.keyword;
+
+  // Show modal
+  const modal = document.getElementById('editModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeEditModal() {
+  const modal = document.getElementById('editModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
+</script>
+
+
+<section id="enquiry" class="page hidden p-6">
+  <div class="bg-white rounded-3xl shadow p-6">
+
+    <!-- Heading -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800">User Enquiries</h2>
+      <p class="text-gray-500 mt-1">All the messages submitted by users through the contact form.</p>
+    </div>
+
+    <!-- Table Container -->
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse table-auto">
+        <thead class="bg-gray-100 text-gray-600">
+          <tr>
+            <th class="p-3 text-left rounded-l-xl">Name</th>
+            <th class="p-3 text-left">Email</th>
+            <th class="p-3 text-left">Phone</th>
+            <th class="p-3 text-left">Subject</th>
+            <th class="p-3 text-left">Message</th>
+            <th class="p-3 text-center rounded-r-xl">Action</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          {% for c in contact %}
+          <tr class="border-b hover:bg-gray-50">
+            <td class="p-3 font-medium">{{ c.name }}</td>
+            <td class="p-3">{{ c.email }}</td>
+            <td class="p-3">{{ c.phone }}</td>
+            <td class="p-3">{{ c.subject }}</td>
+            <td class="p-3 max-w-xs truncate">{{ c.message }}</td>
+            <td class="p-3 text-center">
+              <form method="POST" action="{% url 'delete_enquiry' c.id %}">
+                {% csrf_token %}
+                <button type="submit" class="text-red-500 hover:text-red-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28"><path fill="#e30909" d="M11.5 6h5a2.5 2.5 0 0 0-5 0M10 6a4 4 0 0 1 8 0h6.25a.75.75 0 0 1 0 1.5h-1.31l-1.217 14.603A4.25 4.25 0 0 1 17.488 26h-6.976a4.25 4.25 0 0 1-4.235-3.897L5.06 7.5H3.75a.75.75 0 0 1 0-1.5zm2.5 5.75a.75.75 0 0 0-1.5 0v8.5a.75.75 0 0 0 1.5 0zm3.75-.75a.75.75 0 0 0-.75.75v8.5a.75.75 0 0 0 1.5 0v-8.5a.75.75 0 0 0-.75-.75"/></svg></button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center text-gray-400 py-4">
+              No enquiries yet
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<section id="testimonials" class="page hidden p-6">
+  <div class="bg-white rounded-3xl shadow p-6">
+
+    <!-- Heading + Add Button -->
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <h2 class="text-2xl font-semibold text-gray-800">Testimonials</h2>
+        <p class="text-gray-500 mt-1">Manage customer testimonials shown on the website.</p>
+      </div>
+
+      <button onclick="openTestimonialModal()"
+        class="bg-black text-white px-5 py-2 rounded-xl text-md font-medium transition">
+        + Add Testimonial
+      </button>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse table-auto">
+        <thead class="bg-gray-100 text-gray-600">
+          <tr>
+            <th class="p-3 text-left rounded-l-xl">Image</th>
+            <th class="p-3 text-left">Name</th>
+            <th class="p-3 text-center">Rating</th>
+            <th class="p-3 text-left">Opinion</th>
+            <th class="p-3 text-center rounded-r-xl">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="text-gray-700">
+          {% for t in testimonials %}
+          <tr class="border-b hover:bg-gray-50">
+
+            <td class="p-3">
+              <img src="{{ t.image.url }}" class="w-12 h-12 rounded-full object-cover">
+            </td>
+
+            <td class="p-3 font-medium">{{ t.name }}</td>
+
+            <td class="p-3 text-center text-yellow-500">
+              {{ t.rating }} ★
+            </td>
+
+            <td class="p-3 max-w-xs truncate">{{ t.opinion }}</td>
+
+            <td class="p-3 text-center flex gap-3 justify-center">
+
+              <button
+  onclick="openEditTestimonialModal(
+    '{{ t.id }}',
+    '{{ t.name|escapejs }}',
+    '{{ t.rating }}',
+    '{{ t.opinion|escapejs }}',
+    '{{ t.image.url }}'
+  )"
+  class="text-blue-600 hover:text-blue-800">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36"><path fill="#525252" d="m4.22 23.2l-1.9 8.2a2.06 2.06 0 0 0 2 2.5a2 2 0 0 0 .43 0L13 32l15.84-15.78L20 7.4Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="#525252" d="m33.82 8.32l-5.9-5.9a2.07 2.07 0 0 0-2.92 0L21.72 5.7l8.83 8.83l3.28-3.28a2.07 2.07 0 0 0-.01-2.93" class="clr-i-solid clr-i-solid-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+</button>
+
+
+              <!-- Delete -->
+              <form method="POST" action="{% url 'delete_testimonial' t.id %}">
+                {% csrf_token %}
+                <button type="submit" class="text-red-500 hover:text-red-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28"><path fill="#e30909" d="M11.5 6h5a2.5 2.5 0 0 0-5 0M10 6a4 4 0 0 1 8 0h6.25a.75.75 0 0 1 0 1.5h-1.31l-1.217 14.603A4.25 4.25 0 0 1 17.488 26h-6.976a4.25 4.25 0 0 1-4.235-3.897L5.06 7.5H3.75a.75.75 0 0 1 0-1.5zm2.5 5.75a.75.75 0 0 0-1.5 0v8.5a.75.75 0 0 0 1.5 0zm3.75-.75a.75.75 0 0 0-.75.75v8.5a.75.75 0 0 0 1.5 0v-8.5a.75.75 0 0 0-.75-.75"/></svg>
+                </button>
+              </form>
+
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center text-gray-400 py-4">
+              No testimonials added yet
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+<div id="testimonialModal"
+     class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+
+  <div class="bg-white rounded-3xl w-full max-w-lg p-6">
+
+    <h3 class="text-xl font-semibold mb-4">Add Testimonial</h3>
+
+    <form method="POST" action="{% url 'add_testimonial' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="space-y-4">
+
+        <input type="text" name="name" placeholder="Name"
+          class="w-full border rounded-xl px-4 py-2" required>
+
+        <input type="file" name="image"
+          class="w-full border rounded-xl px-4 py-2" required>
+
+        <select name="rating"
+          class="w-full border rounded-xl px-4 py-2" required>
+          <option value="">Rating</option>
+          <option value="5">★★★★★</option>
+          <option value="4">★★★★</option>
+          <option value="3">★★★</option>
+          <option value="2">★★</option>
+          <option value="1">★</option>
+        </select>
+
+        <textarea name="opinion" rows="3" placeholder="Opinion"
+          class="w-full border rounded-xl px-4 py-2" required></textarea>
+
+      </div>
+
+      <div class="flex justify-end gap-3 mt-6">
+        <button type="button" onclick="closeTestimonialModal()"
+          class="px-4 py-2 rounded-xl bg-gray-200">Cancel</button>
+        <button type="submit"
+          class="px-5 py-2 rounded-xl bg-blue-600 text-white">Save</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+<!-- Edit Testimonial Modal -->
+<div id="editTestimonialModal"
+     class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+
+  <div class="bg-white w-full max-w-lg rounded-2xl p-6 relative">
+
+    <h3 class="text-xl font-semibold mb-4">Edit Testimonial</h3>
+
+    <form method="POST" enctype="multipart/form-data" id="editTestimonialForm">
+      {% csrf_token %}
+
+      <input type="hidden" name="testimonial_id" id="editId">
+
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="text-sm font-medium">Name</label>
+        <input type="text" name="name" id="editName"
+               class="w-full border rounded-lg px-3 py-2" required>
+      </div>
+
+      <!-- Image -->
+      <div class="mb-3">
+        <label class="text-sm font-medium">Image</label>
+
+        <img id="editImagePreview"
+             class="w-24 h-24 rounded-xl object-cover mb-2 border hidden">
+
+        <input type="file" name="image" accept="image/*"
+               onchange="previewEditImage(this)"
+               class="w-full text-sm">
+        <p class="text-xs text-gray-400 mt-1">
+          Leave empty to keep existing image
+        </p>
+      </div>
+
+      <!-- Rating -->
+      <div class="mb-3">
+        <label class="text-sm font-medium">Rating</label>
+        <select name="rating" id="editRating"
+                class="w-full border rounded-lg px-3 py-2">
+          {% for i in "12345"|make_list %}
+          <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Opinion -->
+      <div class="mb-4">
+        <label class="text-sm font-medium">Opinion</label>
+        <textarea name="opinion" id="editOpinion"
+                  class="w-full border rounded-lg px-3 py-2"
+                  rows="3" required></textarea>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex justify-end gap-3">
+        <button type="button"
+                onclick="closeEditModal()"
+                class="px-4 py-2 rounded-lg bg-gray-200">
+          Cancel
+        </button>
+        <button type="submit"
+                class="px-4 py-2 rounded-lg bg-blue-600 text-white">
+          Update
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<script>
+/* ADD MODAL */
+function openTestimonialModal() {
+  const modal = document.getElementById('testimonialModal')
+  modal.classList.remove('hidden')
+  modal.classList.add('flex')
+}
+
+function closeTestimonialModal() {
+  const modal = document.getElementById('testimonialModal')
+  modal.classList.add('hidden')
+  modal.classList.remove('flex')
+}
+
+/* EDIT MODAL */
+function openEditTestimonialModal(id, name, rating, opinion, imageUrl) {
+  document.getElementById('editId').value = id
+  document.getElementById('editName').value = name
+  document.getElementById('editRating').value = rating
+  document.getElementById('editOpinion').value = opinion
+
+  const preview = document.getElementById('editImagePreview')
+  preview.src = imageUrl
+  preview.classList.remove('hidden')
+
+  const modal = document.getElementById('editTestimonialModal')
+  modal.classList.remove('hidden')
+  modal.classList.add('flex')
+}
+
+function closeEditModal() {
+  const modal = document.getElementById('editTestimonialModal')
+  modal.classList.add('hidden')
+  modal.classList.remove('flex')
+}
+
+/* IMAGE PREVIEW */
+function previewEditImage(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader()
+    reader.onload = e => {
+      document.getElementById('editImagePreview').src = e.target.result
+    }
+    reader.readAsDataURL(input.files[0])
+  }
+}
+</script>
+
+
+
+
+
+</main>
+
+
+</div>
+
+<script>
+function showPage(pageId, element) {
+  // Find the closest .nav-link in case user clicked inner <i> or <span>
+  const navLink = element.closest('.nav-link');
+  if (!navLink) return;
+
+  // Highlight clicked link
+  const links = document.querySelectorAll('.nav-link');
+  links.forEach(link => {
+    link.classList.remove('bg-blue-600/30', 'text-blue-600');
+  });
+  navLink.classList.add('bg-blue-600/30', 'text-blue-600');
+
+  // Show selected page, hide others
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(page => {
+    page.classList.toggle('hidden', page.id !== pageId);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const page = urlParams.get('page') || 'dashboard';
+
+  const link = document.querySelector(`.nav-link[data-page="${page}"]`) || document.querySelector('.nav-link');
+  
+  // Show the default page
+  showPage(page, link);
+});
+
+</script>
+{% if messages %}
+  <div class="fixed top-6 right-6 z-50 space-y-2">
+    {% for message in messages %}
+      <div class="bg-white border-l-4 border-purple-600 text-purple-700 px-6 py-4 rounded shadow-lg flex items-center gap-2">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>{{ message }}</span>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const boxes = document.querySelectorAll('.fixed.top-6.right-6 .flex');
+    boxes.forEach(box => {
+      setTimeout(() => {
+        box.style.display = 'none';
+      }, 4000); // 4 seconds
+    });
+  });
+</script>
+
 
 
 </body>

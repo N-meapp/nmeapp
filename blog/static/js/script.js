@@ -1,579 +1,403 @@
+// mobile toggle
+ 
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (!menuBtn || !mobileMenu) {
+    console.warn("Menu elements not found on this page.");
+    return;
+  }
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("scale-y-100");
+    mobileMenu.classList.toggle("opacity-100");
+    mobileMenu.classList.toggle("pointer-events-auto");
+  });
+
+  document.querySelectorAll("#mobileMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove(
+        "scale-y-100",
+        "opacity-100",
+        "pointer-events-auto"
+      );
+    });
+  });
+});
 
 
 
-window.addEventListener('DOMContentLoaded', event => {
+
+
+// counting of trusted users
 
 
 
+    function rollDigit(el, target, speed, forceRoll) {
+      let container = document.createElement("div");
+      el.appendChild(container);
 
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            offset: 74,
-        });
+      // Create rolling numbers
+      if (forceRoll) {
+        // Roll 0 → 9 → final
+        for (let i = 0; i <= 9; i++) {
+          let d = document.createElement("span");
+          d.textContent = i;
+          container.appendChild(d);
+        }
+        let final = document.createElement("span");
+        final.textContent = target;
+        container.appendChild(final);
+      } else {
+        // Normal count
+        for (let i = 0; i <= target; i++) {
+          let d = document.createElement("span");
+          d.textContent = i;
+          container.appendChild(d);
+        }
+      }
+
+      // Height of each number = 28px
+      let numberHeight = 28;
+      let stopIndex = forceRoll ? 10 : target;
+
+      setTimeout(() => {
+        container.style.transform = `translateY(-${stopIndex * numberHeight}px)`;
+        container.style.transitionDuration = speed + "ms";
+      }, 50);
+    }
+
+    window.onload = () => {
+      const digits = document.querySelectorAll(".digit");
+
+      rollDigit(digits[0], 7, 900, false);      // first digit (normal speed)
+      rollDigit(digits[1], 2, 2000, false);     // second digit (slow)
+      rollDigit(digits[2], 0, 900, true);       // 3rd digit rolls 0–9–0
+      rollDigit(digits[3], 0, 900, true);       // 4th digit same timing
     };
-  
-    
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
+ 
+
+
+
+
+// hero section text animation
+
+
+
+const wordDelay = 400;
+const afterWordsPause = 300;
+const slideDuration = 600;
+const pauseBetweenSlides = 1200;
+const slideHeight = 70;
+
+const line1 = document.getElementById('line1');
+const scrollContent = document.getElementById('scrollContent');
+
+/* ---------- Animate 'All Your Needs' ---------- */
+const line1Words = ["All", "Your", "Needs"];
+line1Words.forEach((w, i) => {
+  const span = document.createElement('span');
+  span.className = 'word';
+  span.textContent = w;
+  line1.appendChild(span);
+
+  setTimeout(() => {
+    span.style.opacity = '1';
+    span.style.transform = 'translateX(0)';
+  }, i * wordDelay);
+});
+
+const allYourNeedsTotal = line1Words.length * wordDelay + afterWordsPause;
+
+/* ---------- Animate words left->right ---------- */
+function animateWordsLeftToRight(text, onComplete) {
+  const container = document.createElement('div');
+  container.style.display = 'flex';
+  container.style.alignItems = 'center';
+  container.style.gap = '8px'; // spacing between words
+  scrollContent.appendChild(container);
+
+  const words = text.split(' ');
+  words.forEach((w, i) => {
+    const span = document.createElement('span');
+    span.className = 'word';
+    span.textContent = w;
+    container.appendChild(span);
+
+    setTimeout(() => {
+      span.style.opacity = '1';
+      span.style.transform = 'translateX(0)';
+    }, i * wordDelay);
+  });
+
+  const total = words.length * wordDelay + afterWordsPause;
+  setTimeout(() => onComplete(container), total);
+}
+
+/* ---------- Animate letters inside words ---------- */
+function animateLettersByWord(text, onComplete) {
+  const container = document.createElement('div');
+  container.style.display = 'flex';
+  container.style.gap = '12px'; // spacing between words
+  scrollContent.appendChild(container);
+
+  const words = text.split(' ');
+
+  let totalDelay = 0;
+
+  words.forEach((word) => {
+    const wordSpan = document.createElement('span');
+    wordSpan.style.display = 'flex';
+    wordSpan.style.gap = '0px'; // tight letters inside word
+    container.appendChild(wordSpan);
+
+    [...word].forEach((letter, i) => {
+      const letterSpan = document.createElement('span');
+      letterSpan.className = 'letter';
+      letterSpan.textContent = letter;
+      letterSpan.style.opacity = '0';
+      letterSpan.style.transform = 'translateX(-20px)';
+      letterSpan.style.display = 'inline-block';
+      letterSpan.style.transition = 'all 0.4s ease';
+      wordSpan.appendChild(letterSpan);
+
+      setTimeout(() => {
+        letterSpan.style.opacity = '1';
+        letterSpan.style.transform = 'translateX(0)';
+      }, totalDelay + i * 80);
+    });
+
+    totalDelay += word.length * 80 + 100; // small pause between words
+  });
+
+  setTimeout(() => onComplete(container), totalDelay + 300);
+}
+
+/* ---------- Sequence ---------- */
+setTimeout(() => {
+
+  // 1️⃣ FIRST LINE (letter-by-letter with proper word spacing)
+  animateLettersByWord("One Strong Solution", () => {
+
+    // 2️⃣ SECOND LINE (instant display)
+    const smartDiv = document.createElement('div');
+    smartDiv.textContent = "One Smart Solution";
+    scrollContent.appendChild(smartDiv);
+
+    // 3️⃣ THIRD LINE (animated words)
+    animateWordsLeftToRight("One Small Solution", () => {
+
+      let currentIndex = 0;
+      const totalLines = scrollContent.children.length;
+
+      function scrollNext() {
+        if (currentIndex < totalLines - 1) {
+          currentIndex++;
+          scrollContent.style.transition = `transform ${slideDuration}ms ease`;
+          scrollContent.style.transform = `translateY(-${slideHeight * currentIndex}px)`;
+          setTimeout(scrollNext, slideDuration + pauseBetweenSlides);
+        }
+      }
+
+      setTimeout(scrollNext, pauseBetweenSlides);
+    });
+
+  });
+
+}, allYourNeedsTotal);
+
+
+
+// phone animation of index page hero section
+
+
+
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+window.addEventListener("load", () => {
+
+  const phone = document.querySelector("#heroPhone");
+  const circleCenter = document.querySelector("#circleCenter");
+  const circleSection = document.querySelector("#circleSection");
+  const heroSection = document.querySelector("#heroSection");
+
+  // Clone phone
+  const clone = phone.cloneNode(true);
+  document.body.appendChild(clone);
+
+  const phoneRect = phone.getBoundingClientRect();
+  const circleRect = circleCenter.getBoundingClientRect();
+
+  const fixedX = phoneRect.left;
+  const startY = phoneRect.top + window.scrollY;
+
+  const targetY =
+    circleRect.top +
+    circleRect.height / 2 -
+    phoneRect.height / 2 +
+    window.scrollY;
+
+  gsap.set(clone, {
+    position: "absolute",
+    left: fixedX,
+    top: startY,
+    width: phoneRect.width,
+    height: phoneRect.height,
+    zIndex: 9999,
+    pointerEvents: "none",
+    visibility: "hidden"
+  });
+
+let heroLocked = false;
+
+  // 🔥 SINGLE SCROLL DOWN → SNAP TO CIRCLE
+  ScrollTrigger.create({
+    trigger: heroSection,
+    start: "top top",
+    end: "bottom top",
+    onLeave: () => {
+      if (heroLocked) return;
+heroLocked = true;
+
+      phone.style.opacity = "0";
+      clone.style.visibility = "visible";
+
+      // Force scroll
+      gsap.to(window, {
+        scrollTo: circleSection,
+        duration: 0.9,
+        ease: "power3.inOut"
+      });
+
+      // Move phone
+      gsap.to(clone, {
+        top: targetY,
+        duration: 0.9,
+        ease: "power3.out",
+        onComplete: () => heroLocked = false
+
+      });
+    },
+
+    // 🔥 SINGLE SCROLL UP → SNAP BACK TO HERO
+    onEnterBack: () => {
+      if (heroLocked) return;
+      heroLocked = true;
+
+      gsap.to(window, {
+        scrollTo: heroSection,
+        duration: 0.9,
+        ease: "power3.inOut"
+      });
+
+      gsap.to(clone, {
+        top: startY,
+        duration: 0.9,
+        ease: "power3.out",
+        onComplete: () => {
+          clone.style.visibility = "hidden";
+          phone.style.opacity = "1";
+          heroLocked = false;
+        }
+      });
+    }
+  });
+
+});
+
+ gsap.registerPlugin(ScrollTrigger);
+
+window.addEventListener("load", () => {
+  const section = document.getElementById("featureSection");
+  const cardsTrack = document.getElementById("cardTrack");
+  const leftContent = document.getElementById("leftContent");
+
+  if (!section || !cardsTrack || !leftContent) return;
+
+  // Total scroll distance for right column
+  const cardsHeight = cardsTrack.scrollHeight;
+  const sectionHeight = section.clientHeight;
+  const scrollDistance = cardsHeight - sectionHeight;
+
+ScrollTrigger.matchMedia({
+  "(min-width: 1024px)": function() {
+
+    gsap.to(cardsTrack, {
+      y: -scrollDistance,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => `+=${cardsHeight}`,
+        pin: leftContent,
+        pinSpacing: false,   // 🔥 prevents jump after unpin
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+  }
+});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+// Smart Features for a Smooth Experience section phone animation
+
+
+    gsap.utils.toArray(".phone-anim").forEach((phone, index) => {
+
+      const card = phone.closest(".relative");
+
+      const moveDistance =
+        card.offsetHeight +
+        phone.offsetHeight +
+        400; // buffer
+
+      gsap.timeline({
+        repeat: -1,
+        delay: index * 0.3
+      })
+
+        // Pause at center
+        .to(phone, { duration: 2 })
+
+        // Move completely UP (fully hidden)
+        .to(phone, {
+          y: -moveDistance,
+          duration: 1.2,
+          ease: "power1.inOut"
+        })
+
+        // Jump to bottom (fully hidden)
+        .set(phone, {
+          y: moveDistance
+        })
+
+        // Move back to center
+        .to(phone, {
+          y: 0,
+          duration: 1.2,
+          ease: "power1.inOut"
+        })
+
+        // Pause again
+        .to(phone, { duration: 2 });
+
     });
   
-  });
-  
-  
-  function readMore(isReadMoreExpanded,blogId,secondQuoteId,readLessId,readMoreId,blogTitleId){
-    console.log(blogId);
-  
-    const blogTitle = document.getElementById(blogTitleId)
-    const blog = document.getElementById(blogId)
-  
-    const secondQuote = document.getElementById(secondQuoteId)
-    const readLess = document.getElementById(readLessId)
-    const readMore = document.getElementById(readMoreId)
-  
-  
-    if(isReadMoreExpanded){
-        console.log('expanded');
-        blog.style.display = 'block';
-        blog.style.overflow = 'visible';
-        blog.style.whiteSpace = 'normal';
-        secondQuote.style.display = 'block';
-        readMore.style.display = 'none';
-        readLess.style.display = 'block';
-        blog.style.transition = 'width 2s';
-  
-  
-        
-  
-    
-    }else{
-        blog.style.display = '-webkit-box';
-        blog.style.webkitLineClamp= 4;
-        blog.style.whiteSpace = 'normal';
-        blog.style.overflow = 'hidden';
-        blog.style.textOverflow = 'ellipsis';
-        blog.whiteSpace = 'normal';
-        secondQuote.style.display = 'none';
-        readLess.style.display = 'none';
-        readMore.style.display = 'block';
-        blogTitle.scrollIntoView({ behavior: 'smooth' });
-  
-        // const rect = blogTitle.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        window.scrollTo({
-            top: rect.top + scrollTop,
-            behavior: 'smooth'
-        });
-  
-  
-        
-  
-  
-    }
-  
-  
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    let isKeyword = false
-    let matchCardFound = false
-   const pagination = document.getElementById('paginationId')
-   const viewAll = document.getElementById('view-all-button')
-   const searchNotFound = document.getElementById('search-not-foundId')
-   // Function to show the corresponding element
-  
-  //  searchNotFound.style.display = 'none';
-  // viewAll.style.display = 'none'
-  
-   function showPage() {
-     const url = window.location.href;
-     const newURL = new URL(window.location);
-  
-  
-     const urlObj = new URL(url);
-  
-  
-     
-     const searchParams = new URLSearchParams(urlObj.search);
-     const keyword = searchParams.get('search');
-  
-     if(keyword?.trim()){
-  
-       isKeyword = true
-       console.log(keyword);
-       
-       const cards = document.querySelectorAll('.single-amenities');
-  
-       cards.forEach(card => {
-           const categoryName = card.querySelector('.category-name').innerText.toLowerCase().trim();
-           
-           if (categoryName?.includes(keyword)) {
-               // card.style.display = 'block';
-               console.log('match found');
-               matchCardFound = true;
-               console.log(card);
-               card.style.display = 'block';
-               pagination.style.display = 'none'
-               viewAll.style.display = 'block'
-               newURL.searchParams.delete('search');
-               window.history.pushState({}, '', newURL);
-           } else {
-           card.style.display = 'none';
-          //  searchNotFound.style.display = 'block';
-            viewAll.style.display = 'block'
-           }
-         })
-  
-     }
-  
-         const pageNo = url.split("#")[1] ? url.split("#")[1] : "page-1"; // Extract the hash part of the URL
-  
-     // getting elements from html
-     if (pageNo) {
-       const pageId = document.getElementById(pageNo);
-       const NoId = document.getElementById(pageNo.slice(5));
-       const leftId = document.getElementById("left");
-       const rightId = document.getElementById("right");
-       const lastPageNoClass = document.getElementsByClassName("page-item-last");
-       const lastPageNoId = lastPageNoClass[0];
-       const nextElement1 = NoId.nextElementSibling;
-       const previousElement1 = NoId.previousElementSibling;
-       const pageNoDotsId = document.getElementById("pageno-dots");
-  
-       // Hide all pages
-       document.querySelectorAll('div[id^="page-"]').forEach((div) => {
-         div.style.display = "none";
-       });
-  
-       // Check if the element exists and then show it
-       if (pageId) {
-         pageId.style.setProperty("display", "block", "important");
-         window.scrollTo({
-           top: 0,
-           // behavior: "smooth",
-         });
-  
-         // Hiding page numbers
-         document.querySelectorAll(".page-item").forEach((div) => {
-           div.style.display = "block";
-           div.style.display = "none";
-           div.classList?.remove("active");
-           lastPageNoId.classList.remove("active");
-         });
-         if (lastPageNoId !== NoId) NoId?.classList?.add("active");
-  
-         // handling previous element and next element.
-         if (previousElement1 && nextElement1) {
-           if (
-             nextElement1.id != pageNoDotsId.id &&
-             previousElement1.id != pageNoDotsId.id
-           ) {
-             nextElement1.style.display = "block";
-             previousElement1.style.display = "block";
-           } else {
-             previousElement1.style.display = "block";
-           }
-           NoId.style.display = "block";
-         }
-  
-         // for hiding left and right arrows on starting and ending.
-         if (pageNo.slice(5) == "1") {
-           leftId.style.display = "none";
-           rightId.style.display = "block";
-         } else if (pageNo.slice(5) == lastPageNoId.id) {
-           rightId.style.display = "none";
-           leftId.style.display = "block";
-         } else {
-           leftId.style.display = "block";
-           rightId.style.display = "block";
-         }
-       } else {
-         console.error("Element with ID " + pageNo + " not found.");
-       }
-  
-       // handling last page element
-       if (
-         +NoId.id == +lastPageNoId.id ||
-         +NoId.id + 1 == +lastPageNoId.id ||
-         +NoId.id + 2 == +lastPageNoId.id
-       ) {
-         pageNoDotsId.style.setProperty("display", "none", "important");
-         const scndLastElement = document.getElementById(NoId.id - 1);
-         const prevScndLastElement = document.getElementById(NoId.id - 2);
-         if (+NoId.id == +lastPageNoId.id) {
-           scndLastElement.style.display = "block";
-           prevScndLastElement.style.display = "block";
-           NoId.classList.add("active");
-         }
-       } else {
-         pageNoDotsId.style.display = "block";
-       }
-  
-      //  if(keyword){
-      //    pagination.style.display = 'none'
-      //    viewAll.style.display = 'block'
-      //   console.log('show view all');
-  
-      //  }else{
-      //   console.log('show pagination...');
-      //    pagination.style.display = 'block'
-      //    viewAll.style.display = 'none'
-      //    searchNotFound.style.display = 'none'
-  
-      //  }
-      //  if(matchCardFound){
-      //   pagination.style.display = 'none'
-      //    viewAll.style.display = 'block'
-      //    searchNotFound.style.display = 'none'
-  
-      //  }
-  
-  
-     } else {
-       console.log("Error");
-     }
-   }
-  
-   // Initial call to show the page when the document is loaded
-   showPage();
-  
-   // Listen for hash changes in the URL
-   window.addEventListener("hashchange", showPage);
-  });
-  
-  function handleDirection(direction) {
-   const currentUrl = window.location.href;
-   const pageNo = currentUrl.split("#")[1]
-     ? currentUrl.split("#")[1].slice(5)
-     : "page-1".slice(5); // Extract the hash part of the URL
-  
-   if (pageNo) {
-     console.log("this is pageNo:", pageNo);
-   }
-  
-   if (direction == "left") {
-     window.location.hash = `#page-${+pageNo - 1}`;
-   } else if (direction == "right") {
-     window.location.hash = `#page-${+pageNo + 1}`;
-   }
-  
-   // Reload the page
-   window.location.reload();
-  }
-  
-  function handleDirectionWithPageNo(pageNo){
-  
-  window.location.hash =`#page-${pageNo}`;
-  window.location.reload();
-  
-  }
-  
-  
-  // handling sidebar fixed property...
-  
-  $(function () {
-   var top =
-     $("#sidebar").offset().top -
-     parseFloat($("#sidebar").css("marginTop").replace(/auto/, 0));
-   var footTop =
-     $("#footer-starting").offset().top -
-     parseFloat($("#footer-starting").css("marginTop").replace(/auto/, 0));
-  
-   var maxY = footTop - $("#sidebar").outerHeight();
-  
-   console.log($("#sidebar").outerHeight(),'hahahahah....');
-  
-   $(window).scroll(function (evt) {
-     var y = $(this).scrollTop();
-     if (y >= top - $("#mainNav").height()) {
-       if (y < maxY) {
-         $("#sidebar").addClass("fixed").removeAttr("style");
-         // $("#sidebar").css({t})
-       } else {
-         $("#sidebar")
-           .removeClass("fixed")
-           .css({
-             position: "absolute",
-             top: maxY - top + "px"
-           });
-       }
-     } else {
-       $("#sidebar").removeClass("fixed");
-     }
-   });
-  });
-  
-  
-  // code for modal...
-  
-  function cancelModal() {
-   $("#largeModal").modal("hide");
-  }
-  
-  function showLargeModal(cat,img, title, description) {
-    console.log(img,'fgggggggggg');
-    
-   const modalContent = `
-   <div class="blog_area single-post-area">
-     <div class="">
-        <div onclick="cancelModal()" class="cancelButton"><i class="fa fa-times" style="font-size: larger;" aria-hidden="true"></i>
-         </div>
-         <div class="main_blog_details">
-           <img class="img-fluid" src="${img}" alt="">
-             <h4>${title}</h4>
-           <div class="user_details">
-             <div class="catbox">
-               <a href="">${cat}</a>
-             </div>
-             <div class="mt-sm-0 mt-3"></div>
-           </div>
-           <p>${description}</p>
-           
-         </div>
-         <div class="navigation-area"></div>
-     </div>
-   </div>
-  `;
-  
-   document.getElementById("dynamic-modal-content").innerHTML = modalContent;
-   $("#largeModal").modal("show");
-  }
-  
-  
-  // reloading...
-  
-  function reloadPage() {
-   location.reload();
-  }
-  
-  
-  
-  function selectCategory(keyword){
-  
-  
-  
-  const pagination = document.getElementById('paginationId')
-  const viewAll = document.getElementById('view-all-button')
-  const cards = document.querySelectorAll('.single-amenities');
-  let searchCard = null
-  
-  
-  
-  cards.forEach(card => {
-    const categoryName = card.querySelector('.category-name').innerText.toLowerCase().trim();
-    
-  
-    if (categoryName?.includes(keyword)) {
-        // card.style.display = 'block';
-  
-        searchCard = card
-        
-        console.log('match found');
-        console.log(card);
-        
-        // card.style.display = 'block';
-        
-       
-    } else {
-    card.style.display = 'none';
-   //  searchNotFound.style.display = 'block';
-     viewAll.style.display = 'block'
-    }
-  })
-  
-  if(searchCard){
-    searchCard.style.display = 'block';
-    console.log('logggggg');
-    
-    pagination.style.display = 'none'
-        viewAll.style.display = 'block';
-        // newURL.searchParams.delete('search');
-        // window.history.pushState({}, '', newURL);
-  
-  }else{
-    searchCard.style.display = 'none';
-   //  searchNotFound.style.display = 'block';
-     viewAll.style.display = 'block'
-    }
-  }
-  
-  
-  
-  
-  
-  function controlDropdown(questionNo){
-  
-    let  questionArray = ['first answer','secondAnswer', 'third Answer','fourth answer']
-    
-  
-    const faqFooter = document.getElementsByClassName('faq-section')
-    const specificQuestion = document.getElementById(questionNo)
-    const ansBox = specificQuestion.querySelector('.ansbox')
-    const dropDown = specificQuestion.querySelector('.dropdown')
-    const pTag = ansBox.querySelector('p')
-    
-    const allQuestions = document.getElementsByClassName('allquestions')
-    
-    let x = -1
-    let y = -1
-    for(let i=0; i<allQuestions.length;i++){
-  
-     let prevAnsBox =  allQuestions[i].querySelector('.ansbox');
-     let prevDropDown = allQuestions[i].querySelector('.dropdown');
-     let prevPTag = prevAnsBox.querySelector('p')
-  
-      if(prevAnsBox.style.height=='40%'){
-          console.log('dcreasing height',i);
-          x=i;
-        setTimeout(() => {
-          prevPTag.textContent = '';
-        }, 100);
-        prevAnsBox.style.height = '0%';
-        prevAnsBox.style.padding= '0px';
-        prevDropDown.style.transform = 'rotate(0deg)';
-  
-      }
-      if(questionNo.includes(i)){
-        console.log('Increasing height',i);
-        y=i
-        // console.log('haiiii',prevAnsBox,ansBox);
-        //   console.log(questionNo,'ddfdfdddddddddddd');
-        // setTimeout(() => {
-          pTag.textContent = questionArray[i];
-        // }, 1000);
-        ansBox.style.height = '40%';
-        ansBox.style.padding= '25px';
-        dropDown.style.transform = 'rotate(180deg)';
-        faqFooter[0].style.marginTop = '300px';
-        
-  
-      }
-    }
-    if(x==y){
-      setTimeout(() => {
-        prevPTag.textContent = '';
-      }, 500);
-      ansBox.style.height = '0%';
-      ansBox.style.padding= '0px';
-      dropDown.style.transform = 'rotate(0deg)';
-      faqFooter[0].style.marginTop = '150px';
-    }
-  }
-      
-  
-  
-  
-      // font-size: large;
-      // /* padding-top: 15px; */
-      // color: #00000073;
-      // align-content: center;
-  
-  
-  //     border-radius: 49px;
-  //     padding: 5px;
-  //     padding-inline: 15px;
-  //     /* background: #e7e7e7; */
-  //     background: linear-gradient(to right, #188ef4 0%, #316ce8 100%);
-  //     color: whitesmoke;
-  //     box-shadow: 0px 2px 3px #00000063;
-  
-  
-  function changeTab(role){
-  
-    const user = document.getElementById('user');
-    const customer = document.getElementById('customer');
-  
-    user.classList.remove('user-class')
-    customer.classList.remove('customer-class')
-    user.classList.remove('fade-in-right')
-    customer.classList.remove('fade-in-left')
-    // user.classList.remove('fade-out-right')
-    // customer.classList.remove('fade-out-left')
-    
-    // Resetting the styles
-    user.style.borderRadius = '';
-    user.style.padding = '0px';
-    user.style.paddingInline = '';
-    user.style.background = '';
-    user.style.color = '';
-    user.style.boxShadow = '';
-    user.style.fontSize = '';
-    user.style.paddingTop = '';
-    user.style.alignContent = '';
-  
-    customer.style.borderRadius = '';
-    customer.style.padding = '0px';
-    customer.style.paddingInline = '';
-    customer.style.background = '';
-    customer.style.color = '';
-    customer.style.boxShadow = '';
-    customer.style.fontSize = '';
-    customer.style.paddingTop = '';
-    customer.style.alignContent = '';
-  
-    if(role === 'user'){
-      console.log('user.....');
-      
-      user.classList.add('fade-in-right')
-      user.style.borderRadius = '49px';
-      user.style.padding = '5px';
-      user.style.paddingInline = '15px';
-      user.style.background = 'linear-gradient(to right, #188ef4 0%, #316ce8 100%)';
-      user.style.color = 'white';
-      user.style.boxShadow = '0px 2px 3px #00000063';
-  
-  
-      // customer.style.add('fade-out-left')
-      customer.style.fontSize = 'large';
-      customer.style.color = '#00000073';
-      customer.style.alignContent = 'center';
-    
-      console.log('customer', customer.style);
-      console.log('user',user.style);
-    
-    } else if (role === 'customer'){
-      console.log('customer....');
-      
-      customer.classList.add('fade-in-left')
-      customer.style.borderRadius = '49px';
-      customer.style.padding = '5px';
-      customer.style.paddingInline = '15px';
-      customer.style.background = 'linear-gradient(to right, #188ef4 0%, #316ce8 100%)';
-      customer.style.color = 'white';
-      customer.style.boxShadow = '0px 2px 3px #00000063';
-        
-      // user.classList.add('fade-out-right')
-      user.style.fontSize = 'large';
-      user.style.color = '#00000073';
-      user.style.alignContent = 'center';
-  
-      console.log('customer', customer.style);
-      console.log('user',user.style);
-    }
-  } 
-  
-  
-  
-  
+
+
+

@@ -7,3 +7,6 @@ from django import forms
 admin.site.register(Post)
 admin.site.register(Contact)
 admin.site.register(Login)
+admin.site.register(TeamMember)
+admin.site.register(Testimonial)
+

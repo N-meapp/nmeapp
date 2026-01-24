@@ -1,939 +1,1575 @@
+{% extends "base.html" %}
+{% load static %}
 
- {% extends 'base.html' %}
- {% load static %}
+{% block content %}
 
 
- {% block content %}
+  <div id="sharedCircleWrapper" class="relative w-full">
 
- <div class="page-view transition-chain">
-    <div class="page-view-inner">
-      <article class="home-page">
-        <section class="column">
-          <!-- <div class="page-title"> -->
-          <!-- <h1>" Keep In Touch For 
-                            <br>
-                            Your Needs "
-                            </h1>
-                            <p class="description">The complete digital platform for all your needs and solutions in one click, <br>without any intermediates</p> -->
-          <!-- <img src="assets/logo.png" alt="" height="200px" width="200px">
-            <h1>N-me -->
-          <!-- <br> -->
-          <!-- App -->
-          <!-- </h1>
-            <p class="description">Keep in Touch for Your Needs</p>
-          </div> -->
-          <div class="reel">
-            <!-- <a href="" aria-label="All works"> -->
-            <!-- <video poster="" playsinline="" preload="auto"
-              muted="" loop="" autoplay="">
-              <source src="{% static 'images/img/Nme app intro.mp4' %}" type="video/mp4" media="(max-width: 600px)">
-
-              <source src="{% static 'images/img/Nme app intro.mp4' %}" type="video/mp4"
-                media="(min-width: 601px) and (max-width: 1023px)">
-              <source src="{% static 'images/img/Nme app intro.mp4' %}" type="video/mp4">
-            </video> -->
-            <!-- </a> -->
-            <!-- <div class="button" style="left: 664.006px; top: -30.446px;">
-                              All works
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.29048 4.81223L4.62168 1.14342L5.68234 0.0827637L11.1624 5.56284L5.68234 11.0429L4.62168 9.98226L8.2917 6.31223H0.787354L0.787354 4.81223H8.29048Z" fill="white"></path>
-                              </svg>
-                            </div> -->
-          </div>
-          <div class="Slide__content--1rCBB HomePage__content-home--3LjxT"
-            style="transition: opacity 800ms cubic-bezier(0, 0.55, 0.45, 1);opacity: 1;">
-            <section class="SlideContent__root--m_sL2">
-              <div
-                class="SlideContent__description--13l0o Slide__description--EMqjD HomePage__description-start--z6TIx Text__weight-light--lNiNF">
-                <div>The Complete Digital Platform<br>For all Your Needs and Solutions<br>In One Click</div>
-              </div><a class="Link__root--7U37p" href="https://play.google.com/store/apps/details?id=com.smart.nme&showAllReviews=true" target="_blank">
-                <div data-block-scroll="true"
-                  class="HomePage__linkButton-start--28fIO LinkBtn__root--2etCz LinkBtn__dark--1R3ei">Download
-                  Now </div>
-              </a>
-            </section>
-          </div>
-        </section>
-      </article>
+    <!-- THE ONE & ONLY CIRCLE -->
+    <div id="sharedCircle" class="absolute left-1/2 top-[calc(75vh-120px)]
+         -translate-x-1/2 w-[282.35px] h-[282.35px]
+         md:w-[460px] md:h-[460px]
+         rounded-full
+         z-20
+         bg-gradient-to-br
+         from-[#3C5FFF]
+         to-[#C4CFFF]
+         shadow-[0_4px_23.2px_rgba(255,255,255,0.25)] max-md:top-[706.23px]">
     </div>
+
+
+
+
+    <div id="heroSection" class="relative
+         w-[92%] max-w-[380px]
+         md:w-[1400px] md:max-w-none
+         mx-auto mt-6
+         rounded-[40px]
+         h-[52rem] md:h-[48rem]
+         border-[4px] border-white
+         overflow-hidden">
+
+
+      <!-- TRUE FULL BG VIDEO (No gaps) -->
+      <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="{% static 'video/bg-video.mp4' %}" type="video/mp4" />
+      </video>
+
+      <!-- DARK OVERLAY TO MAKE TEXT VISIBLE -->
+      <div class="absolute inset-0  rounded-[40px] z-0"></div>
+
+      <!-- ALL CONTENT (kept above background with z-index) -->
+      <div class="relative z-10 p-6 md:p-10">
+
+
+<nav class="flex justify-between items-center w-full relative">
+
+  <!-- Logo -->
+  <a href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}" class="h-12" />
+  </a>
+
+  <div class="flex items-center gap-3">
+
+    <!-- DESKTOP NAV -->
+    <ul class="hidden md:flex gap-10 px-10 py-5 rounded-full bg-white/40 backdrop-blur-xl border border-white/60">
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'home' %}" class="text-blue-600 font-semibold">Home</a>
+  </li>
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'about' %}" class="hover:text-blue-600">About</a>
+  </li>
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'blogs' %}" class="hover:text-blue-600">Blogs</a>
+  </li>
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'faq' %}" class="hover:text-blue-600">FAQs</a>
+  </li>
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'services' %}" class="hover:text-blue-600">Services</a>
+  </li>
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'contact' %}" class="hover:text-blue-600">Contact</a>
+  </li>
+</ul>
+
+
+    <!-- MOBILE BUTTON -->
+    <button id="menuBtn"
+      class="md:hidden w-12 h-12 rounded-xl bg-[#3C49FF]
+      flex flex-col items-center justify-center">
+      <span class="w-6 h-0.5 bg-white mb-1.5"></span>
+      <span class="w-6 h-0.5 bg-white mb-1.5"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+    </button>
+
+    <!-- CHAT ICON (DESKTOP ONLY) -->
+    <div class="hidden md:flex h-12 w-12 rounded-full
+      bg-gradient-to-br from-blue-500 to-blue-700
+      shadow-md items-center justify-center">
+      <img src="{% static 'images/icon1.png' %}" class="w-6" />
+    </div>
+
   </div>
+</nav>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="absolute top-[70px] left-1/2 -translate-x-1/2
+           w-[335px] h-[294px]
+           md:hidden
+           backdrop-blur-xl bg-white/30
+           rounded-2xl shadow-2xl
+           border border-white/60
+           origin-top scale-y-0 opacity-0
+           pointer-events-none
+           transition-all duration-300 z-50 py-2">
+
+  <a href="{% url 'home' %}" class="block font-manrope text-[16px] px-6 py-3 text-blue-600">Home</a>
+  <a href="{% url 'about' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">About</a>
+  <a href="{% url 'blogs' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Blogs</a>
+  <a href="{% url 'faq' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">FAQs</a>
+  <a href="{% url 'services' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Services</a>
+  <a href="{% url 'contact' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Contact</a>
 
-
-
-
-
-
-
-
-
-
-  <aside class="text-center  bg-banner-text-log-gradient">
-    <div class="container px-5">
-      <div class="row gx-5 justify-content-center">
-        <div class="col-xl-8">
-          <div class=" fs-1 text-white mb-4 txt1">"An intuitive solution to a common problem that we all face, wrapped
-            up in a single app!"</div>
-          <img src="{% static 'images/nmeappblack.png' %}" alt="..." style="height: 3rem" />
-        </div>
-      </div>
-    </div>
-  </aside>
-
-
-
-
-  <section id="features" class="features">
-    <div class="container px-5">
-      <div class="row gx-5 align-items-center">
-        <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
-          <div class="container-fluid px-5">
-            <div class="row gx-5">
-              <div class="col-md-6 mb-5">
-                <div class="text-center">
-                  <i class="bi-lightning icon-feature text-gradient d-block mb-3"></i>
-                  <h3 class="font-alt">Quick Response</h3>
-                  <p class="text-muted mb-0">We go for not long, you get your answers quickly.</p>
-                </div>
-              </div>
-              <div class="col-md-6 mb-5">
-
-                <div class="text-center">
-                  <i class="bi-toggles icon-feature text-gradient d-block mb-3"></i>
-                  <h3 class="font-alt">Friendly Technology</h3>
-                  <p class="text-muted mb-0">friendly technology that brings people together.</p>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-5 mb-md-0">
-
-                <div class="text-center">
-                  <i class="bi-graph-up icon-feature text-gradient d-block mb-3"></i>
-                  <h3 class="font-alt">Years of Development Session</h3>
-                  <p class="text-muted mb-0">Gaining and sharing the expertise to the public.</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-
-                <div class="text-center">
-                  <i class="bi-patch-check icon-feature text-gradient d-block mb-3"></i>
-                  <h3 class="font-alt">Speed, Secure, and Smart</h3>
-                  <p class="text-muted mb-0">We made sure that you get all answers quickly and accurately.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-lg-4 order-lg-0">
-                        <div class="features-device-mockup">
-                            <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative"> 
-                                <a href="https://youtu.be/UF1s3y4xBo0?feature=shared" class="glightbox play-btn mb-4"></a>
-                            </div>
-                            <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="circleGradient" gradientTransform="rotate(45)">
-                                        <stop class="gradient-start-color" offset="0%"></stop>
-                                        <stop class="gradient-end-color" offset="100%"></stop>
-                                    </linearGradient>
-                                </defs>
-                                <circle cx="50" cy="50" r="50"></circle></svg>
-                                <svg class="shape-1 d-none d-sm-block" viewBox="0 0 240.83 240.83" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(120.42 -49.88) rotate(45)"></rect>
-                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg>
-                                <svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
-                            <div class="device-wrapper">
-                                <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
-                                    <div class="screen bg-black">
-                                    
-                                        <video muted="muted" autoplay="" loop="" style="max-width: 100%; height: 100%"><source src="assets/img/demo-screen.mp4" type="video/mp4" /></video>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-
-        <div class="col-lg-4 order-lg-0">
-          <div class="features-device-mockup">
-            <!-- <div>
-              class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-              <a href="https://youtu.be/UF1s3y4xBo0?feature=shared" class="glightbox play-btn mb-4"></a>
-            </div> -->
-            <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="circleGradient" gradientTransform="rotate(45)">
-                  <stop class="gradient-start-color" offset="0%"></stop>
-                  <stop class="gradient-end-color" offset="100%"></stop>
-                </linearGradient>
-              </defs>
-              <circle cx="50" cy="50" r="50"></circle>
-            </svg>
-            <svg class="shape-1 d-none d-sm-block" viewBox="0 0 240.83 240.83" xmlns="http://www.w3.org/2000/svg">
-              <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03"
-                transform="translate(120.42 -49.88) rotate(45)"></rect>
-              <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03"
-                transform="translate(-49.88 120.42) rotate(-45)"></rect>
-            </svg>
-            <svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="50"></circle>
-            </svg>
-            <div class="device-wrapper">
-              <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
-                <div class="screen bg-black">
-
-                  <video muted="muted" autoplay="" loop="" style="max-width: 100%; height: 100%">
-                    <source src="{% static 'images/img/demo-screen.mp4' %}" type="video/mp4" />
-                  </video>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- CATEGORIES -->
-
-
-  {% comment %} <div class="container">
-    <div class="home-block">
-      <div class="title">
-
-        <h2>Your Ultimate Hub for Connecting All Businesses & Services</h2>
-
-
-
-        <a href="/services" title="All works" class="title-link">
-          All Services
-          <span class="arrow">
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
-                fill="#262626"></path>
-            </svg>
-          </span>
-        </a>
-
-
-        <!-- <p></p> -->
-        <p>N-Me app connects businesses and customers across various categories, removing intermediaries and offering a
-          user-friendly design. It provides easy access to services, job opportunities, and advertising, making it an
-          ideal platform for both business owners and customers.</p>
-        <!-- <p></p> -->
-
-
-      </div>
-      <div class="logos">
-
-
-
-
-        <div class="item animated">
-          <div class="client first">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/491939/transportation-color-plane-18.svg" width="202" height="108"
-                alt="">
-
-            </div>
-            <!-- <div class="description">
-            <p>Series of visual concepts for improving the user experience</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-
-              <img src="https://www.svgrepo.com/show/493485/shopping-cart.svg" alt="" width="202" height="108">
-
-            </div>
-            <!-- <div class="description">
-            <p>Marketing website for a subsidiary of the CBRE Group's co-working space company</p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated">
-          <div class="client first">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/410971/worship.svg" width="202" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Iconography design for a payments infrastructure company with 250M+ API request per day</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-
-              <img src="https://www.svgrepo.com/show/281640/restaurant-fork.svg" width="202" height="108">
-            </div>
-            <!-- <div class="description">
-            <p>Official Apple tvOS app user interface development</p>
-
-          </div> -->
-          </div>
-        </div>
-
-
-
-
-
-        <div class="item animated">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/296582/astrology-horoscope.svg " width="202" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-
-              <img src="https://www.svgrepo.com/show/421923/health-heart-heart-rate.svg" alt="" width="202">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity design for an internal App Store by Universal Music</p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated">
-          <div class="client first">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/233791/screwdriver.svg" width="203" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Visual identity for Adobe-owned company products</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-
-              <img src="https://www.svgrepo.com/show/293567/shopping-bag.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Ongoing design support for the leading destination for company insights</p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/288145/hotel.svg" width="202" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Designing a motion identity for Opera</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <!-- <img src="https://www.datocms-assets.com/22695/1715859220-redis-c.svg" width="202" height="108" alt=""> -->
-              <img src="https://www.svgrepo.com/show/493483/travel-airplane.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand and marketing design support for an open source data structure server company</p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/373353/services.svg" width="202" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Ongoing design and development collaboration with an enterprise identity provider</p>
-
-          </div> -->
-          </div>
-          <div class="client second" aria-label="Partner Logo">
-            <div class="logo">
-              <img
-                src="https://www.svgrepo.com/show/404670/megaphone-speaker-announcement-advertising-promotion-sound.svg"
-                alt="" width="202" height="108">
-            </div>
-            <!-- <div class="description">
-            
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/474995/sports-mode.svg" width="203" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Redesign of the support portal and 30% improvement in users’ ability to get the answers they want</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/509480/taxi-taxi-stop.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Design for a membership-based healthcare system</p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/490311/restaurant-waiter.svg" width="202" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Iconography for a secure workspace software company with over 16 million cloud users</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/382151/education-graduation-learning-school-study.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Rebranding for an open-source web testing platform with 5 million weekly downloads</p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/417548/ice-cream.svg" width="203" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Design for the world's first audio word processor</p>
-
-          </div> -->
-          </div>
-          <div class="client second" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/474984/services.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity for a secure data onboarding solution that processed more than 25 billion records</p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/400817/taxi.svg" width="202" height="108" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Website design for a B2B data provider platform with over 50 million company records</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/282381/facade-tourism.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity and website for a tool used by over 80% of Fortune 50 companies' machine learning teams
-            </p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/493439/new-life-household-appliances-set.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Website design for a B2B data provider platform with over 50 million company records</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <!-- <img src="assets/img/shopping-cart-svgrepo-com.svg" width="202" height="108" alt=""> -->
-              <img src="https://www.svgrepo.com/show/477093/mobile-phone-signal.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity and website for a tool used by over 80% of Fortune 50 companies' machine learning teams
-            </p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/13540/wedding-couple.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Website design for a B2B data provider platform with over 50 million company records</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/270121/real-estate-house.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity and website for a tool used by over 80% of Fortune 50 companies' machine learning teams
-            </p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/497822/calendar-tick.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Website design for a B2B data provider platform with over 50 million company records</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/268212/real-estate-key.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity and website for a tool used by over 80% of Fortune 50 companies' machine learning teams
-            </p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/492912/step-up-menbusiness.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Website design for a B2B data provider platform with over 50 million company records</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/499711/fuel-tank.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity and website for a tool used by over 80% of Fortune 50 companies' machine learning teams
-            </p>
-
-          </div> -->
-          </div>
-        </div>
-        <div class="item animated ">
-          <div class="client first" aria-label="Partner Logo">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/474386/internet.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Website design for a B2B data provider platform with over 50 million company records</p>
-
-          </div> -->
-          </div>
-          <div class="client second">
-            <div class="logo">
-              <img src="https://www.svgrepo.com/show/422018/energy-forecast-lightning.svg" alt="">
-            </div>
-            <!-- <div class="description">
-            <p>Brand identity and website for a tool used by over 80% of Fortune 50 companies' machine learning teams
-            </p>
-
-          </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> {% endcomment %}
-
-
-  <!-- Ambassador about section start -->
-
-
-
- <div class="py-5" style="background: linear-gradient(135deg, #2937f0 0%, #9f1ae2 100%);">
-    <div class="container text-center">
-        
-        <div class="mx-auto p-5 rounded-3" 
-            style="max-width: 900px; 
-                   background: rgba(255, 255, 255, 0.10); 
-                   backdrop-filter: blur(6px); 
-                   box-shadow: 0 8px 25px rgba(0,0,0,0.25);">
-
-            {% comment %} <h2 class="display-4 lh-1 mb-3" 
-                style="font-size: 48px; font-weight: 700; color: #ffffff;">
-                Meet Our Brand Ambassador
-            </h2> {% endcomment %}
-
-            <!-- Decorative Divider -->
-            {% comment %} <div style="width: 80px; height: 4px; background: #ffffff; border-radius: 2px; margin: 14px auto 24px;"></div> {% endcomment %}
-
-            <p class="mx-auto"
-               style="max-width: 780px; font-size: 22px; line-height: 1.7; color: #f5f5f5;">
-                We proudly launched the NME app in 2022, a significant milestone in our organizational history.
-                Contributing significant value to our launch, actor Jayasurya became our brand ambassador,
-                expressing our core goal and contributing his particular charisma to our brand identity.
-            </p>
-
-        </div>
-
-    </div>
 </div>
 
 
 
-  <!-- Ambassador about section end -->
+
+        <!-- MAIN HERO SECTION -->
+        <div class="flex flex-col lg:flex-row justify-between items-center mt-10 md:mt-16">
+
+          <!-- LEFT SECTION -->
+          <div class="w-full lg:w-[35%]
+           space-y-5
+           px-4 lg:px-0
+           flex flex-col
+           justify-center
+           mb-20 md:mb-32
+           pt-14 md:pt-20
+           text-center lg:text-left">
+
+            <!-- USERS ROW -->
+            <div class="max-md:w-[252.47px] flex items-center justify-center lg:justify-start gap-3">
+              <img src="{% static 'images/heroclients.png' %}" class="w-[75px] h-[26px] object-contain rounded-full">
+
+              <div class="flex items-center text-[14px] font-medium text-[#1A1A1A]">
+                <span class="digit" data-target="7"></span><span class="comma">,</span>
+                <span class="digit" data-target="2"></span>
+                <span class="digit" data-target="0"></span>
+                <span class="digit" data-target="0"></span>
+                <span class="ml-2">+ Trusted Users</span>
+              </div>
+            </div>
+
+            <!-- HERO TITLE -->
+            <div class="space-y-2">
+              <h2 id="line1" class="text-black
+               text-[32px]
+               md:text-[48px]
+               font-semibold
+               flex justify-center lg:justify-start
+               gap-2
+               overflow-hidden">
+              </h2>
+
+              <!-- DESKTOP SCROLL TEXT -->
+              <div id="scrollContainer" class="hidden md:block
+         relative
+         min-h-[70px]
+         overflow-hidden">
+
+                <div id="scrollContent" class="absolute
+           left-0 top-0
+           flex flex-col
+           text-[48px]
+           font-semibold
+           text-[#3C79FF]
+           text-left">
+                </div>
+
+              </div>
+
+              <!-- MOBILE STATIC TEXT -->
+<div class="block md:hidden w-full flex justify-center px-4 max-md:!mt-[-6px]">
+  <div class="font-poppins
+              text-[32px]
+              font-semibold
+              text-[#3C79FF]
+              text-center
+              whitespace-nowrap">
+    One Small Solution
+  </div>
+</div>
 
 
 
+            </div>
 
-  <section class="bg-light ">
-    <div class="container about-section px-5">
-      <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
-        <div class="col-12 col-lg-5">
-          <h2 class="display-4 lh-1 mb-4 facts">Some Interesting Fact About N-me</h2>
-          <p class="lead fw-normal text-muted mb-5 some-about mb-lg-0">The first interesting fact about N-me is That
-            it's an app providing all kind of services to the public. We believe that N-ME will be user and client’s
-            friendly application as we built. N-me app was launched on 22nd February 2022. The date was planned years
-            ago and as well as we all made great Efforts to see the result. Now, We have collected million of data
-            about clients to promote their business with n-me app and digitalise their identity by displaying in n-me
-            app.</p>
+            <!-- DESCRIPTION -->
+            <p class="text-[16px] font-manrope font-medium md:text-[18px] text-[#1A1A1A] leading-relaxed">
+              Everything you look for - simplified, secure<br class="hidden md:block">
+              and just a tap away in one app.
+            </p>
+
+            <!-- BUTTONS (DESKTOP ONLY – already correct) -->
+            <div class="hidden md:flex items-center gap-4">
+              <button class="bg-white shadow px-10 py-3 rounded-full text-black font-semibold">
+                Download
+              </button>
+
+              <button class="w-[48px] h-[48px] rounded-full bg-black text-white flex items-center justify-center">
+                <img src="{% static 'images/icon2.png' %}" class="w-[12px] h-[12px]" />
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT QR (DESKTOP ONLY) -->
+          <div class="hidden md:flex w-full lg:w-[22%] flex-col items-center mt-10 lg:mt-0">
+            <p class="text-gray-700 text-lg font-medium mb-4">
+              Scan QR code to download app
+            </p>
+            <img src="{% static 'images/qr.png' %}" class="w-[250px] rounded-[30px]" />
+          </div>
+
         </div>
-        <div class="col-sm-10 col-md-6">
-          <div class=""><img class="img-fluid rounded-circle" src="{% static 'images/img/18.jpg' %}" alt="..." /></div>
-        </div>
+
       </div>
     </div>
-  </section>
-  <!-- Call to action section-->
+    <!-- CENTER PHONE -->
+    <!-- PHONE (z-40 → ABOVE CIRCLE) -->
+    <div class="absolute
+     left-1/2
+     top-[493px] md:top-[180px]
+     -translate-x-1/2
+     z-40
+     w-[213.81px] h-[443px]
+     md:w-[314.84px] md:h-[654px]
+     flex items-center justify-center">
 
 
-
-
-
-
-  <!-- service section start -->
-
-  <section class="service-sec">
-
-
-    <div class="container service-co">
-      <div class="row justify-content-center ">
-        <div class="col-12">
-          <div class="section-title text-center mb-4 pb-2">
-            <h2 class="display-4 lh-1 mb-4 service-text">Our Features</h4>
-              <p class="text-muted para-desc mx-auto mb-0">We make our app easy to navigate so that people never lose
-                interest in swiping.</p>
-          </div>
-        </div><!--end col-->
-      </div><!--end row-->
-
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="card service-wrapper features-card rounded border-0 shadow p-4">
-            <div class="icon text-center text-custom h1 shadow rounded bg-white">
-              <span class="uim-svg"><i class="fa fa-rocket"></i></span>
-            </div>
-            <div class="content mt-4">
-              <h5 class="font-alt">Speed, Smart, and Secure </h5>
-              <p class="text-muted mt-3 mb-0">Our technical team made N-me for highspeed access to needers, high
-                secured about client data, and smartest display for the app.</p>
-              <div class="mt-3">
-                <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-              </div>
-            </div>
-            <div class="big-icon h1 text-custom-down">
-              <span class="uim-svg features-icon"><i class="fa fa-rocket"></i></span>
-            </div>
-          </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="card service-wrapper features-card rounded border-0 shadow p-4">
-            <div class="icon text-center text-custom h1 shadow rounded bg-white">
-              <span class="uim-svg"><i class="fa fa-comments" aria-hidden="true"></i></span>
-            </div>
-            <div class="content mt-4">
-              <h5 class="font-alt">Excellent Reviews</h5>
-              <p class="text-muted mt-3 mb-0">We heard and read lots of high voltage reviews from national and
-                international famous techies. It helps us to grow our confidence level.</p>
-              <div class="mt-3">
-                <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-              </div>
-            </div>
-            <div class="big-icon h1 text-custom-down">
-              <span class="uim-svg features-icon"><i class="fa fa-comments" aria-hidden="true"></i></span>
-            </div>
-          </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="card service-wrapper features-card rounded border-22 shadow p-4">
-            <div class="icon text-center text-custom h1 shadow rounded bg-white">
-              <span class="uim-svg"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
-            </div>
-            <div class="content mt-4">
-              <h5 class="font-alt">Friendly Technology</h5>
-              <p class="text-muted mt-3 mb-0">The N-Me app provides friendly technology and easy proocessing, so even
-                normal people can access so easily.</p>
-              <div class="mt-3">
-                <a href="javascript:void(0)" class="text-custom more"> <i class="mdi mdi-chevron-right"></i></a>
-              </div>
-            </div>
-            <div class="big-icon h1 text-custom-down">
-              <span class="uim-svg features-icon"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
-            </div>
-          </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="card service-wrapper features-card rounded border-0 shadow p-4">
-            <div class="icon text-center text-custom h1 shadow rounded bg-white">
-              <span class="uim-svg"><i class="fa fa-users" aria-hidden="true"></i></span>
-            </div>
-            <div class="content mt-4">
-              <h5 class="font-alt">Best Team</h5>
-              <p class="text-muted mt-3 mb-0">Best and well qualified team behind the project. The strength of
-                togetherness made N-Me fabulous.</p>
-              <div class="mt-3">
-                <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-              </div>
-            </div>
-            <div class="big-icon h1 text-custom-down">
-              <span class="uim-svg features-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
-            </div>
-          </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="card service-wrapper features-card rounded border-0 shadow p-4">
-            <div class="icon text-center text-custom h1 shadow rounded bg-white">
-              <span class="uim-svg"><i class="fa fa-list-ol" aria-hidden="true"></i></span>
-            </div>
-            <div class="content mt-4">
-              <h5 class="font-alt">Unlimited Business Listing</h5>
-              <p class="text-muted mt-3 mb-0">The unique part of N-me app is unlimited business listing. You can find
-                whatever you have to find out.</p>
-              <div class="mt-3">
-                <a href="javascript:void(0)" class="text-custom more"> <i class="mdi mdi-chevron-right"></i></a>
-              </div>
-            </div>
-            <div class="big-icon h1 text-custom-down">
-              <span class="uim-svg features-icon"><i class="fa fa-list-ol" aria-hidden="true"></i></span>
-            </div>
-          </div>
-        </div><!--end col-->
-
-        <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
-          <div class="card service-wrapper features-card rounded border-0 shadow p-4">
-            <div class="icon text-center text-custom h1 shadow rounded bg-white">
-              <span class="uim-svg"><i class="fa fa-puzzle-piece" aria-hidden="true"></i></span>
-            </div>
-            <div class="content mt-4">
-              <h5 class="font-alt">An Affordable Plan</h5>
-              <p class="text-muted mt-3 mb-0">An affordable annual plan & one time payment for promoting your
-                business, build your brand signature</p>
-              <div class="mt-3">
-                <a href="javascript:void(0)" class="text-custom more"><i class="mdi mdi-chevron-right"></i></a>
-              </div>
-            </div>
-            <div class="big-icon h1 text-custom-down">
-              <span class="uim-svg features-icon"><i class="fa fa-puzzle-piece" aria-hidden="true"></i></span>
-            </div>
-          </div>
-        </div><!--end col-->
-      </div><!--end row-->
+      <img id="heroPhone" src="{% static 'images/phone.png' %}" class="w-full h-full object-contain" alt="Hero Phone" />
     </div>
 
-  </section>
 
 
+    <div class="white-smoke-line"></div>
+
+     <!-- ================= HERO CUT WRAPPER ================= -->
+    <div id="heroCut" class="hero-clip-wrapper relative max-w-[1400px] mx-auto mt-[4.5rem] md:mt-10 overflow-hidden max-lg:px-4">
+
+      <!-- SVG BORDER (DESKTOP ONLY) -->
+      <svg class="absolute inset-0 w-full h-full z-20 pointer-events-none max-md:hidden" viewBox="0 0 1400 340"
+        preserveAspectRatio="none">
+
+        <defs>
+          <mask id="borderMask">
+            <rect width="1400" height="340" fill="white" />
+            <circle cx="700" cy="-124" r="230" fill="black" />
+          </mask>
+        </defs>
+
+        <path d="
+        M40 2
+        H1360
+        A38 38 0 0 1 1398 40
+        V300
+        M2 300
+        V40
+        A38 38 0 0 1 40 2
+      " fill="none" stroke="white" stroke-width="5" mask="url(#borderMask)" />
+
+        <circle cx="700" cy="-124" r="230" fill="none" stroke="white" stroke-width="5" />
+      </svg>
+
+      <!-- ================= HERO CUT SECTION ================= -->
+      <section class="hero-cut relative h-[340px]
+           bg-gradient-to-b from-[#B9CCFF] via-[#EAF1FF] to-[#f3f4f6]
+           px-12 pt-16 overflow-hidden
+           z-10 rounded-[40px]
+           max-md:h-auto max-md:px-6 max-md:pt-[7.5rem]">
+
+        <!-- HEADER TEXT -->
+<div class="flex justify-between items-start
+     max-md:flex-col max-md:gap-4 max-md:text-center">
+
+  <!-- TITLE -->
+  <h2 class="text-[32px] max-md:mx-auto font-semibold md:font-medium 
+             text-[#1A1A1A] max-md:text-[16px] whitespace-nowrap">
+
+    <!-- Desktop -->
+    <span class="hidden md:inline">
+      Build, Promote & Grow<br />With N-Me
+    </span>
+
+    <!-- Mobile -->
+    <span class="md:hidden">
+      Build, Promote & Grow With N-Me
+    </span>
+  </h2>
+
+  <!-- DESCRIPTION -->
+
+  <!-- Desktop text -->
+  <p class="hidden md:block max-w-[380px] text-right text-[16px] text-[#1A1A1A]">
+    Strengthening growing brands with seamless design,
+    development, marketing support.
+  </p>
+
+  <!-- Mobile text -->
+  <p class="md:hidden text-center text-[14px] text-[#1A1A1A]">
+    Seamless support for design, development & brand growth.
+  </p>
+
+</div>
 
 
-  <!-- <service section end -->
+        <!-- ================= FEATURE PILLS ================= -->
+        <div class="relative mt-16 overflow-hidden max-md:mt-10">
+          <div class="pill-container marquee-track">
+            <!-- PILL 1 -->
+            <div class="pill-neu flex items-center max-md:py-[14.99px] justify-center gap-[10px]">
+              <img src="{% static 'images/dm.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Digital Marketing</p>
+            </div>
 
+            <!-- PILL 2 -->
+            <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
+              <img src="{% static 'images/gd.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Graphic Designing</p>
+            </div>
 
+            <!-- PILL 3 -->
+            <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
+              <img src="{% static 'images/wd.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Web Development</p>
+            </div>
 
-  <!-- about section start -->
+            <!-- PILL 4 -->
+            <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
+              <img src="{% static 'images/seo.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">SEO</p>
+            </div>
 
-  <div class="py-5 service-32">
-    <div class="container">
-      <div class="row wrap-feature-32">
-        <div class="col-md-6 about-img"> <img src="{% static 'images/img/mockup.png' %}" alt="..." class="img-fluid" width="60%"> </div>
-        <div class="col-md-6 align-self-center">
-          <span class="badge badge-info rounded-pill px-3 py-1 font-weight-light ">about</span>
-          <h2 class="my-3 display-4 lh-1 mb-4">About N-me</h2>
-          <p class="mt-3">Keep in touch for your needs! Absolutely. N-ME has the complete package for human wants in
-            the modern world. Ever felt lonely in an empty town at 2 O’ clock midnight? Such that situations, You were
-            probably picked up the cell phone and trying to communicate with your friends or family. But once N-ME
-            arrived on the floor, calling for people becomes plan B And the N-ME will is probably the first thing
-            comes in your mind. That’s how N-ME built up and importantly, that’s the way how N-ME treats our users.
-          </p>
-          <a class="btn btn-info-gradiant btn-md rounded-pill mt-3" href="/about"><span>View all</span></a>
+            <!-- PILL 5 -->
+            <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
+              <img src="{% static 'images/ud.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">UI/UX Designing</p>
+            </div>
+
+            <!-- PILL 6 -->
+            <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
+              <img src="{% static 'images/ad.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">App Development</p>
+            </div>
+          </div>
         </div>
-      </div>
+
+      </section>
     </div>
+
+
+
+
+
+
+
+
+
+    <section id="circleSection" class="relative w-full overflow-visible
+         max-md:mt-20 max-sm:mt-10">
+
+
+
+      <section id="targetCircle"
+        class="relative w-[355px] h-[513.88px] md:w-[1400px] md:h-[820px] mx-auto mt-0 md:mt-44 overflow-hidden">
+
+        <!-- ================= OUTER RING ================= -->
+        <div class="absolute left-1/2 top-1/2
+      
+      w-[354.98px] h-[354.98px]
+      md:w-[680px] md:h-[680px]
+      -translate-x-1/2 -translate-y-1/2
+      rounded-full
+      border border-[#DCE1FF]
+      shadow-[inset_0_0_10px_rgba(111,111,112,0.25)]">
+          <div class="ring-glow animate-[spin-slow_18s_linear_infinite]"></div>
+        </div>
+
+        <!-- ================= MIDDLE RING ================= -->
+        <div class="absolute left-1/2 top-1/2
+      w-[280px] h-[280px]
+      
+      md:w-[520px] md:h-[520px]
+      -translate-x-1/2 -translate-y-1/2
+      rounded-full
+      border border-[#DCE1FF]
+      shadow-[inset_0_0_10px_rgba(111,111,112,0.25)]">
+          <div class="ring-glow animate-[spin-slow_14s_linear_infinite]"></div>
+        </div>
+
+        <!-- ================= INNER RING ================= -->
+        <div id="circleCenter" class="absolute left-1/2 top-1/2
+      w-[180px] h-[180px]
+      sm:w-[220px] sm:h-[220px]
+      md:w-[360px] md:h-[360px]
+      -translate-x-1/2 -translate-y-1/2
+      rounded-full
+      border border-[#DCE1FF]
+      shadow-[inset_0_0_10px_rgba(111,111,112,0.25)]">
+          <div class="ring-glow animate-[spin-slow_10s_linear_infinite]"></div>
+        </div>
+
+
+
+
+
+        <!-- ================= AI CHAT BOT (LEFT SIDE) ================= -->
+        <div class="absolute md:left-[300px] md:top-[340px] left-[248px] top-[199px] max-md:z-[99999]
+              -translate-y-1/2 w-[65px] h-[65px]
+              md:w-[153px] md:h-[153px]
+              border-[3px] border-white
+              rounded-full
+              bg-gradient-to-b from-[#3C5FFF] to-[#C4CFFF]
+              flex items-center justify-center
+              text-white font-semibold text-[8.55px] md:text-[16px]
+              text-center
+              
+              z-30">
+          <p>
+            AI Chat Bot<br>Nyra</p>
+        </div>
+
+        <!-- ================= OFFER & ADVERTISEMENT (RIGHT LOWER) ================= -->
+        <div class="absolute md:right-[330px] md:bottom-[260px] w-[80px] h-[80px] max-md:z-[99999] right-[255px] bottom-[363px]
+              md:w-[153px] md:h-[153px]
+              border-[3px] border-white
+              rounded-full
+              bg-gradient-to-b from-[#3C5FFF] to-[#C4CFFF]
+              flex items-center justify-center
+              text-white font-semibold text-[8.64px] md:text-[16px]
+              text-center
+              
+              z-30">
+          Offer &<br>Advertisement
+        </div>
+
+        <!-- ================= USERS (TOP LEFT) ================= -->
+        <div class="absolute top-[337px] left-[-5px] md:left-[180px] md:top-[80px] max-md:z-[99999] ">
+
+          <!-- CARD -->
+          <div
+            class="relative w-[198px] h-[70.67px] md:w-[273px] md:h-[111px] bg-white  px-6 md:py-5 rounded-[24px] shadow-lg">
+
+            <!-- TEXT -->
+            <h2 class="text-[#3C79FF] font-medium text-[12.16px] md:text-[20px]">Users</h2>
+            <p
+              class="mt-1  text-[10.47px] md:text-[14px] font-medium text-[#1A1A1A] leading-relaxed pr-[5.5rem] md:pr-10 w-[240px]">
+              Find nearby services quickly and safely.
+            </p>
+
+            <div class="absolute -right-20 top-1/2 -translate-y-1/2 max-md:hidden">
+              <img src="{% static 'images/u.jpg' %}" class="w-[120px] h-[120px]
+           rounded-full
+           border-[10px] border-white
+           shadow-md object-cover" />
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <div class="absolute right-[185px] top-[159px] md:right-[250px] md:top-[30px]  z-[99999]  ">
+          <div
+            class="relative w-[166px] h-[72.78px] md:w-[273px] md:h-[111px] bg-white py-2 px-1 pl-2 md:px-6 md:py-5 md:pl-14 rounded-[24px] shadow-lg">
+
+            <!-- IMAGE -->
+            <div class="absolute -left-20 top-1/2 -translate-y-1/2 max-md:hidden">
+              <img src="{% static 'images/bo.jpg' %}"
+                class="w-[120px] h-[120px] rounded-full border-[10px] border-white shadow-md object-cover" />
+            </div>
+
+            <h2 class="text-[#3C79FF] font-medium text-[12.16px] md:text-[20px]">
+              Business Owners
+            </h2>
+
+            <p class="mt-1 text-[10.47px] md:text-[14px] font-medium text-[#1A1A1A] leading-relaxed">
+              Display your offers and grow your reach.
+            </p>
+
+          </div>
+        </div>
+
+
+        <div class="absolute right-[0px] md:right-[150px] top-[425px] md:top-[240px] max-md:z-[99999]">
+          <div
+            class="relative w-[198px] h-[66.88px] md:w-[273px] md:h-[111px] bg-white px-6 py-5 md:pl-14 rounded-[24px] shadow-lg">
+
+            <!-- IMAGE -->
+            <div class="absolute -left-20 top-1/2 -translate-y-1/2 max-md:hidden">
+              <img src="{% static 'images/jr.jpg' %}"
+                class="w-[120px] h-[120px] rounded-full border-[10px] border-white shadow-md object-cover" />
+            </div>
+
+            <h2 class="text-[#3C79FF] font-medium text-[12.16px] md:text-[20px]">
+              Job Recruiters
+            </h2>
+
+            <p class="mt-1 text-[10.47px] md:text-[14px] font-medium text-[#1A1A1A] leading-relaxed">
+              Post openings and hire faster.
+            </p>
+
+          </div>
+        </div>
+
+
+
+        <div class="absolute right-[11px] bottom-[402px] md:right-[300px] md:bottom-[100px] z-[99999]">
+          <div
+            class="relative w-[194px] h-[66.34px] md:w-[273px] md:h-[111px] bg-white px-6 py-5 pl-[1.5rem] md:pl-14 rounded-[24px] shadow-lg">
+
+            <!-- IMAGE -->
+            <div class="absolute -left-20 top-1/2 -translate-y-1/2 max-md:hidden">
+              <img src="{% static 'images/so.jpg' %}"
+                class="w-[120px] h-[120px] rounded-full border-[10px] border-white shadow-md object-cover" />
+            </div>
+
+            <h2 class="text-[#3C79FF] font-medium text-[12.16px] md:text-[20px]">
+              Shop Owners
+            </h2>
+
+            <p class="mt-1 text-[10.47px] md:text-[14px] font-medium text-[#1A1A1A] leading-relaxed">
+              Reach more customers easily.
+            </p>
+
+          </div>
+        </div>
+
+
+
+        <!-- ================= SERVICE PROVIDERS (BOTTOM LEFT) ================= -->
+        <div class="absolute left-[179px] md:left-[250px] bottom-[192px] md:bottom-[220px]  z-[99999]">
+
+          <!-- CARD -->
+          <div
+            class="relative w-[170px] h-[65.58px] md:w-[273px] md:h-[111px] py-1 bg-white  px-3 md:px-6 md:py-6 rounded-[24px] shadow-lg">
+
+            <!-- TEXT -->
+            <h2 class="text-[#3C79FF] font-medium  text-[12.16px] md:text-[20px]">Service Providers</h2>
+            <p
+              class="mt-1 text-[10.47px] md:text-[14px] font-medium text-[#1A1A1A] leading-relaxed  pr-20 md:pr-10 w-[240px]">
+              Get bookings easily and grow your work.
+            </p>
+
+            <!-- IMAGE (OVERLAPPING) -->
+            <div class="absolute -right-20 top-1/2 -translate-y-1/2 max-md:hidden">
+              <img src="{% static 'images/sp.jpg' %}" class="w-[120px] h-[120px]
+        rounded-full
+        border-[10px] border-white
+        shadow-md object-cover" />
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </section>
+
+    </section>
+
+
+
+
+
   </div>
 
-  <!-- about section end -->
 
 
 
-  <!-- story section start -->
 
 
 
-  <section class="bg-light" style="margin-top: 70px;">
-    <div class="container px-5">
-      <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
-        <div class="col-12 col-lg-5">
 
-          <div class=""><img class="img-fluid rounded-circle" src="{% static 'images/img/11.jpg' %}" alt="..." /></div>
+
+<section id="featureSection" class="max-w-[1400px] mx-auto py-20
+         grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,762px)]
+         gap-12 lg:gap-16 items-start px-4 lg:px-0
+         lg:min-h-screen">
+
+
+    <!-- LEFT CONTENT -->
+<!-- LEFT CONTENT -->
+<div id="leftContent" class="pt-0 text-center lg:text-left block">
+
+      <h2 class="text-[28px] md:text-[36px]  font-semibold leading-tight">
+        Smart Features for a<br> Smooth Experience
+      </h2>
+
+      <p class="mt-6 text-[#1A1A1A] text-[15px] md:text-[16px] font-medium leading-relaxed max-w-md mx-auto lg:mx-0">
+        Experience a platform designed to make every interaction effortless and efficient.
+        With intelligent search, quick filters, and the right services in seconds.
+      </p>
+
+      <button class="inline-flex items-center justify-center
+             px-7 py-3 rounded-full
+             bg-[#3C49FF] text-white text-sm font-medium
+             shadow-[inset_0_0_9.36px_#D9F0FF]
+             hover:shadow-[inset_0_0_14px_#D9F0FF]
+             transition-all duration-200 mt-6">
+        Get App
+      </button>
+    </div>
+
+    <!-- RIGHT CARDS WRAPPER -->
+    <div id="cardTrack"  class="flex flex-col gap-10 items-center lg:items-stretch">
+
+      <!-- CARD 1 -->
+      <div class="feature-card relative overflow-hidden rounded-[40px] lg:rounded-[50px]
+         border-[5px] lg:border-[10px] border-white
+         p-6 
+         bg-gradient-to-b from-[#e9efff] to-[#3C5FFF]/60
+         shadow-md flex flex-col lg:flex-row
+         items-center justify-between
+         w-full max-w-[762px]
+         h-auto lg:h-[432px]">
+
+
+        <img src="{% static 'images/amb.png' %}" class="
+    absolute
+    right-[-22px] sm:right-[-150px] lg:right-[-120px]
+    top-[64%] sm:top-[50%] lg:top-[30px]
+    -translate-y-1/2
+    w-[360px] sm:w-[450px] lg:w-[600px]
+    h-auto
+    opacity-30
+    z-0 pointer-events-none
+  " />
+
+
+        <!-- CONTENT -->
+        <div class="relative z-10 w-full lg:w-[700px]
+           text-center lg:text-left
+           order-2 lg:order-1 mt-6 lg:mt-0">
+
+          <h2 class="text-[20px] md:text-[28px] lg:text-[32px]
+         font-medium mb-4 text-left
+         whitespace-nowrap">
+            Speed, Smart, and Secure
+          </h2>
+
+
+          <p class="text-[#1A1A1A] mb-6 text-[14px] md:text-[16px] text-left">
+            Powered by our own dedicated server, that’s why N-ME App delivers
+            high-speed access, smart performance and complete data security.
+          </p>
+
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Fast Access</p>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Secure Data</p>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Smart UI</p>
+            </li>
+
+            <li class="hidden md:flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">
+                User-Friendly Experience
+              </p>
+            </li>
+          </ul>
         </div>
-        <div class="col-sm-8 col-md-6">
 
-          <h2 class="display-4 lh-1 mb-4"> N-me Solution Story</h2>
-          <p class="lead fw-normal text-muted mb-5 mb-lg-0 abouttxt some-about">Every problem has a solution, the
-            priority of matter is that which solution will be apt for the situation. Smart work is better than hard
-            work, N-me has unlimited solutions for all problems. Once you sign up for N-me, the solutions of your
-            problems will be unlocked. </p>
+        <!-- IMAGE -->
+        <div class="flex justify-center w-full
+           order-1 lg:order-2
+           mt-6 lg:mt-0">
 
+          <!-- Mobile Image (STATIC) -->
+          <img src="{% static 'images/k1.png' %}" class="relative z-10 w-[180px] md:w-[220px] lg:hidden mb-6" />
+
+          <!-- Desktop Image (ANIMATED) -->
+          <img src="{% static 'images/f1.png' %}" class="relative z-10 w-[260px]
+             hidden lg:block pt-48 phone-anim" />
+        </div>
+
+      </div>
+
+
+      <!-- CARD 2 -->
+      <div class="feature-card relative overflow-hidden rounded-[40px] lg:rounded-[50px]
+         border-[5px] lg:border-[10px] border-white
+         p-6 
+         bg-gradient-to-b from-[#e9efff] to-[#3C5FFF]/60
+         shadow-md flex flex-col lg:flex-row
+         items-center justify-between
+         w-full max-w-[762px]
+         h-auto lg:h-[432px]">
+
+
+        <!-- BG SHAPE (DESKTOP ONLY - MIRRORED) -->
+        <img src="{% static 'images/amb.png' %}" class="absolute hidden lg:block
+            left-[-120px] top-[30px] -translate-y-1/2
+            w-[600px] h-[900px]
+            opacity-40 z-0 pointer-events-none
+            -scale-x-100" />
+        <img src="{% static 'images/amb.png' %}" class=" block lg:hidden
+    absolute
+    right-[-22px] sm:right-[-150px] lg:right-[-120px]
+    top-[64%] sm:top-[50%] lg:top-[30px]
+    -translate-y-1/2
+    w-[360px] sm:w-[450px] lg:w-[600px]
+    h-auto
+    opacity-30
+    z-0 pointer-events-none
+  " />
+
+
+        <!-- IMAGE -->
+        <div class="flex justify-center w-full
+              order-1 lg:order-1 mt-6 lg:mt-0">
+          <!-- Mobile Image (No animation) -->
+          <img src="{% static 'images/k.png' %}" class="relative z-10 w-[180px] md:w-[220px] lg:hidden mb-6" />
+
+          <!-- Desktop Image (With animation) -->
+          <img src="{% static 'images/f2.png' %}" class="relative z-10 w-[260px] hidden lg:block pb-48 phone-anim" />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 w-full lg:w-[700px]
+              text-left
+              order-2 lg:order-2 mt-6 lg:mt-0">
+
+          <h2 class="text-[20px] md:text-[28px] lg:text-[32px] font-medium mb-4">
+            Excellent Reviews
+          </h2>
+
+          <p class="text-[#1A1A1A] mb-6 text-[14px] md:text-[16px]">
+            N-ME App lets users share genuine reviews and feedback,
+            helping businesses grow with trust and credibility.
+          </p>
+
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Real Feedback</p>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">More Visibility</p>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Trusted Profiles</p>
+            </li>
+
+            <li class="hidden md:flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">
+                Customer Trust
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+
+      <!-- CARD 3 -->
+      <div class="feature-card relative overflow-hidden rounded-[40px] lg:rounded-[50px]
+         border-[5px] lg:border-[10px] border-white
+         p-6 
+         bg-gradient-to-b from-[#e9efff] to-[#3C5FFF]/60
+         shadow-md flex flex-col lg:flex-row
+         items-center justify-between
+         w-full max-w-[762px]
+         h-auto lg:h-[432px]">
+
+        <img src="{% static 'images/amb.png' %}" class="
+    absolute
+    right-[-22px] sm:right-[-150px] lg:right-[-120px]
+    top-[64%] sm:top-[50%] lg:top-[30px]
+    -translate-y-1/2
+    w-[360px] sm:w-[450px] lg:w-[600px]
+    h-auto
+    opacity-30
+    z-0 pointer-events-none
+  " />
+
+        <!-- CONTENT -->
+        <div class="relative z-10 w-full lg:w-[700px]
+              text-center lg:text-left
+              order-2 lg:order-1 mt-6 lg:mt-0">
+
+          <h2 class="text-[20px] md:text-[28px] lg:text-[32px]
+         font-medium mb-4 text-left
+         whitespace-nowrap">
+            Unlimited Business Listing
+          </h2>
+
+          <p class="text-[#1A1A1A] mb-6 text-[14px] md:text-[16px] text-left">
+            The unique part of N-ME App is unlimited business listing,
+            giving you the freedom to showcase everything you offer.
+          </p>
+
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 lg:justify-start">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Endless Options</p>
+            </li>
+
+            <li class="flex items-center gap-3 lg:justify-start">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Easy Search</p>
+            </li>
+
+            <li class="flex items-center gap-3 lg:justify-start">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Easy to Connect</p>
+            </li>
+
+            <!-- HIDDEN ON MOBILE -->
+            <li class="hidden md:flex items-center gap-3 lg:justify-start">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">
+                Wider Reach
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="flex justify-center w-full order-1 lg:order-2 mt-6 lg:mt-0">
+          <!-- Mobile Image (No animation) -->
+          <img src="{% static 'images/f33.png' %}" class="relative z-10 w-[180px] md:w-[220px] lg:hidden mb-6" />
+
+          <!-- Desktop Image (With animation) -->
+          <img src="{% static 'images/f3.png' %}" class="relative z-10 w-[260px] hidden lg:block pt-48 phone-anim" />
+        </div>
+
+      </div>
+
+
+      <!-- CARD 4 -->
+
+      <div class="feature-card relative overflow-hidden rounded-[40px] lg:rounded-[50px]
+         border-[5px] lg:border-[10px] border-white
+         p-6 
+         bg-gradient-to-b from-[#e9efff] to-[#3C5FFF]/60
+         shadow-md flex flex-col lg:flex-row
+         items-center justify-between
+         w-full max-w-[762px]
+         h-auto lg:h-[432px]">
+
+
+        <!-- BG SHAPE (DESKTOP ONLY - MIRRORED LEFT) -->
+        <img src="{% static 'images/amb.png' %}" class="absolute hidden lg:block
+              left-[-120px] top-[30px] -translate-y-1/2
+              w-[600px] h-[900px]
+              opacity-30 z-0 pointer-events-none
+              -scale-x-100" />
+        <img src="{% static 'images/amb.png' %}" class=" block lg:hidden
+    absolute
+    right-[-22px] sm:right-[-150px] lg:right-[-120px]
+    top-[64%] sm:top-[50%] lg:top-[30px]
+    -translate-y-1/2
+    w-[360px] sm:w-[450px] lg:w-[600px]
+    h-auto
+    opacity-30
+    z-0 pointer-events-none
+  " />
+
+        <!-- IMAGE -->
+        <div class="flex justify-center w-full
+              order-1 lg:order-1 mt-6 lg:mt-0">
+          <!-- Mobile Image (No animation) -->
+          <img src="{% static 'images/k3.png' %}" class="relative z-10 w-[180px] md:w-[220px] lg:hidden mb-6" />
+
+          <!-- Desktop Image (With animation) -->
+          <img src="{% static 'images/f4.png' %}" class="relative z-10 w-[260px] hidden lg:block pb-48 phone-anim" />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="relative z-10 w-full lg:w-[700px]
+              text-left
+              order-2 lg:order-2 mt-6 lg:mt-0">
+
+          <h2 class="text-[20px] md:text-[28px] lg:text-[32px] font-medium mb-4">
+            An Affordable Plan
+          </h2>
+
+          <p class="text-[#1A1A1A] mb-6 text-[14px] md:text-[16px]">
+            Anyone can list their business on N-ME App at an affordable cost,
+            ensuring visibility and growth for all.
+          </p>
+
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Affordable Listing</p>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Showcase Offers</p>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">Smart Advertising</p>
+            </li>
+
+            <li class="hidden md:flex items-center gap-3">
+              <span class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <img src="{% static 'images/tick.png' %}" />
+              </span>
+              <p class="text-[19.11px] md:text-[18px] font-semibold">
+                Value for Every Business
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+
+
+  <section class="w-full md:mt-48 max-md:pt-0  py-20 px-6 md:px-16">
+    <div class="max-w-[1400px] mx-auto">
+
+      <!-- Top Section -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- LEFT TEXT -->
+<div class="flex flex-col items-center text-center md:items-start md:text-left">
+  <h2 class="text-[20px] md:text-[36px] font-semibold text-[#1A1A1A] leading-tight">
+    Smarter Features for <br /> Smarter Users
+  </h2>
+
+  <p class="text-[#1A1A1A] text-[14px] md:text-[16px] font-medium mt-4 max-w-md">
+    Enjoy unique benefits designed to save time and make your daily needs easier than ever.
+  </p>
+</div>
+
+
+        <!-- RIGHT CARDS ROW -->
+        <div class="col-span-2 flex flex-col lg:flex-row gap-8">
+
+
+          <div class="w-full lg:w-[399px] h-auto lg:h-[224px]
+   rounded-[40px] border-[5px] border-white
+    shadow-[0_4px_5px_rgba(0,0,0,0.25)]
+   p-8 bg-gradient-to-b from-[#FBFBFB]/20 via-[#D2DAFF]/10 to-[#D2DAFF]/60">
+
+
+
+            <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3">
+
+              <!-- ICON -->
+              <div class="relative w-20 h-20
+            shadow-[0_2.26px_13.12px_rgba(255,255,255,0.25)]">
+
+                <!-- OUTER WHITE RING -->
+                <div class="absolute inset-1 rounded-full bg-white"></div>
+
+                <!-- INNER GRADIENT RING -->
+                <div class="absolute inset-2 rounded-full 
+              bg-gradient-to-b from-[#f0f0f0] to-[#d9d9d9]
+              shadow-[inset_0_12px_8px_rgba(0,0,0,0.18)]">
+                </div>
+
+                <!-- ICON -->
+                <div class="absolute inset-0 flex items-center justify-center pt-[2.5px]">
+                  <img src="{% static 'images/icon3.png' %}" class="w-[4.6rem] h-[4.6rem] object-contain" />
+                </div>
+
+              </div>
+
+              <!-- HEADING + SUBTITLE -->
+              <div class="self-center">
+                <h2 class="text-[20px] font-medium text-[#1A1A1A] leading-tight">
+                  My Job
+                </h2>
+                <p class="text-[14px] text-[#BBBBBB] font-medium">
+                  Find & Apply for Your Dream Job
+                </p>
+              </div>
+
+              <!-- DESCRIPTION (FORCED TO 2 LINES ONLY) -->
+              <p class="col-span-2 text-[#1A1A1A] leading-[24px] text-[16px] font-medium ">
+                Users can explore and apply to any job posted by recruiters directly through N-ME App.
+              </p>
+
+            </div>
+          </div>
+
+
+
+
+
+          <div class="w-full lg:w-[479px] h-auto lg:h-[224px]
+rounded-[40px] border-[5px] border-white
+shadow-[0_4px_5px_rgba(0,0,0,0.25)]
+p-8 bg-gradient-to-b from-[#FBFBFB]/20 via-[#D2DAFF]/10 to-[#D2DAFF]/60">
+
+
+            <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3">
+
+              <!-- ICON -->
+              <div class="relative w-20 h-20
+            shadow-[0_2.26px_13.12px_rgba(255,255,255,0.25)]">
+
+                <!-- OUTER WHITE RING -->
+                <div class="absolute inset-1 rounded-full bg-white"></div>
+
+                <!-- INNER GRADIENT RING -->
+                <div class="absolute inset-2 rounded-full 
+              bg-gradient-to-b from-[#f0f0f0] to-[#d9d9d9]
+              shadow-[inset_0_12px_8px_rgba(0,0,0,0.18)]">
+                </div>
+
+                <!-- ICON -->
+                <div class="absolute inset-0 flex items-center justify-center pt-[2.5px]">
+                  <img src="{% static 'images/icon4.png' %}" class="w-[4.6rem] h-[4.6rem] object-contain" />
+                </div>
+
+              </div>
+
+              <!-- HEADING + SUBTITLE -->
+              <div class="self-center">
+                <h2 class="text-[20px] font-medium text-[#1A1A1A] leading-tight">
+                  Seasonal Deals </h2>
+                <p class="text-[14px] text-[#BBBBBB] font-medium">
+                  Save More Every Season
+                </p>
+              </div>
+
+              <!-- DESCRIPTION (FORCED TO 2 LINES ONLY) -->
+              <p class="col-span-2 text-[#1A1A1A] leading-[24px] text-[15px] font-medium ">
+                Know about exclusive festival and seasonal deals from the offer section and make your shopping smarter
+                and more budget-friendly.
+
+              </p>
+
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Bottom Row -->
+      <div class="mt-12 flex flex-col lg:flex-row gap-8">
+
+
+        <div class="w-full lg:w-[558px] h-auto lg:h-[224px]
+rounded-[40px] border-[5px] border-white
+shadow-[0_4px_5px_rgba(0,0,0,0.25)]
+p-8 bg-gradient-to-b from-[#FBFBFB]/20 via-[#D2DAFF]/10 to-[#D2DAFF]/60">
+
+
+          <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3">
+
+            <!-- ICON -->
+            <div class="relative w-20 h-20
+            shadow-[0_2.26px_13.12px_rgba(255,255,255,0.25)]">
+
+              <!-- OUTER WHITE RING -->
+              <div class="absolute inset-1 rounded-full bg-white"></div>
+
+              <!-- INNER GRADIENT RING -->
+              <div class="absolute inset-2 rounded-full 
+              bg-gradient-to-b from-[#f0f0f0] to-[#d9d9d9]
+              shadow-[inset_0_12px_8px_rgba(0,0,0,0.18)]">
+              </div>
+
+              <!-- ICON -->
+              <div class="absolute inset-0 flex items-center justify-center pt-[2.5px]">
+                <img src="{% static 'images/icon5.png' %}" class="w-[4.6rem] h-[4.6rem] object-contain" />
+              </div>
+
+            </div>
+
+            <!-- HEADING + SUBTITLE -->
+            <div class="self-center">
+              <h2 class="text-[20px] font-medium text-[#1A1A1A] leading-tight">
+                Find Nearby Businesses
+              </h2>
+              <p class="text-[14px] text-[#BBBBBB] font-medium">
+                Connect Easily, Anytime, Anywhere
+              </p>
+            </div>
+
+            <!-- DESCRIPTION (FORCED TO 2 LINES ONLY) -->
+            <p class="col-span-2 text-[#1A1A1A] leading-[24px] text-[15px] font-medium ">
+              Discover and contact businesses and service providers near you with ease. N-ME App connects you to what
+              you need, right where you are. </p>
+
+          </div>
+        </div>
+        <!-- CARD 4 -->
+        <div class="w-full lg:w-[742px] h-auto lg:h-[224px]
+rounded-[40px] border-[5px] border-white
+shadow-[0_4px_5px_rgba(0,0,0,0.25)]
+p-8 bg-gradient-to-b from-[#FBFBFB]/20 via-[#D2DAFF]/10 to-[#D2DAFF]/60">
+
+
+          <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3">
+
+            <!-- ICON -->
+            <div class="relative w-20 h-20
+            shadow-[0_2.26px_13.12px_rgba(255,255,255,0.25)]">
+
+              <!-- OUTER WHITE RING -->
+              <div class="absolute inset-1 rounded-full bg-white"></div>
+
+              <!-- INNER GRADIENT RING -->
+              <div class="absolute inset-2 rounded-full 
+              bg-gradient-to-b from-[#f0f0f0] to-[#d9d9d9]
+              shadow-[inset_0_12px_8px_rgba(0,0,0,0.18)]">
+              </div>
+
+              <!-- ICON -->
+              <div class="absolute inset-0 flex items-center justify-center pt-[2.5px]">
+                <img src="{% static 'images/icon6.png' %}" class="w-[4.6rem] h-[4.6rem] object-contain" />
+              </div>
+
+            </div>
+
+            <!-- HEADING + SUBTITLE -->
+            <div class="self-center">
+              <h2 class="text-[20px] font-medium text-[#1A1A1A] leading-tight">
+                Instant Help, When You Need It Most
+              </h2>
+              <p class="text-[14px] text-[#BBBBBB] font-medium">
+                Help Anytime, Anywhere
+              </p>
+            </div>
+
+            <!-- DESCRIPTION (FORCED TO 2 LINES ONLY) -->
+            <p class="col-span-2 text-[#1A1A1A] leading-[24px] text-[15px] font-medium ">
+              Easily access nearby emergency services like police stations, fire stations, hospitals, ambulances, and
+              more through the N-ME App. </p>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
 
 
 
-  <!-- story section end -->
 
 
 
 
 
-  <!-- story section end -->
 
 
-
-
-  <!-- service section start -->
-
-
-  <div class="container ser-co">
-    <h1>Our Services</h1>
-    <div class="row ser-row">
-      <div class="service">
-        <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <h2>Careers</h2>
-        <p>
-          In the world of literature people with unemployed status, here n-me app app helps you to reach perfect job
-          spaces.
-        </p>
-      </div>
-
-      <div class="service ">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
-        <h2>Events</h2>
-        <p>
-          Nme app passionately makes your special days quiet unforgettable.
-        </p>
-      </div>
-
-      <div class="service">
-        <i class="fa fa-handshake-o" aria-hidden="true"></i>
-        <h2>Service Providers</h2>
-        <p>
-          N-me has Strategy for nearby Service Providers that lead to solutions.
-        </p>
-      </div>
-      <div class="service ">
-        <i class="fa fa-hospital-o" aria-hidden="true"></i>
-        <h2>Health & Medicals</h2>
-        <p>
-          We know wealth is health, Find the best hospitality and doctors in a single touch.
-        </p>
-      </div>
-      <div class="service">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <h2>Real Estate</h2>
-        <p>
-          Need sell/buy a property? N-me app displays a perfect space for real estate.
-        </p>
-      </div>
-      <div class="service">
-        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-        <h2>Shops</h2>
-        <p>
-          Incredible shopping demands suitable shops, find the perfect shops in a swipe.
-        </p>
-      </div>
-      <!-- <div class="service">
-          <i class="fa fa-ambulance" aria-hidden="true"></i>
-          <h2>Emergency services</h2>
-          <p>
-            The moment when you learn the value of time, when you need the emergency service, get them with a click.
-          </p>
-        </div>
-        <div class="service">
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <h2>Freelancers</h2>
-          <p>
-            Hire or get recruited a freelancer? Reach to the targeted place in a touch.
-          </p>
-        </div> -->
-    </div>
-
-
-    <div class="service-all-btn"><a class="btn btn-info-gradiant-1 btn-md rounded-pill mt-3 text-center"
-        href="/services"><span>View all</span></a> </div>
+<section class="relative w-full px-6 mx-auto md:mt-24">
+  <!-- TITLE -->
+  <div class="text-center">
+    <h2 class="text-[20px] md:text-[36px] font-semibold text-black">What Our Customers Say</h2>
+    <p class="mt-3 max-md:max-w-[270px] text-black text-[10px] md:text-[16px] font-medium">
+      Honest reviews from the community that trusts and grows with N-Me.
+    </p>
   </div>
 
+  <!-- BACKGROUND CONTAINER -->
+  <div class="relative bg-gradient-to-b from-[#DDE8FF]/0 to-[#A4C2FF] px-6 sm:px-20 py-6  rounded-b-[40px] overflow-visible">
+
+    <!-- FADED BORDER OVERLAY -->
+    <div class="pointer-events-none absolute inset-0 rounded-b-[40px] border-b-[5px] border-x-[5px] border-white [mask-image:linear-gradient(to_top,black_10%,transparent_100%)]"></div>
+
+    <!-- LEFT ARROW -->
+    <button id="prev"
+      class="absolute left-6 top-1/2 -translate-y-1/2 w-[70px] h-[70px] rounded-full bg-white shadow flex items-center justify-center text-2xl">
+      <img src="{% static 'images/left.png' %}">
+    </button>
+
+    <!-- RIGHT ARROW -->
+    <button id="next"
+      class="absolute right-6 top-1/2 -translate-y-1/2 w-[70px] h-[70px] rounded-full bg-white shadow flex items-center justify-center text-2xl">
+      <img src="{% static 'images/right.png' %}">
+    </button>
+
+    <!-- CAROUSEL VIEWPORT -->
+<div class="carousel-outer relative overflow-hidden mx-auto">
+<div class="carousel-inner flex mx-auto">
+    <div id="carousel" class="flex gap-10 transition-transform duration-1000">
+      {% for t in testimonials %}
+      <div class="carousel-card border border-white relative w-[323px] h-[434px] rounded-[32px] flex-shrink-0 transition-all duration-500 origin-bottom overflow-hidden scale-90">
+        <img src="{{ t.image.url }}" alt="{{ t.name }}" class="w-full h-full object-cover">
+
+        <div class="absolute inset-0 bg-gradient-to-t from-white/45 via-white/10 to-transparent"></div>
+        <div class="absolute bottom-6 w-full text-center px-6 text-white">
+          <h4 class="text-lg font-medium">{{ t.name }}</h4>
+          <div class="text-yellow-400">
+  {% for i in "12345"|make_list %}
+    {% if forloop.counter <= t.rating %}
+      ★
+    {% endif %}
+  {% endfor %}
+</div>
+
+          <p class="mt-3 text-md leading-relaxed opacity-90 font-medium">
+            {{ t.opinion }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+    <!-- DOTS -->
+    <div class="flex justify-center gap-2 mt-12">
+      <span class="dot w-8 h-2 rounded-full bg-blue-600"></span>
+      <span class="dot w-2 h-2 rounded-full bg-white"></span>
+      <span class="dot w-2 h-2 rounded-full bg-white"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+const carousel = document.getElementById("carousel");
+const cards = Array.from(carousel.children);
+const gap = 40;
+let cardWidth = cards[0].offsetWidth + gap;
+let currentIndex = 0;
+let isAnimating = false;
+
+/* Only allow indexes where 3 cards fit */
+const maxIndex = cards.length - 3;
+
+function updateScale() {
+  cards.forEach((card, i) => {
+    card.classList.remove("scale-110", "scale-90", "z-10", "z-20");
+
+    if (i === currentIndex + 1) {
+      card.classList.add("scale-110", "z-20"); // center card
+    } else {
+      card.classList.add("scale-90", "z-10");
+    }
+  });
+}
+
+/* NEXT */
+document.getElementById("next").addEventListener("click", () => {
+  if (isAnimating || currentIndex >= maxIndex) return;
+  isAnimating = true;
+
+  currentIndex++;
+
+  carousel.style.transition = "transform 1s ease";
+  carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+  setTimeout(() => {
+    updateScale();
+    isAnimating = false;
+  }, 1000);
+});
+
+/* PREV */
+document.getElementById("prev").addEventListener("click", () => {
+  if (isAnimating || currentIndex <= 0) return;
+  isAnimating = true;
+
+  currentIndex--;
+
+  carousel.style.transition = "transform 1s ease";
+  carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+  setTimeout(() => {
+    updateScale();
+    isAnimating = false;
+  }, 1000);
+});
+
+/* Recalculate on resize */
+window.addEventListener("resize", () => {
+  cardWidth = cards[0].offsetWidth + gap;
+  carousel.style.transition = "none";
+  carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+});
+
+/* Initial state */
+updateScale();
+</script>
+
+
+<style>
+/* ================= DESKTOP ================= */
+
+.carousel-card {
+  width: 323px;
+  height: 434px;
+  flex-shrink: 0;
+  border-radius: 32px;
+  overflow: hidden;
+  transition: transform 1s ease, z-index 1s ease;
+  transform-origin: center bottom;
+}
+
+/* Side cards — vertically centered relative to center card */
+.carousel-card.scale-90 {
+  transform: scale(1) translateY(-18px);
+  z-index: 10;
+}
+
+/* Center card stays dominant */
+.carousel-card.scale-110 {
+  transform: scale(1.145) translateY(0);
+  z-index: 20;
+}
+
+/* Center card (370 × 498 visual) */
+.carousel-card.scale-110 {
+  transform: scale(1.145);
+  z-index: 20;
+}
+
+/* Viewport — SHOW ONLY 3 CARDS */
+.carousel-outer {
+  width: calc((348px * 3) + (24px * 2));
+  height: 540px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.carousel-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+
+  /* Viewport shows exactly ONE card */
+  .carousel-outer {
+    width: 100% !important;
+    max-width: 285px !important;
+    overflow: hidden !important;   /* clips outside blue box */
+    margin: 0 auto !important;
+    height: 438px;
+  }
+
+  /* Scroll container */
+  .carousel-inner {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .carousel-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Card size */
+  .carousel-card {
+    width: 264px !important;
+    height: 383px !important;
+    flex-shrink: 0 !important;
+    transform: scale(1) !important;
+    z-index: 10 !important;
+  }
+
+  /* Row spacing */
+  #carousel {
+    gap: 16px !important;
+    padding-right: 16px;
+  }
+
+  /* Hide arrows */
+  #prev, #next {
+    display: none !important;
+  }
+}
+
+
+
+</style>
 
 
 
 
-  <!-- service section end -->
 
 
 
-  <!-- download section start -->
 
-  <section class="cta">
-    <div class="cta-content">
-      <div class="container px-5">
-        <h2 class="text-white display-1 lh-1 mb-4">
-          Stop waiting.
-          <br />
-          Start growing.
-        </h2>
-        <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://play.google.com/store/apps/details?id=com.smart.nme&showAllReviews=true" target="_blank">Download now</a>
+
+  <!-- STATS SECTION -->
+  <section class="w-full px-6 max-md:py-16 md:mt-20">
+    <div class="max-w-[1400px] mx-auto bg-white rounded-[32px]
+           md:shadow-[0_4px_5px_rgba(0,0,0,0.25)]
+           py-12 px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-[160px] text-center">
+
+        <div class="space-y-3">
+          <h3 class="text-[64px] font-semibold text-[#1A1A1A]">7,500+</h3>
+          <p class="text-[16px] font-medium text-[#1A1A1A]">
+            Trusted by thousands of active users.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-[64px] font-semibold text-[#1A1A1A]">1,200+</h3>
+          <p class="text-[16px] font-medium text-[#1A1A1A]">
+            Shops and brands growing with N-Me.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-[64px] font-semibold text-[#1A1A1A]">900+</h3>
+          <p class="text-[16px] font-medium text-[#1A1A1A]">
+            Verified professionals offering quality services.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
-  <!-- App badge section-->
-  <section class="bg-gradient-primary-to-secondary"  id="download">
-    <div class="container px-5" style="height: 200px;">
-      <h2 class="text-center text-white font-alt mb-4">Get the app now!</h2>
-      <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
-        <a class="me-lg-3 mb-4 mb-lg-0"
-          href="https://play.google.com/store/apps/details?id=com.smart.nme&showAllReviews=true" target="blang"> <img
-            class="app-badge" src="{% static 'images/img/google-play-badge.svg' %}" alt="..." /></a>
-        <a href="https://apps.apple.com/in/app/n-me/id1614150675" target="blang"><img class="app-badge"
-          src="{% static 'images/img/app-store-badge.svg' %}" alt="..." /></a>
+
+
+
+
+
+
+
+
+<section class="w-full flex justify-center md:py-28 px-4">
+  <!-- SECTION CONTAINER -->
+  <div class="flex flex-col lg:flex-row gap-10 items-center
+         w-full max-w-[1320px]
+         h-auto lg:h-[534px]">
+
+    <div class="relative w-full max-w-[582px]
+       h-[420px] md:h-[460px]
+       rounded-[40px]
+       bg-gradient-to-t from-[#A4C2FF] via-[#DDE8FF]/60 to-[#f3f4f6]/5
+       flex justify-center
+       overflow-visible
+       border-fade
+       shadow-[0_4px_5px_0_rgba(0,0,0,0.25)]">
+
+      <!-- PHONE WRAPPER -->
+      <div class="absolute bottom-[8px] md:bottom-0
+             w-[307px] md:w-[447px]
+             h-[302px] md:h-[537px]">
+
+        <!-- SCREEN -->
+        <div class="absolute
+               top-[14px] md:top-[25px]
+               left-[40px] md:left-[18px]
+               w-[230px] md:w-[407px]
+               h-[289px] md:h-[507px]
+               overflow-hidden
+               rounded-t-[30px]
+               z-10">
+
+          <!-- Video -->
+          <video autoplay muted loop playsinline class="w-full h-full object-cover object-top">
+            <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
+          </video>
+
+          <div class="absolute bottom-0 left-0 w-full h-[30px] pointer-events-none z-20"
+     style="background: radial-gradient(
+       ellipse 120% 200% at 50% 120%,
+       rgba(21, 80, 198, 0.5) 0%,
+       rgba(21, 80, 198, 0.35) 25%,
+       rgba(21, 80, 198, 0.15) 45%,
+       transparent 65%
+     );">
+</div>
+
+
+        </div>
+
+        <!-- PHONE FRAME -->
+        <img src="{% static 'images/phoneframe.png' %}" alt="Phone Frame"
+          class="absolute inset-0 w-full h-full object-contain z-30 pointer-events-none" />
+      </div>
+</div>
+
+
+    <!-- RIGHT CARD -->
+    <div class="relative w-full max-w-[718px]
+           h-auto lg:h-[461px]
+           rounded-[40px]
+           bg-gradient-to-t from-[#A4C2FF] via-[#DDE8FF]/60 to-[#f3f4f6]/5
+           shadow-[0_4px_5px_0_rgba(0,0,0,0.25)]
+           flex flex-col items-center justify-center
+           text-center px-6 md:px-16 py-12 border-fade">
+
+      <h2 class="text-[26px] md:text-[36px] font-semibold text-[#1a1a1a]">
+        Get the App Now!
+      </h2>
+
+      <p class="mt-4 text-[14px] md:text-[16px]
+              font-medium text-[#1A1A1A]
+              max-w-[480px]">
+        Join thousands of users who simplified their daily life
+      </p>
+
+      <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6">
+        <img src="{% static 'images/app.png' %}" class="h-[48px] md:h-[56px]" />
+        <img src="{% static 'images/playstore.png' %}" class="h-[48px] md:h-[56px]" />
       </div>
     </div>
-  </section>
 
- {% endblock %}
+  </div>
+</section>
+
+
+<script>
+  {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Cybexel Technologies Private Limited",
+  "alternateName": "n-N-me smartech LLP",
+  "url": "https://cybexel.com/",
+  "logo": "https://cybexel.com/favicon.ico",
+  "sameAs": [
+    "https://www.linkedin.com/company/cybexel/",
+    "https://www.instagram.com/cybexel_pvtltd/"
+  ]
+}
+</script>
+
+{% endblock %}

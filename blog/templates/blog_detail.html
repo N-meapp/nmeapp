@@ -1,0 +1,328 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailview</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          poppins: ['Poppins', 'sans-serif'],
+           manrope: ['Manrope', 'sans-serif'],
+          roboto: ['Roboto', 'sans-serif'],
+          inter: ['Inter', 'sans-serif'],
+
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="min-h-screen overflow-x-hidden" style="background-image: linear-gradient(135deg, rgba(49, 49, 49,0.07) 0%, rgba(49, 49, 49,0.07) 12.5%,rgba(76, 76, 76,0.07) 12.5%, rgba(76, 76, 76,0.07) 25%,rgba(102, 102, 102,0.07) 25%, rgba(102, 102, 102,0.07) 37.5%,rgba(129, 129, 129,0.07) 37.5%, rgba(129, 129, 129,0.07) 50%,rgba(155, 155, 155,0.07) 50%, rgba(155, 155, 155,0.07) 62.5%,rgba(182, 182, 182,0.07) 62.5%, rgba(182, 182, 182,0.07) 75%,rgba(208, 208, 208,0.07) 75%, rgba(208, 208, 208,0.07) 87.5%,rgba(235, 235, 235,0.07) 87.5%, rgba(235, 235, 235,0.07) 100%),linear-gradient(45deg, rgba(5, 5, 5,0.07) 0%, rgba(5, 5, 5,0.07) 12.5%,rgba(39, 39, 39,0.07) 12.5%, rgba(39, 39, 39,0.07) 25%,rgba(73, 73, 73,0.07) 25%, rgba(73, 73, 73,0.07) 37.5%,rgba(107, 107, 107,0.07) 37.5%, rgba(107, 107, 107,0.07) 50%,rgba(141, 141, 141,0.07) 50%, rgba(141, 141, 141,0.07) 62.5%,rgba(175, 175, 175,0.07) 62.5%, rgba(175, 175, 175,0.07) 75%,rgba(209, 209, 209,0.07) 75%, rgba(209, 209, 209,0.07) 87.5%,rgba(243, 243, 243,0.07) 87.5%, rgba(243, 243, 243,0.07) 100%),linear-gradient(90deg, #ffffff,#ffffff);">
+  <div class=" p-2 md:p-4 lg:p-6">
+
+<div class="ml-0 md:ml-20 m-4 md:m-5 px-4">
+  <a
+    href="{% url 'blogs' %}"
+    class="inline-flex items-center gap-2
+           py-2 px-6 rounded-full
+           bg-gray-50 border-2 border-white
+           text-black font-semibold
+           text-[14px] md:text-[15px]
+           font-manrope">
+    <i class="fa-solid fa-chevron-left"></i>
+    Blogs
+  </a>
+</div>
+
+
+<div class="ml-0 md:ml-20 mb-20 md:mb-40 px-4 w-full md:w-[1200px]">
+
+  <!-- TITLE -->
+  <h1
+    class="font-poppins font-semibold
+           text-[28px] sm:text-[36px] md:text-[48px]
+           leading-tight">
+    {{ post.card_head }}
+  </h1>
+
+  <!-- SHORT INTRO -->
+  <p
+    class="font-manrope font-medium
+           text-[16px] sm:text-[18px] md:text-[20px]
+           my-5 md:my-7">
+    {{ post.card_paragraph }}
+  </p>
+
+  <!-- IMAGE -->
+  <img
+    class="rounded-2xl md:rounded-3xl
+           w-full md:w-[1200px]
+           h-[280px] sm:h-[350px] md:h-[490px]
+           border-[3px] md:border-[5px] border-white
+           object-cover object-top"
+    src="{{ post.image.url }}"
+    alt="{{ post.card_head }}"
+  />
+
+  <!-- FULL CONTENT -->
+  <p
+    class="font-manrope font-medium
+           text-[15px] sm:text-[16px] md:text-[18px]
+           my-6 md:my-10 leading-relaxed">
+    {{ post.modal_paragraph|linebreaks }}
+  </p>
+
+  <!-- META -->
+  <div class="w-full flex items-center justify-between gap-2">
+    <p class="text-[#3C79FF] font-manrope text-[16px] md:text-[20px] font-medium">
+      {{ post.keyword }}
+    </p>
+    <p class="text-[#848383] font-manrope text-[14px] md:text-[16px] font-medium">
+      {{ post.created_at|date:"M d, Y" }}
+    </p>
+  </div>
+
+</div>
+
+<div class="flex flex-wrap justify-between px-4 m-5">
+
+  {% for blog in latest_blogs %}
+  <div class="rounded-3xl p-1 w-full md:w-[32%] mb-10">
+
+    <img
+      class="rounded-3xl w-full md:h-[55vh] object-cover"
+      src="{{ blog.image.url }}"
+      alt="{{ blog.card_head }}">
+
+    <div>
+      <h4 class="font-poppins text-[#3C79FF] text-xl mt-10 mb-2">
+        {{ blog.keyword }}
+      </h4>
+
+      <h2 class="font-poppins text-2xl font-semibold leading-normal">
+        {{ blog.card_head }}
+      </h2>
+    </div>
+
+    <div class="flex items-center gap-4 pt-2 mt-2">
+      <a href="{% url 'blog_detail' blog.id %}">
+        <button class="
+          relative overflow-hidden text-[16px] py-3 px-10 font-manrope rounded-full text-white
+          transition-all duration-700 ease-in-out
+          bg-gradient-to-b from-[#3C49FF] via-[#3b55ff]
+          bg-[length:100%_200%] bg-top
+          hover:bg-bottom
+          hover:shadow-[0_0_0px_rgba(59,85,255,0.9)]
+          active:scale-95">
+          Read More
+        </button>
+      </a>
+
+      <p class="ml-auto text-gray-500">
+        {{ blog.created_at|date:"M d, Y" }}
+      </p>
+    </div>
+
+  </div>
+  {% endfor %}
+
+</div>
+
+
+
+ <!-- NEWSLETTER + FOOTER WRAPPER -->
+  <section class="w-full max-w-[1440px] px-4  mx-auto mt-24">
+    <!-- OUTER CARD -->
+    <div class="w-full bg-gradient-to-br from-[#FFFFFF] to-[#D2DAFF]
+             rounded-[40px]
+             flex flex-col
+             overflow-hidden border-white border-[5px]">
+
+      <!-- NEWSLETTER (TOP) -->
+      <div class="py-20 px-6 text-center rounded-t-[40px]">
+        <h2 class="text-[30px] md:text-[36px] font-semibold text-black">
+          Join Our Newsletter
+        </h2>
+
+        <p class="mt-4 text-[16px] text-black font-medium max-w-xl mx-auto">
+          Subscribe to our newsletter so we can update you with services and offers.
+        </p>
+
+        <!-- INPUT + BUTTON -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div class="flex items-center bg-white rounded-full px-6 py-3
+                    w-full sm:w-[360px]
+                    shadow-[0_4px_8px_rgba(0,0,0,0.08)]">
+            <!-- ICON -->
+            <img src="{% static 'images/msg.png' %}" class="w-[24px] h-[24px]">
+
+            <input type="email" placeholder="Enter your email"
+              class="w-full outline-none text-[14px] pl-4 font-manrope text-[#BBBBBB] placeholder-gray-400" />
+          </div>
+
+          <button class="px-10 py-3 rounded-full
+                       bg-gradient-to-r from-[#5b6cff] to-[#3b4bff]
+                       text-white font-semibold text-[16px]
+                       shadow-[0_6px_12px_rgba(59,75,255,0.35)]
+                       hover:opacity-90 transition">
+            Subscribe
+          </button>
+        </div>
+      </div>
+
+      <!-- FOOTER (BOTTOM) -->
+      <footer class="bg-black text-white px-4 sm:px-20 py-16 mt-auto rounded-[40px]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-[40px] text-center sm:text-left">
+
+          <!-- BRAND -->
+          <div class="mx-auto sm:mx-0 w-[315px]">
+            <div
+              class="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-5">
+              <div class="w-[77px] h-[56px] ">
+                <img src="./static/images/footer_logo.png">
+              </div>
+              <h3 class="text-[21.29px] md:text-[30px] font-roboto font-bold">N - ME APP</h3>
+            </div>
+
+            <h1 class="text-[16px] text-white font-medium   mx-auto sm:mx-0">
+              All your needs are simplified, secure and just a tap away in one app
+            </h1>
+
+            <div class="flex justify-center sm:justify-start gap-4 mt-6 text-gray-400 text-lg">
+              <span class="w-[20px] h-[20px]"><img src="./static/images/instagram.png"></span>
+              <span class="w-[20px] h-[20px]"><img src="./static/images/facebook.png"></span>
+              <span class="w-[20px] h-[20px]"><img src="./static/images/twitter.png"></span>
+              <span class="w-[24px] h-[24px]"><img src="./static/images/youtube.png"></span>
+            </div>
+          </div>
+
+          <!-- MOBILE ROW WRAPPER -->
+          <div class="grid grid-cols-2 gap-6 sm:contents">
+
+            <!-- QUICK LINKS -->
+<div class="sm:mx-0 md:ml-[4.5rem]">
+  <h2 class="font-semibold text-[16px] md:text-[24px] mb-5 ml-4">
+    Quick Links
+  </h2>
+ <ul class="space-y-3 text-[14px] md:text-[16px] font-medium font-manrope md:text-left footer-list">
+  <li><a href="index.html" class="transition-colors duration-200">Home</a></li>
+  <li><a href="about.html" class="transition-colors duration-200">About</a></li>
+  <li><a href="blog.html" class="transition-colors duration-200">Blogs</a></li>
+  <li><a href="faq.html" class="transition-colors duration-200">FAQ</a></li>
+  <li><a href="services.html" class="transition-colors duration-200">Service</a></li>
+  <li><a href="contact.html" class="transition-colors duration-200">Contact</a></li>
+</ul>
+</div>
+
+
+            <!-- SERVICES -->
+            <div class="mx-auto sm:mx-0">
+              <h2 class="font-semibold text-[16px] md:text-[24px] mb-5 md:ml-6">
+                Backend Offerings
+              </h2>
+              <ul class="space-y-3 text-[14px] sm:text-[16px] font-medium font-manrope footer-list">
+  <li>Web Development</li>
+  <li>App Development</li>
+  <li>Digital Marketing</li>
+  <li>Graphic Designing</li>
+  <li>Branding</li>
+</ul>
+            </div>
+
+          </div>
+
+          <!-- CONTACT -->
+          <div class="mx-auto sm:mx-0 ">
+            <h2 class="font-semibold text-[16px] md:text-[24px] mb-5">Get in Touch</h2>
+            <ul class="space-y-5 text-[14px] sm:text-[16px] font-medium font-manrope text-white text-left no-bullet">
+  <!-- Email -->
+  <li class="grid grid-cols-[80px_1fr] sm:grid-cols-[90px_1fr] gap-0 items-start">
+    <span class="whitespace-nowrap">Email:</span>
+    <div class="flex flex-col">
+      <span>info@nmeapp.in,</span>
+      <span>cybexeltechnologies@gmail.com</span>
+    </div>
+  </li>
+
+  <!-- Phone -->
+  <li class="grid grid-cols-[80px_1fr] sm:grid-cols-[90px_1fr] gap-0 items-start">
+    <span class="whitespace-nowrap">Phone:</span>
+    <div class="flex flex-col">
+      <span>+91 9072919991,</span>
+      <span>+91 9745109190</span>
+    </div>
+  </li>
+
+  <!-- Location -->
+  <li class="grid grid-cols-[80px_1fr] sm:grid-cols-[90px_1fr] gap-0 items-start">
+    <span class="whitespace-nowrap">Location:</span>
+    <div class="flex flex-col leading-relaxed">
+      <span>Kochi,</span>
+      <span>Thiruvananthapuram</span>
+      <span>Coimbatore, Chennai, Bengaluru</span>
+      <span>Dubai</span>
+    </div>
+  </li>
+</ul>
+
+
+          </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="mt-12 pt-6 text-center text-[16px] text-white font-manrope">
+          <div class="mx-auto w-full sm:w-[95%] border-t-[2px] border-white mb-6"></div>
+          © 2025 N-me App. All rights reserved.
+        </div>
+
+      </footer>
+
+    </div>
+  </section>
+<style>
+.footer-list li {
+  position: relative;
+  padding-left: 1.5rem; /* Space for the bullet */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Bullet hidden initially */
+.footer-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;               /* Place bullet at left edge */
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 1.2rem;     /* Increase bullet size (adjust as needed) */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* On hover: move text right and show bullet */
+.footer-list li:hover {
+  transform: translateX(0.5rem); /* Slide text slightly right */
+}
+
+.footer-list li:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0); /* Bullet slides in */
+}
+</style>
+
+
+    
+</body>
+</html>

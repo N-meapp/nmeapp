@@ -1,133 +1,1970 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-
 
 {% block content %}
 
-<section class="bg-light" style="margin-top: 70px;">
-    <div class="container px-5">
-        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
-            <div class="col-12 col-lg-5">
-                <h2 class="display-4 lh-1 mb-4"> About n-me app</h2>
-                <p class="text-muted mt-3 mb-0 abouttxt">Keep in touch for your needs!. N-ME has the complete package of human needs in the modern world. Ever felt scared in an empty town at 2 O’ clock midnight? In Such situations, You will most probably pick up the cell phone and try to communicate with your friends or family. But as N-ME has arrived on the floor, calling for family becomes plan B. N-ME will be the first thing that comes to your mind. That’s how N-ME is built up and importantly, that’s the way how perfectly N-ME treats our both users and customers.
-                    Now there is a better world welcoming when you swipe up into N-me. With  large number of ideas,N-me is serving important services for the people of this generation, no matter where they are and who they are. N-ME is something that anybody wants today. We take people into
-                    a better and peaceful world.
-                    
-                    </p>
-            </div>
-            <div class="col-sm-8 col-md-6">
-                <div class="px-5 px-sm-0"><img class="img-fluid rounded-circle" src="{% static 'images/img/n5.jpg' %}" alt="..." /></div>
-            </div>
-        </div>
+<!-- ================= TOP VIDEO HERO ================= -->
+<div
+  class="hero-border relative max-w-[363px] md:max-w-[1400px] mx-auto mt-4
+       min-h-[720px] md:h-[720px]
+       overflow-hidden rounded-[40px]"
+>
+
+
+
+
+
+
+<!-- GRADIENT BACKGROUND -->
+<!-- GRADIENT BACKGROUND (CLIPPED PROPERLY) -->
+<div
+  class="absolute inset-0 z-0 rounded-[40px] overflow-hidden bg-move-box"
+  style="background: linear-gradient(135deg, #E4EEFF, #7D99FF);">
+</div>
+
+<!-- SHIMMER / SOFT LIGHT -->
+<div class="absolute inset-0 shimmer opacity-30 z-10 pointer-events-none"></div>
+
+
+  <!-- 🔥 PERFECT BOTTOM BLEND (NO EDGE VISIBLE) -->
+  <div class="absolute bottom-0 left-0 w-full h-48
+              bg-gradient-to-b
+              from-transparent
+              via-[#F6F7FB]/60
+              to-[#F6F7FB]
+              z-20 pointer-events-none">
+  </div>
+
+  <!-- CONTENT -->
+  <div class="relative z-50 p-6 md:p-10 h-full flex flex-col">
+
+    
+<nav class="flex justify-between items-center w-full relative">
+
+  <!-- Logo -->
+  <a href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}" class="h-12" />
+  </a>
+
+  <div class="flex items-center gap-3">
+
+    <!-- DESKTOP NAV -->
+   <ul class="hidden md:flex gap-10 px-10 py-5 rounded-full
+           bg-white/40 backdrop-blur-xl border border-white/60">
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'home' %}" class="hover:text-blue-600">Home</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'about' %}" class="text-blue-600 font-semibold">About</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'blogs' %}" class="hover:text-blue-600">Blogs</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'faq' %}" class="hover:text-blue-600">FAQs</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'services' %}" class="hover:text-blue-600">Services</a>
+  </li>
+
+  <li class="transition duration-300 hover:filter hover:blur-sm">
+    <a href="{% url 'contact' %}" class="hover:text-blue-600">Contact</a>
+  </li>
+
+</ul>
+
+
+    <!-- MOBILE BUTTON -->
+    <button id="menuBtn"
+      class="md:hidden w-12 h-12 rounded-xl bg-[#3C49FF]
+      flex flex-col items-center justify-center">
+      <span class="w-6 h-0.5 bg-white mb-1.5"></span>
+      <span class="w-6 h-0.5 bg-white mb-1.5"></span>
+      <span class="w-6 h-0.5 bg-white"></span>
+    </button>
+
+    <!-- CHAT ICON (DESKTOP ONLY) -->
+    <div class="hidden md:flex h-12 w-12 rounded-full
+      bg-gradient-to-br from-blue-500 to-blue-700
+      shadow-md items-center justify-center">
+      <img src="{% static 'images/icon1.png' %}" class="w-6" />
     </div>
-</section>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="absolute top-[70px] left-1/2 -translate-x-1/2
+           w-[335px] h-[294px]
+           md:hidden
+           backdrop-blur-xl bg-white/30
+           rounded-2xl shadow-2xl
+           border border-white/60
+           origin-top scale-y-0 opacity-0
+           pointer-events-none
+           transition-all duration-300 z-50 py-2">
+
+  <a href="{% url 'home' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Home</a>
+  <a href="{% url 'about' %}" class="block font-manrope text-[16px] px-6 py-3 text-blue-600">About</a>
+  <a href="{% url 'blogs' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Blogs</a>
+  <a href="{% url 'faq' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">FAQs</a>
+  <a href="{% url 'services' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Services</a>
+  <a href="{% url 'contact' %}" class="block font-manrope text-[16px] px-6 py-3 hover:text-blue-600">Contact</a>
+
+</div>
+  </div>
+</nav>
+
+
+    <!-- HERO TEXT -->
+    <div class="flex flex-col items-center justify-center text-center mt-32 mx-auto overflow-hidden">
+
+      <h2 class="text-[26.83px] md:text-[48px] font-semibold text-[#1A1A1A] leading-tight">
+
+        <!-- Line 1 -->
+        <div id="line1" class="overflow-hidden"></div>
+
+      <!-- Line 2 -->
+  <!-- Line 2 -->
+<div class="flex justify-center items-center h-[60px] md:h-[72px] gap-2 overflow-visible whitespace-nowrap">
+
+<div id="line2" class="flex flex-shrink-0 font-semibold text-[#1A1A1A] whitespace-nowrap">
+  <span id="thingsText"></span>
+  <span id="oneText" class="text-blue-600"></span>
+</div>
+
+
+  <!-- Animated word slot -->
+  <div class="relative min-w-[200px] md:min-w-[330px] h-full flex items-center overflow-visible">
+
+    <span id="swapWord"
+          class="absolute left-0 top-1/2 -translate-y-1/2
+                 text-blue-600 whitespace-nowrap">
+    </span>
+
+  </div>
+
+</div>
 
 
 
 
+      </h2>
 
-<section class="cta">
-    <div class="cta-content">
-        <div class="container px-5">
-            <h2 class="text-white display-1 lh-1 mb-4">
-                Stop waiting.
-                <br />
-                Start growing.
-            </h2>
-            <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://play.google.com/store/apps/details?id=com.smart.nme&showAllReviews=true" target="_blank">Download now</a>
-        </div>
+      <p id="heroPara" class="mt-4 text-[16px] font-medium text-[#1A1A1A] opacity-0 translate-y-6">
+        Everything you need organised, secure and easy to access in one app.
+      </p>
+
     </div>
-</section>
-<!-- App badge section-->
-<section class="bg-gradient-primary-to-secondary" id="download">
-    <div class="container px-5 " style="height: 200px;">
-        <h2 class="text-center text-white font-alt mb-4">Get the app now!</h2>
-        <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
-            <a class="me-lg-3 mb-4 mb-lg-0" href="https://play.google.com/store/apps/details?id=com.smart.nme&showAllReviews=true" target="blang"><img class="app-badge" src="{% static 'images/img/google-play-badge.svg' %}" alt="..." /></a>
-            <a href="https://apps.apple.com/in/app/n-me/id1614150675" target="blang"><img class="app-badge" src="{% static 'images/img/app-store-badge.svg' %}" alt="..." /></a>
-        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const line1Text = "All Your Important";
+  const words = ["Strong App", "Seamless App", "Smart App"];
+
+  const line1 = document.getElementById("line1");
+  const thingsText = document.getElementById("thingsText");
+  const oneText = document.getElementById("oneText");
+  const swapWord = document.getElementById("swapWord");
+  const heroPara = document.getElementById("heroPara");
+
+  /* ------------------------
+    Build letter spans
+  ------------------------*/
+  function splitLetters(text, target) {
+    target.innerHTML = text
+      .split("")
+      .map(l => 
+        `<span class="inline-block opacity-0 translate-x-6 tracking-tight -mr-[1px]">
+          ${l === " " ? "&nbsp;" : l}
+        </span>`
+      )
+      .join("");
+    return target.querySelectorAll("span");
+  }
+
+  // Line 1
+  const line1Letters = splitLetters(line1Text, line1);
+
+  // Line 2 (split separately to preserve color)
+  const thingsLetters = splitLetters("Things ", thingsText);
+  const oneLetters = splitLetters("One", oneText);
+
+  const tl = gsap.timeline();
+
+  /* ------------------------
+    Line 1 typing
+  ------------------------*/
+  tl.to(line1Letters, {
+    opacity: 1,
+    x: 0,
+    stagger: 0.05,
+    duration: 0.35,
+    ease: "power3.out"
+  });
+
+  /* ------------------------
+    Line 2 typing
+  ------------------------*/
+  // Animate "Things"
+  tl.to(thingsLetters, {
+    opacity: 1,
+    x: 0,
+    stagger: 0.05,
+    duration: 0.35,
+    ease: "power3.out"
+  });
+
+  // Animate "One" (blue stays)
+  tl.to(oneLetters, {
+    opacity: 1,
+    x: 0,
+    stagger: 0.05,
+    duration: 0.35,
+    ease: "power3.out"
+  });
+
+  /* ------------------------
+    First word typing (Strong App)
+  ------------------------*/
+  const firstWordSpans = document.createElement("div");
+  firstWordSpans.innerHTML = words[0]
+    .split("")
+    .map(l => `<span class="inline-block opacity-0 translate-x-6">${l === " " ? "&nbsp;" : l}</span>`)
+    .join("");
+  swapWord.appendChild(firstWordSpans);
+
+  const strongLetters = firstWordSpans.querySelectorAll("span");
+
+  tl.to(strongLetters, {
+    opacity: 1,
+    x: 0,
+    stagger: 0.05,
+    duration: 0.35,
+    ease: "power3.out"
+  });
+
+  /* ------------------------
+    Swap animation
+  ------------------------*/
+  function swap(text) {
+    const t = gsap.timeline();
+
+    t.to(swapWord, {
+      y: -50,
+      opacity: 0,
+      delay: 0.8,
+      duration: 0.5,
+      ease: "power3.in"
+    });
+
+    t.set(swapWord, { y: 50, opacity: 0, textContent: text });
+
+    t.to(swapWord, {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: "power3.out"
+    });
+
+    return t;
+  }
+
+  tl.add(swap(words[1]));
+  tl.add(swap(words[2])); // stays
+
+  /* ------------------------
+    Paragraph reveal
+  ------------------------*/
+  tl.to(heroPara, {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    ease: "power3.out"
+  }, "-=0.2");
+
+});
+</script>
+
+
+
+
+  </div>
+</div>
+
+
+
+
+<div class="relative max-w-[1450px] mx-auto mt-[-329px] md:-mt-[250px] z-[99] px-6 md:px-0">
+
+<!-- IMAGE WRAPPER -->
+<div class="rounded-[28px] overflow-hidden border-[5px] border-white
+            w-full max-w-[1257px] h-[518px] md:h-[513px] mx-auto
+            shadow-[0_4px_5px_0_rgba(0,0,0,0.25)]">
+
+  <!-- DESKTOP IMAGE -->
+  <img src="{% static 'images/about.jpg' %}"
+       class="hidden md:block w-full h-full object-cover" />
+
+  <!-- MOBILE IMAGE -->
+  <img src="{% static 'images/aboutt.jpg' %}"
+       class="block md:hidden w-full h-full object-cover" />
+</div>
+
+
+  <!-- ================= DESKTOP GLASS CARD ================= -->
+  <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-6
+              w-full max-w-[1163px]
+              h-[209px]
+              rounded-[28px]
+              bg-white/30
+              backdrop-blur-[30px]
+              border border-white/40
+              shadow-[0_20px_60px_rgba(0,0,0,0.18)]
+              items-center gap-6
+              px-10 py-6">
+
+    <!-- LOGO -->
+    <div class="relative w-[141px] h-[141px] rounded-full flex items-center justify-center">
+      <div class="absolute inset-0 rounded-full border-[1px] border-white/90"></div>
+      <img src="{% static 'images/about2.png' %}"
+           class="w-full h-full object-contain rounded-full pt-1" />
     </div>
-</section>
 
- <section id="founder" class="py-5 position-relative" 
-         style="background: linear-gradient(135deg, #2937f0, #9f1ae2); color:#e5e5e5;">
+    <!-- TEXT -->
+    <div class="max-w-[900px] text-left ">
+      <h2 class="text-[32px] font-semibold text-[#1A1A1A]">
+        What is N-Me App?
+      </h2>
 
-  <!-- Dark Overlay for readability -->
-  <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.45); z-index: 1;"></div>
+      <p class="text-[16px] font-medium text-[#1A1A1A]/90 mt-3 leading-relaxed
+          text-justify md:text-left">
 
-  <div class="container px-5 position-relative" style="z-index: 2;">
-    <div class="row align-items-center justify-content-between">
-      
-      <!-- Founder Image -->
-      <div class="col-md-5 mb-4 mb-md-0 text-center">
-        <div class="position-relative d-inline-block">
-          <img src="{% static 'images/ceo3.jpeg' %}" 
-               alt="Founder Photo" 
-               class="img-fluid rounded-circle shadow-lg border border-3 border-dark"
-               style="width: 380px; height: 380px; object-fit: cover;">
-        </div>
+        N-Me is a local business discovery and service connection platform  designed to help users find nearby businesses, shops and professionals and to help local sellers and service providers promote themselves online.
+Think of it as a modern, digital directory or marketplace that connects people and local businesses in one place.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ================= MOBILE GRADIENT CARD ================= -->
+  <div class="flex md:hidden relative
+              w-[calc(100%-2rem)]
+              mx-auto
+              mt-[-17.5rem]
+              rounded-[28px]
+              bg-gradient-to-t from-[#FFFFFF] to-[#D0D0D0]
+              border border-[#EAEAEA]
+              shadow-[0_20px_40px_rgba(0,0,0,0.12)]
+              items-center gap-6
+              px-6 py-6">
+
+    <!-- TEXT -->
+<div class="max-md:w-[309.95px] max-md:mt-4 max-md:h-[200px] max-md:py-auto max-w-[900px] text-left">
+  <h2 class="text-[20px] md:text-[32px] font-semibold md:font-medium text-[#1A1A1A]">
+    What is N-Me App?
+  </h2>
+
+  <p class="text-[14px] md:text-[16px] font-semibold md:font-medium text-[#1A1A1A]/90 mt-3 leading-[20px]
+            text-justify md:text-left">
+    N-Me is a local business discovery and service connection platform designed to help users find nearby businesses, shops and professionals and to help local sellers and service providers promote themselves online.
+   <span class="hidden md:block"> Think of it as a modern, digital directory or marketplace that connects people and local businesses in one place.</span>
+  </p>
+</div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- BRAND AMBASSADOR CARD -->
+<div class="max-w-[1372px] mx-auto mt-10 md:mt-32 px-4">
+  <div class="relative overflow-hidden rounded-[28px] border-[5px] border-white shadow-lg
+              bg-gradient-to-r from-[#cfe0ff] via-[#eaf1ff] to-[#f8fbff]
+              flex items-stretch
+              h-[360px] md:h-[393px] max-md:py-10
+">
+
+    <!-- LEFT CONTENT -->
+    <div class="relative z-20 w-full md:w-[60%] px-4
+                md:px-8 md:px-14 py-10
+                flex flex-col justify-center">
+
+      <h2 class="text-[24.39px] md:text-[36px] font-semibold text-black leading-tight">
+        Meet Our Brand<br>Ambassador
+      </h2>
+
+      <!-- NAME BADGE -->
+      <span class="inline-block mt-4 w-fit px-5 py-1.5 text-[14px] font-medium
+                   text-white bg-[#4c5cff] rounded-full">
+        Mr.Jayasurya
+      </span>
+
+      <!-- DESCRIPTION -->
+      <p class="mt-6 text-[14px] md:text-[16px] text-black leading-relaxed max-w-[520px]">
+        We proudly launched the NME app in 2022, a significant milestone in our organizational history. Contributing significant value to our launch, actor Jayasurya became our brand ambassador, expressing our core goal and contributing his particular charisma to our brand identity.
+      </p>
+    </div>
+
+    <!-- RIGHT IMAGE AREA -->
+    <div class="relative hidden md:block w-[40%]">
+
+      <!-- IMAGE -->
+      <img src="{% static 'images/launch.png' %}"
+           alt="Brand Ambassador Event"
+           class="absolute inset-0 w-full h-full object-cover object-right" />
+
+      <!-- 🌫️ FOG BLEND OVERLAY -->
+      <div class="absolute inset-y-0 h-[393px] left-[-140px] w-[320px]
+                  bg-gradient-to-r
+                  from-[#eaf1ff] via-[#eaf1ff] to-transparent h-full
+                  blur-[-1px]
+                  pointer-events-none">
       </div>
 
-      <!-- Founder Info -->
-      <div class="col-md-7">
-        <h2 class="display-5 fw-bold mb-3" style="color:#ffffff;">
-          About Our Founder
-        </h2>
-        <h4 class="fw-semibold mb-2" style="color:#e3e3e3;">Saied K Muhammed</h4>
-        
-        <p class="text-light mb-4" style="color:#c4c4c4 !important;">
-          <strong style="color:#fff;">Saied K Muhammed</strong>, the visionary behind 
-          <strong style="color:#fff;">N-ME App</strong> and 
-          <strong style="color:#fff;">Cybexel Technologies Pvt. Ltd.</strong>, began his journey as a passionate software 
-          developer driven by innovation and the desire to build meaningful technology.
-        </p>
+    </div>
 
-        <p class="text-light" style="color:#c4c4c4 !important;">
-          Over the years, he transformed his vision into reality - leading teams, empowering digital transformation 
-          and creating solutions that make life safer, simpler and more connected. His leadership continues to guide 
-          N-ME’s mission to bridge people and technology in the most human way possible.
-        </p>
+  </div>
+</div>
 
-        <!-- Signature -->
-        <div class="mt-4">
-          <h6 class="fw-semibold mb-0" style="color:#ffffff;">Saied K Muhammed</h6>
-          <small style="color:#a0a0a0;">Founder & CEO, Cybexel Technologies Pvt. Ltd.</small>
+
+
+
+
+
+
+
+{% comment %} <!-- MEET OUR TEAM SECTION -->
+<section class="max-w-[1440px] mx-auto px-4 md:px-8 py-20">
+
+  <!-- HEADER -->
+<div class="flex flex-col md:flex-row
+            items-center md:items-start
+            justify-center md:justify-between
+            text-center md:text-left
+            max-md:mb-8 mb-14
+            gap-4 md:gap-0">
+    <h2 class="text-[20px] md:text-[36px] font-semibold max-md:text-center text-black">
+      Meet Our Team
+    </h2>
+
+    <p class="max-md:w-[20rem] w-full md:w-[581px] h-[39px] text-center md:text-right font-medium text-black text-[10px] md:text-[16px] leading-relaxed">
+      Passionate individuals dedicated to transforming how communities
+      connect with local businesses
+    </p>
+  </div>
+
+<div class="overflow-x-auto md:overflow-x-visible hide-scrollbar">
+  <div class="flex md:grid md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+              gap-4 md:gap-8 min-w-max md:min-w-0">
+
+{% for member in team_members %}
+<div class="group relative flex-shrink-0
+            w-[196.913px] h-[264.793px]
+            md:w-full md:h-[420px] max-md:rounded-[12.23px]
+            rounded-[28px] overflow-hidden cursor-pointer
+            grid grid-rows-[1fr_auto_auto]">
+
+  <!-- IMAGE -->
+  {% if member.photo %}
+  <img src="{{ member.photo.url }}"
+     class="absolute inset-0 w-full h-full object-cover
+            transition-all duration-500
+            group-hover:scale-105 group-hover:blur-sm">
+
+  {% endif %}
+
+  <!-- OVERLAY -->
+  <div class="absolute inset-0 bg-black/10 opacity-0
+              transition-opacity duration-500
+              group-hover:opacity-100"></div>
+
+  <!-- TOP ICONS -->
+  <div class="absolute top-2 left-6 z-20 text-white text-[18px] md:text-[24px]">+</div>
+
+  <div class="absolute top-2 right-6 z-20 text-white text-[14px] md:text-[18px]">
+    {{ member.designation }}
+  </div>
+
+  <!-- SPACER (auto shrinks) -->
+  <div></div>
+
+  <div class="absolute inset-x-0 bottom-0 z-20
+            px-4 md:px-6 pb-3 md:pb-5
+            text-white
+            transition-all duration-500
+            group-hover:pb-6">
+
+  <!-- NAME -->
+  <h2 class="text-[16px] md:text-[30px] font-medium
+             transition-transform duration-500
+             group-hover:-translate-y-4">
+    {{ member.name }}
+  </h2>
+
+  <!-- PARAGRAPH -->
+  <p class="mt-1 md:mt-2 text-xs md:text-sm leading-relaxed
+            break-words
+            opacity-0 max-h-0 overflow-hidden
+            transition-all duration-500
+            group-hover:opacity-100 group-hover:max-h-[220px]">
+    {{ member.sentence }}
+  </p>
+
+</div>
+
+
+</div>
+{% empty %}
+<p class="text-gray-400">No team members added yet</p>
+{% endfor %}
+
+  </div>
+</div>
+
+
+</section> {% endcomment %}
+
+
+
+
+<!-- ================= EXPERIENCE N-ME APP ================= -->
+<section class="max-w-[1400px] mx-auto max-md:pt-0 px-6 py-10">
+
+  <!-- TITLE -->
+  <div class="text-center mb-8 md:mb-16">
+    <h2 class=" text-[20px] md:text-[36px] font-semibold text-black">Experience N-Me App</h2>
+    <p class="text-[8.42px] md:text-[16px] md:mt-3 font-medium text-black">
+      Powerful features designed for seamless connections
+    </p>
+  </div>
+
+<!-- CARDS GRID WRAPPER -->
+<div class="max-w-[1400px] mx-auto">
+
+  <!-- CUSTOM GRID -->
+<div class="
+  grid
+  grid-cols-1
+  xl:grid-cols-[512px_782px]
+  gap-6
+  justify-center
+">
+
+   <!-- ================= LEFT CARD ================= -->
+<div class="relative rounded-[32px] border-[5px] border-white
+            bg-gradient-to-b from-[#eef4ff] to-[#cddcff]
+            shadow-[0px_4px_5px_rgba(0,0,0,0.25)] max-md:p-[2rem] p-10 overflow-hidden
+            w-full max-w-[512px]
+h-[421px] sm:h-[421px] h-auto
+">
+
+  <h2 class="text-[14px] md:text-[24px] font-semibold text-black">Easy Navigation</h2>
+  <p class="text-[#1A1A1A] text-[10px] md:text-[16px] font-medium mt-2 max-w-[320px]">
+    Explore nearby businesses quickly with smart location suggestions.
+  </p>
+
+  <!-- MAP AREA -->
+<div class="relative mt-8 h-[220px] sm:h-[260px]">
+
+
+<svg
+  class="absolute left-0 top-0 pointer-events-none z-0 w-full h-full"
+  viewBox="0 0 380 160"
+  preserveAspectRatio="xMidYMid meet"
+>
+
+  <!-- MOBILE PATH -->
+  <path
+    id="routePathMobile"
+    class="block md:hidden"
+    d="
+      M40 20
+      L90 45
+      L130 100
+      L180 100
+      L240 45
+      L290 85
+    "
+    stroke="white"
+    stroke-width="3"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- DESKTOP PATH -->
+  <path
+    id="routePathDesktop"
+    class="hidden md:block"
+    d="
+      M60 30
+      L120 55
+      L170 120
+      L230 120
+      L300 45
+      L350 100
+    "
+    stroke="white"
+    stroke-width="4"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- MOVING BALL -->
+  <circle
+    id="ball"
+    r="8"
+    fill="#453CFF"
+    filter="drop-shadow(0 0 6px #453CFF)"
+  />
+</svg>
+
+
+<div id="flagIcon"
+  class="absolute left-[-2px] top-[5px]
+         w-[80px] h-[80px] rounded-full
+         bg-gradient-to-b from-[#eef4ff] to-[#cddcff]
+         backdrop-blur-md
+         border border-white/70
+         flex items-center justify-center
+         shadow-md
+         overflow-hidden">
+
+<img
+  id="flagImg"
+  src="./static/images/flag.png"
+  class="w-[37px] h-[38px]
+         transition-transform duration-300 ease-out
+         will-change-transform
+         transform-gpu"
+/>
+
+</div>
+
+
+<!-- DESTINATION -->
+<div id="destIcon"
+  class="absolute right-[-6px] top-[86px] md:top-[141px]
+         w-[80px] h-[80px] rounded-full
+         bg-gradient-to-b from-[#eef4ff] to-[#cddcff]
+         backdrop-blur-md
+         border border-white/70
+         flex items-center justify-center
+         shadow-md">
+  <img
+    id="destImg"
+    src="{% static 'images/destination.png' %}"
+    class="w-[36px] h-[36px] transition-transform duration-300"
+  />
+</div>
+
+
+
+  <!-- DECORATIVE DOTS -->
+
+<div class="absolute left-[72px] top-[160px] w-[27.58px] h-[27.58px]  w-[40px] h-[40px] float-lr-slow">
+  <img src="{% static 'images/e1.png' %}" class="opacity-60" />
+</div>
+
+
+ <div class="absolute left-[100px] top-[14px] w-[34.47px] h-[34.47px]  w-[50px] h-[50px] float-lr">
+  <img src="{% static 'images/e2.png' %}" class="opacity-60" />
+</div>
+
+
+<div class="absolute right-[30px] top-[10px] w-[46.88px] h-[46.88px] md:w-[68px] md:h-[68px] float-lr-fast">
+  <img src="{% static 'images/e3.png' %}" class="opacity-60" />
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================= RIGHT CARD ================= -->
+<div class="relative rounded-[32px] border-[5px] border-white
+            bg-gradient-to-b from-[#e8f0ff] to-[#bcd3ff] 
+            shadow-[0px_4px_5px_rgba(0,0,0,0.25)] overflow-hidden
+            w-full max-w-[782px]
+            h-auto sm:h-[431px]
+            p-6 sm:p-10">
+
+  <!-- TITLE -->
+  <h2 class="text-[14px] md:text-[24px] font-semibold text-black">
+    My Job
+  </h2>
+
+  <p class="text-[10px] md:text-[16px] text-[#1A1A1A] font-medium  mt-2 max-w-[360px]">
+    Find and apply for relevant and professional jobs that match your skills instantly.
+  </p>
+
+  <!-- ANIMATION SECTION -->
+  <div class="relative mt-6 sm:mt-8 
+              h-[220px] sm:h-[260px]
+              overflow-hidden
+              sm:-mx-10">
+
+    <div id="backCard"
+     class="absolute top-16 left-2 md:left-10
+            scale-[0.85] sm:scale-100
+            origin-top-left
+            w-[270px] h-[118px]
+            md:w-[469px] md:h-[144px]
+            rounded-[20px]
+            bg-white/70 backdrop-blur-xl
+            border-[2px] border-white
+            p-6
+            z-10">
+
+
+      <div class="flex items-start gap-4">
+
+        <!-- ICON -->
+        <div class="w-[64px] h-[64px] sm:w-[98px] sm:h-[98px]
+                    flex items-center justify-center">
+          <img src="{% static 'images/cook.png' %}"
+               class="w-full h-full object-contain">
         </div>
 
-        <!-- Social Media Icons -->
-        <div class="mt-4 d-flex align-items-center gap-3">
-          <!-- icons unchanged -->
-          <a href="https://www.linkedin.com/in/saied-k-muhammed/" target="_blank" 
-             class="d-inline-flex align-items-center justify-content-center rounded-circle border border-secondary"
-             style="width:40px; height:40px; color:#e5e5e5; text-decoration:none; transition:all 0.3s;">
-            <!-- LinkedIn SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="#fff"><path fill-rule="evenodd" d="M12.51 8.796v1.697a3.74 3.74 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766c-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483a1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.6 1.6 0 0 1 1.6 1.606" clip-rule="evenodd"/><path d="M7.2 8.809H4V19.5h3.2z"/></g></svg>
-          </a>
-          {% comment %} <a href="https://www.facebook.com" target="_blank" 
-             class="d-inline-flex align-items-center justify-content-center rounded-circle border border-secondary"
-             style="width:40px; height:40px; color:#e5e5e5; text-decoration:none; transition:all 0.3s;">
-            <!-- Facebook SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"/></svg>
-          </a> {% endcomment %}
-          <a href="https://www.instagram.com/__shaied/" target="_blank" 
-             class="d-inline-flex align-items-center justify-content-center rounded-circle border border-secondary"
-             style="width:40px; height:40px; color:#e5e5e5; text-decoration:none; transition:all 0.3s;">
-            <!-- Instagram SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M17.34 5.46a1.2 1.2 0 1 0 1.2 1.2a1.2 1.2 0 0 0-1.2-1.2m4.6 2.42a7.6 7.6 0 0 0-.46-2.43a4.9 4.9 0 0 0-1.16-1.77a4.7 4.7 0 0 0-1.77-1.15a7.3 7.3 0 0 0-2.43-.47C15.06 2 14.72 2 12 2s-3.06 0-4.12.06a7.3 7.3 0 0 0-2.43.47a4.8 4.8 0 0 0-1.77 1.15a4.7 4.7 0 0 0-1.15 1.77a7.3 7.3 0 0 0-.47 2.43C2 8.94 2 9.28 2 12s0 3.06.06 4.12a7.3 7.3 0 0 0 .47 2.43a4.7 4.7 0 0 0 1.15 1.77a4.8 4.8 0 0 0 1.77 1.15a7.3 7.3 0 0 0 2.43.47C8.94 22 9.28 22 12 22s3.06 0 4.12-.06a7.3 7.3 0 0 0 2.43-.47a4.7 4.7 0 0 0 1.77-1.15a4.85 4.85 0 0 0 1.16-1.77a7.6 7.6 0 0 0 .46-2.43c0-1.06.06-1.4.06-4.12s0-3.06-.06-4.12M20.14 16a5.6 5.6 0 0 1-.34 1.86a3.06 3.06 0 0 1-.75 1.15a3.2 3.2 0 0 1-1.15.75a5.6 5.6 0 0 1-1.86.34c-1 .05-1.37.06-4 .06s-3 0-4-.06a5.7 5.7 0 0 1-1.94-.3a3.3 3.3 0 0 1-1.1-.75a3 3 0 0 1-.74-1.15a5.5 5.5 0 0 1-.4-1.9c0-1-.06-1.37-.06-4s0-3 .06-4a5.5 5.5 0 0 1 .35-1.9A3 3 0 0 1 5 5a3.1 3.1 0 0 1 1.1-.8A5.7 5.7 0 0 1 8 3.86c1 0 1.37-.06 4-.06s3 0 4 .06a5.6 5.6 0 0 1 1.86.34a3.06 3.06 0 0 1 1.19.8a3.1 3.1 0 0 1 .75 1.1a5.6 5.6 0 0 1 .34 1.9c.05 1 .06 1.37.06 4s-.01 3-.06 4M12 6.87A5.13 5.13 0 1 0 17.14 12A5.12 5.12 0 0 0 12 6.87m0 8.46A3.33 3.33 0 1 1 15.33 12A3.33 3.33 0 0 1 12 15.33"/></svg>
-          </a>
-          {% comment %} <a href="https://twitter.com" target="_blank" 
-             class="d-inline-flex align-items-center justify-content-center rounded-circle border border-secondary"
-             style="width:40px; height:40px; color:#e5e5e5; text-decoration:none; transition:all 0.3s;">
-            <!-- X (Twitter) SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 448 512"><path fill="#fff" d="M357.2 48h70.6L273.6 224.2L455 464H313L201.7 318.6L74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
-          </a> {% endcomment %}
-        </div>
+        <!-- CONTENT -->
+        <div class="flex-1">
+          <h2 class="text-[7.26px] sm:text-[16px]
+                     font-semibold text-[#1A1A1A]">
+            Cook
+          </h2>
 
+          <p class="text-[5.45px] sm:text-[12px]
+                    text-[#1A1A1A] mt-1 leading-snug">
+            Prepare Delicious Meals, Maintain Kitchen Standards
+          </p>
+
+          <div class="flex items-center justify-between mt-3 sm:mt-4">
+
+           <p class="text-[5.45px] sm:text-[12px]
+                      text-[#1A1A1A] flex items-center gap-1">
+              <img src="{% static 'images/blackloc.png' %}"
+                   class="w-3 h-3">
+              Not Disclosed | Vacancy : 20
+            </p>
+
+            <button class="px-2 py-1
+                           text-[5.45px]
+                           sm:text-[12px]
+                           rounded-full bg-[#3C49FF]
+                           w-[78px] sm:w-[89px]
+                           h-[26px] sm:h-[30px]">
+              <span class="text-white">Apply Now</span>
+            </button>
+
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div id="frontCard"
+     class="absolute top-0 right-2
+            scale-[0.85] sm:scale-100
+            origin-top-right
+            w-[270px] h-[118px]
+            md:w-[469px] md:h-[144px]
+            rounded-[20px]
+            bg-white/70 backdrop-blur-xl
+            border-[2px] border-white
+            p-6
+            z-20">
+    
+
+      <!-- DOT MENU -->
+      <div class="absolute top-4 right-4 sm:top-5 sm:right-5 text-gray-500">
+        ⋮
+      </div>
+
+      <div class="flex items-start gap-4">
+
+        <!-- ICON -->
+        <div class="w-[64px] h-[64px] sm:w-[98px] sm:h-[98px]
+                    flex items-center justify-center">
+          <img src="{% static 'images/salesman.png' %}"
+               class="w-full h-full object-contain">
+        </div>
+
+        <!-- CONTENT -->
+        <div class="flex-1">
+          <h2 class="text-[7.26px] sm:text-[16px]
+                     font-semibold text-[#1A1A1A]">
+            Sales Man
+          </h2>
+
+          <p class="text-[5.45px] sm:text-[12px]
+                    text-[#1A1A1A] mt-1 leading-snug">
+            Drive Sales, Build Client Relationships, and Succeed with us.
+          </p>
+
+          <div class="flex items-center justify-between max-md:w-[141.182861328125px] mt-3 sm:mt-4">
+
+            <p class="text-[5.45px] sm:text-[12px]
+                      text-[#1A1A1A] flex items-center gap-1">
+              <img src="./static/images/blackloc.png"
+                   class="md:w-3 md:h-3">
+              Not Disclosed | Vacancy : 20
+            </p>
+
+            <button
+  id="applyBtn"
+  class="flex items-center justify-center
+         rounded-full
+         bg-[#3C49FF]
+         w-[40.4px] sm:w-[89px]
+         h-[13.62px] sm:h-[30px]
+         overflow-hidden">
+
+  <span
+    class="text-[5.35px] sm:text-[12px]
+           leading-none
+           text-white
+           whitespace-nowrap">
+    Apply Now
+  </span>
+
+</button>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLICK ARROW (POSITION UNCHANGED, ONLY SCALE) -->
+    <div id="clickArrow"
+         class="absolute right-[70px] top-[100px]
+                scale-[0.8] sm:scale-100
+                opacity-0 z-30 transition">
+      <img src="{% static 'images/arrow.png' %}" class="w-8 sm:w-10">
+    </div>
+
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="cards-wrapper max-w-[1318px] w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-[20px] px-4">
+<!-- Card 1 -->
+<div class="service-card bg-gradient-to-b from-[#DDE8FF]/10 to-[#A4C2FF]
+            rounded-[28px] md:rounded-[40px] 
+            border-[3px] md:border-[5px] border-white
+            shadow-[0px_4px_5px_rgba(0,0,0,0.25)]
+            w-[300px] h-[330px] md:w-[426px] md:h-[421px]
+            overflow-hidden relative p-4 md:p-6">
+
+  <!-- FIXED HEADER -->
+  <div class="flex flex-col items-start gap-1 md:gap-2 mb-3 md:mb-4 z-10 relative">
+    <h2 class="text-[12px] md:text-[24px] font-semibold text-black">
+      Register Today
+    </h2>
+
+    <p class="text-[9px] md:text-[16px] text-[#1A1A1A] font-medium">
+      Your gateway to fast, reliable, and nearby services begins here.
+    </p>
+  </div>
+
+  <!-- Scrollable Content -->
+  <div class="absolute bottom-0 left-0 right-0 top-24 md:top-28 h-[250px] md:h-[330px] overflow-hidden">
+    <div id="sectionsWrapper" class="flex flex-col">
+
+      <!-- SECTION 1 -->
+      <section class="h-[250px] md:h-[330px] flex flex-col items-center justify-center gap-4 md:gap-6">
+
+        <div class="px-4 py-2 md:px-6 md:py-3 rounded-[16px] md:rounded-[20px]
+                    bg-white/40 border-2 border-white
+                    backdrop-blur-md 
+                    w-[200px] h-[44px] md:w-[245px] md:h-[54px]
+                    flex items-center justify-center">
+          <p class="text-[14px] md:text-[18px]">Install N ME App</p>
+        </div>
+
+        <div class="w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-[24px] md:rounded-[32px]
+                    bg-white/40 border border-white
+                    flex items-center justify-center backdrop-blur-md">
+          <img src="{% static 'images/about-logo.png' %}" class="w-[80px] md:w-[110px]" />
+        </div>
+
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="h-[250px] md:h-[330px] flex flex-col items-center justify-center gap-4 md:gap-6">
+
+        <div class="w-[200px] h-[44px] md:w-[245px] md:h-[54px]
+                    text-center py-2 md:py-3 rounded-full bg-white/40 border-2 border-white
+                    backdrop-blur-md">
+          <h1 class="text-[14px] md:text-[18px] font-medium font-manrope">
+            One-Time Registration
+          </h1>
+        </div>
+
+        <div class="w-[260px] h-[52px] md:w-[332px] md:h-[64px] rounded-[22px] md:rounded-[28px]
+                    bg-white/40 border-2 border-white
+                    backdrop-blur-md
+                    flex items-center justify-center">
+          <h2 class="text-[22px] md:text-[32px] font-medium leading-none">
+            +91 98********
+          </h2>
+        </div>
+
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="h-[250px] md:h-[330px] flex flex-col items-center justify-center gap-4 md:gap-6">
+
+        <div class="w-[200px] h-[44px] md:w-[245px] md:h-[54px] px-4 md:px-8 py-2 md:py-3
+                    rounded-[16px] md:rounded-[20px] bg-white/40 border-[2px] border-white
+                    backdrop-blur-md text-center">
+          <h1 class="text-[14px] md:text-[18px] font-manrope font-medium">
+            Life Long Profile
+          </h1>
+        </div>
+
+        <div class="w-[260px] md:w-[332px] h-[120px] md:h-[150px]
+                    px-4 md:px-6 py-4 md:py-6 rounded-[24px] md:rounded-[32px]
+                    bg-white/40 border-2 border-white
+                    backdrop-blur-md flex items-center gap-4 md:gap-6">
+
+          <div class="w-[70px] h-[70px] md:w-[103px] md:h-[103px] rounded-full bg-white/60
+                      flex items-center justify-center">
+            <img src="{% static 'images/rahul.png' %}" class="w-[50px] md:w-auto">
+          </div>
+
+          <div>
+            <h1 class="text-[14px] md:text-[20px] font-semibold">Rahual Menon</h1>
+            <p class="text-[11px] md:text-[14px] font-medium opacity-80">Business Owners</p>
+          </div>
+
+        </div>
+
+      </section>
+
     </div>
   </div>
-</section> 
- 
+</div>
 
 
-{% endblock %}
+
+
+
+
+
+
+
+<!-- Card 2 -->
+<div class="service-card bg-gradient-to-b from-[#DDE8FF]/10 to-[#A4C2FF]
+            rounded-[40px] border-[5px] border-white p-6 shadow-[0px_4px_5px_rgba(0,0,0,0.25)]
+            relative w-[426px] h-[421px] overflow-hidden">
+
+  <h2 class="text-[14px] md:text-[24px] font-semibold text-black mb-2">Direct Contact / Chat</h2>
+  <p class="text-[10px] md:text-[16px] text-[#1A1A1A] font-medium  mb-6">
+    Connect with shops instantly through call or chat.
+  </p>
+
+  <!-- Animation Area -->
+ <div class="relative w-full h-[260px] flex items-center justify-center">
+
+<svg
+  class="absolute inset-0 w-full h-full pointer-events-none"
+  viewBox="0 0 426 260"
+  preserveAspectRatio="xMidYMid meet"
+>
+
+  <!-- LEFT TOP -->
+  <line id="line1"
+        x1="188" y1="105" x2="120" y2="40"
+        stroke="#fff" stroke-width="2"
+        stroke-dasharray="120"
+        stroke-dashoffset="120" />
+
+  <!-- RIGHT TOP -->
+  <line id="line3"
+        x1="238" y1="105" x2="306" y2="40"
+        stroke="#fff" stroke-width="2"
+        stroke-dasharray="120"
+        stroke-dashoffset="120" />
+
+  <!-- LEFT BOTTOM -->
+  <line id="line2"
+        x1="188" y1="155" x2="120" y2="220"
+        stroke="#fff" stroke-width="2"
+        stroke-dasharray="120"
+        stroke-dashoffset="120" />
+
+  <!-- RIGHT BOTTOM -->
+  <line id="line4"
+        x1="238" y1="155" x2="306" y2="220"
+        stroke="#fff" stroke-width="2"
+        stroke-dasharray="120"
+        stroke-dashoffset="120" />
+
+</svg>
+
+
+
+  <!-- MAIN ICON -->
+  <div id="mainIcon"
+       class="w-[72px] h-[72px] rounded-full bg-blue-500
+              flex items-center justify-center z-10">
+    <img src="./static/images/i0.png" />
+  </div>
+
+  <!-- SIDE ICONS -->
+  <div class="icon icon1 z-60"><img src="{% static 'images/i1.png' %}"></div>
+  <div class="icon icon2 z-60"><img src="{% static 'images/i2.png' %}"></div>
+  <div class="icon icon3 z-60"><img src="{% static 'images/i3.png' %}"></div>
+  <div class="icon icon4 z-60"><img src="{% static 'images/i4.png' %}"></div>
+
+</div>
+
+</div>
+
+
+
+
+<!-- Card 3 -->
+<div class="service-card bg-gradient-to-b from-[#DDE8FF]/10 to-[#A4C2FF]
+            rounded-[40px] border-[5px] border-white
+            p-6 shadow-[0px_4px_5px_rgba(0,0,0,0.25)] flex flex-col
+            w-[426px] h-[421px] overflow-hidden">
+
+  <h2 class="text-[14px] md:text-[24px] font-semibold text-black mb-2">Offers & Deals</h2>
+
+  <p class="text-[10px] md:text-[16px] text-[#1A1A1A] font-medium  mb-6">
+    Know the latest offers and deals from shops near you.
+  </p>
+
+  <!-- Scrolling container -->
+  <div class="relative h-full overflow-hidden">
+    
+    <!-- Animated list -->
+    <div class="absolute w-full animate-scroll-y space-y-20">
+
+      <div class="flex items-center gap-4">
+
+  
+
+  <!-- Percentage Icon -->
+<div class="md:w-[73px] md:h-[73px] w-[70px] h-[52px]
+              flex items-center justify-center
+              rounded-full
+              
+              border-[2.12px] border-white
+              shadow-md text-blue-600 font-bold">
+    <img src="{% static 'images/percentage.png' %}" class="w-[41.4px] h-[41.4px]">
+  </div>
+  <div class="px-6 py-3 w-[263px] h-[54px]
+            w-[300px]
+            bg-white/70
+            rounded-[20px]
+            text-sm font-medium
+            border-[2px] border-white text-center">
+  <p class="text-[18px]">Affordable Promotion Plan</p>
+  </div>
+
+
+</div>
+
+
+  <div class="flex items-center gap-4">
+
+<div class="px-6 py-3 w-[263px] h-[54px]
+            w-[300px]
+            bg-white/70
+            text-center
+            rounded-[20px]
+            text-sm font-medium
+            border-[2px] border-white">
+  <p class="text-[18px]">User can post their Offer</p>
+  </div>
+
+
+  <div class="md:w-[73px] md:h-[73px] w-[70px] h-[52px]
+              flex items-center justify-center
+              rounded-full
+              
+              border-[2.12px] border-white
+              shadow-md text-blue-600 font-bold">
+    <img src="{% static 'images/percentage.png' %}" class="w-[41.4px] h-[41.4px]">
+  </div>
+
+</div>
+
+      <div class="flex items-center gap-4">
+
+  
+
+  <!-- Percentage Icon -->
+<div class="md:w-[73px] md:h-[73px] w-[70px] h-[52px]
+              flex items-center justify-center
+              rounded-full
+              
+              border-[2.12px] border-white
+              shadow-md text-blue-600 font-bold">
+    <img src="{% static 'images/percentage.png' %}" class="w-[41.4px] h-[41.4px]">
+  </div>
+  <div class="px-6 py-3 w-[263px] h-[54px]
+            w-[300px]
+            text-center
+            bg-white/70
+            rounded-[20px]
+            text-sm font-medium
+            border-[2px] border-white">
+  <p class="text-[18px]">Seasonal Deals</p>
+  </div>
+
+
+</div>
+
+        <div class="flex items-center gap-4">
+
+<div class="px-6 py-3 w-[263px] h-[54px]
+            w-[300px]
+            text-center
+            bg-white/70
+            rounded-[20px]
+            text-sm font-medium
+            border-[2px] border-white">
+  <p class="text-[18px]">Instant live Update</p>
+  </div>
+
+
+  <div class="md:w-[73px] md:h-[73px] w-[70px] h-[52px]
+              flex items-center justify-center
+              rounded-full
+              
+              border-[2.12px] border-white
+              shadow-md text-blue-600 font-bold">
+    <img src="{% static 'images/percentage.png' %}" class="w-[41.4px] h-[41.4px]">
+  </div>
+
+</div>
+
+      <div class="flex items-center gap-4">
+
+  
+
+  <!-- Percentage Icon -->
+<div class="md:w-[73px] md:h-[73px] w-[70px] h-[52px]
+              flex items-center justify-center
+              rounded-full
+              
+              border-[2.12px] border-white
+              shadow-md text-blue-600 font-bold">
+    <img src="{% static 'images/percentage.png' %}" class="w-[41.4px] h-[41.4px]">
+  </div>
+  <div class="px-6 py-3 w-[263px] h-[54px]
+            w-[300px]
+            bg-white/70
+            rounded-[20px]
+            text-sm font-medium
+            border-[2px] border-white text-center">
+  <p class="text-[18px]">Wide Category Coverage</p>
+  </div>
+
+
+</div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+</div>
+
+
+
+<section class="max-w-[1318px] mx-auto md:py-20 px-4 max-md:mt-10">
+  <div class="grid grid-cols-1 lg:grid-cols-[782px_512px] gap-[24px]">
+
+    <!-- LEFT CARD -->
+    <div
+      class="h-auto lg:h-[421px] relative rounded-[40px] border-[5px] border-white
+             bg-gradient-to-b from-[#DDE8FF]/10 to-[#A4C2FF]
+             shadow-[0px_4px_5px_rgba(0,0,0,0.25)] p-6 sm:p-8 lg:p-10">
+
+      <h2 class="text-[14px] md:text-[24px] font-semibold text-black mb-2">
+        Smart Filters
+      </h2>
+
+      <p class="text-[10px] md:text-[16px] text-[#1A1A1A] font-medium  max-w-md mb-6">
+        Refine your search with easy filters that help
+        you reach the right result quickly.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-start gap-4">
+
+        <!-- SEARCH -->
+        <div class="relative w-full sm:w-[503px]" id="searchBox">
+
+          <div class="relative overflow-hidden rounded-full z-20 bg-white shadow-md h-[52px] sm:h-[56px] flex items-center">
+            <img
+              src="{% static 'images/search.png' %}"
+              class="absolute left-4 sm:left-5 w-[30px] sm:w-[39px] h-[30px] sm:h-[39px]
+                     object-contain opacity-60 pointer-events-none"
+            />
+
+            <div
+              id="typingText"
+              class="pl-12 sm:pl-16 text-gray-400 text-[14px] sm:text-[15px] typing-cursor">
+            </div>
+          </div>
+
+          <div
+            id="dropdown"
+            class="dropdown rounded-b-[28px] bg-white/70 backdrop-blur-md
+                   border border-white border-t-0 p-5 sm:p-6 pt-[3rem]
+                   space-y-5 text-[16px] sm:text-[18px] font-medium">
+            <p>Shopping Mall</p>
+            <p>Medical Shop</p>
+            <p>Health & Medicals</p>
+            <p>Electrical Repair Shop</p>
+            <p>Hostels & Lodge</p>
+            <p>Travels</p>
+          </div>
+        </div>
+
+        <!-- SEARCH BUTTON -->
+        <button
+          class="w-full sm:w-[161px] h-[48px] rounded-full
+                 bg-gradient-to-r from-[#5a6cff] to-[#3a4bff]
+                 text-white inner-white-shadow">
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div
+      class="h-auto lg:h-[421px] relative rounded-[40px] border-[5px] border-white
+             bg-gradient-to-b from-[#DDE8FF]/10 to-[#A4C2FF]
+              p-6 sm:p-8 lg:p-10 overflow-hidden shadow-[0px_4px_5px_rgba(0,0,0,0.25)]">
+
+      <h2 class="text-[14px] md:text-[24px] font-semibold text-black mb-2">
+        Easy Ad Publishing
+      </h2>
+
+      <p class="text-[10px] md:text-[16px] text-[#1A1A1A] font-medium  mb-6">
+        Publish your advertisements quickly and
+        reach more people in just a few taps.
+      </p>
+
+      <!-- CARD STACK -->
+      <div class="relative mt-4 h-[240px] sm:h-[260px]">
+        <div class="relative h-full overflow-hidden">
+
+          <!-- BACK CARD -->
+          <div
+            id="saleBackCard"
+            class="absolute top-0 right-4 sm:right-6
+                   w-[260px] sm:w-[293px] h-[115px] sm:h-[127px]
+                   rounded-[24px] bg-gray-300/80 shadow-md
+                   p-4 flex items-center justify-between">
+
+            <div>
+              <h2 class="text-[20px] sm:text-[26px] font-medium">FINAL SALE</h2>
+              <p class="text-[7px] sm:text-[8px] font-bold">Grocery Delights Await</p>
+              <p class="text-[4px] mt-1 leading-tight">
+                Lorem Ipsum is simply dummy text.
+              </p>
+            </div>
+
+            <div class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px]
+                        flex items-center justify-center rounded-full bg-blue-500/20">
+              <img src="{% static 'images/final_sale.png' %}" class="w-full h-full object-contain">
+            </div>
+          </div>
+
+          <!-- FRONT CARD -->
+          <div
+            id="saleFrontCard"
+            class="absolute top-16 sm:top-20 left-0 z-10
+                   w-[300px] sm:w-[353px] h-[140px] sm:h-[153px]
+                   rounded-[28px] bg-white
+                   p-4 sm:p-6 flex items-center gap-4">
+
+            <div class="w-[130px] sm:w-[165px] h-[100px] sm:h-[113px]">
+              <img src="{% static 'images/discount.png' %}" class="w-full h-full object-contain">
+            </div>
+
+            <div class="w-[120px] flex flex-col justify-center">
+              <h1 class="text-[9px]">Special Discounts</h1>
+              <h2 class="text-[40px] sm:text-[51px] font-medium leading-none">50%</h2>
+              <h1 class="text-[9px] font-medium text-center -mt-2">
+                Trusted Health Partner
+              </h1>
+              <h1 class="text-[4px] text-center">
+                Embracing Care
+              </h1>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<section class="w-full flex justify-center md:py-28 px-4 mt-6">
+  <!-- SECTION CONTAINER -->
+  <div class="flex flex-col lg:flex-row gap-10 items-center
+         w-full max-w-[1320px]
+         h-auto lg:h-[534px]">
+
+    <div class="relative w-full max-w-[582px]
+       h-[420px] md:h-[460px]
+       rounded-[40px]
+       bg-gradient-to-t from-[#A4C2FF] via-[#DDE8FF]/60 to-[#f3f4f6]/5
+       flex justify-center
+       overflow-visible
+       border-fade
+       shadow-[0_4px_5px_0_rgba(0,0,0,0.25)]">
+
+      <!-- PHONE WRAPPER -->
+      <div class="absolute bottom-[8px] md:bottom-0
+             w-[307px] md:w-[447px]
+             h-[302px] md:h-[537px]">
+
+        <!-- SCREEN -->
+        <div class="absolute
+               top-[14px] md:top-[25px]
+               left-[40px] md:left-[18px]
+               w-[230px] md:w-[407px]
+               h-[289px] md:h-[507px]
+               overflow-hidden
+               rounded-t-[30px]
+               z-10">
+
+          <!-- Video -->
+          <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline
+  controls
+  preload="auto"
+  poster="{% static 'images/video-poster.jpg' %}"
+  class="w-full h-full object-cover object-top bg-black"
+>
+  <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
+</video>
+
+
+          <div class="absolute bottom-0 left-0 w-full h-[30px] pointer-events-none z-20"
+     style="background: radial-gradient(
+       ellipse 120% 200% at 50% 120%,
+       rgba(21, 80, 198, 0.5) 0%,
+       rgba(21, 80, 198, 0.35) 25%,
+       rgba(21, 80, 198, 0.15) 45%,
+       transparent 65%
+     );">
+</div>
+
+
+        </div>
+
+        <!-- PHONE FRAME -->
+        <img src="{% static 'images/phoneframe.png' %}" alt="Phone Frame"
+          class="absolute inset-0 w-full h-full object-contain z-30 pointer-events-none" />
+      </div>
+</div>
+
+
+    <!-- RIGHT CARD -->
+    <div class="relative w-full max-w-[718px]
+           h-auto lg:h-[461px]
+           rounded-[40px]
+           bg-gradient-to-t from-[#A4C2FF] via-[#DDE8FF]/60 to-[#f3f4f6]/5
+           shadow-[0_4px_5px_0_rgba(0,0,0,0.25)]
+           flex flex-col items-center justify-center
+           text-center px-6 md:px-16 py-12 border-fade">
+
+      <h2 class="text-[26px] md:text-[36px] font-semibold text-[#1a1a1a]">
+        Get the App Now!
+      </h2>
+
+      <p class="mt-4 text-[14px] md:text-[16px]
+              font-medium text-[#1A1A1A]
+              max-w-[480px]">
+        Join thousands of users who simplified their daily life
+      </p>
+
+      <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6">
+        <img src="{% static 'images/app.png' %}" class="h-[48px] md:h-[56px]" />
+        <img src="{% static 'images/playstore.png' %}" class="h-[48px] md:h-[56px]" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+<script>
+let path, svg, pathLength;
+
+const flagIcon = document.getElementById("flagIcon");
+const destIcon = document.getElementById("destIcon");
+
+const flagImg = document.getElementById("flagImg");
+const destImg = document.getElementById("destImg");
+const ball = document.getElementById("ball");
+
+const duration = 12000;
+let startTime = null;
+
+/* 🔥 Get active path based on screen */
+function setActivePath() {
+  path =
+    window.innerWidth < 768
+      ? document.getElementById("routePathMobile")
+      : document.getElementById("routePathDesktop");
+
+  svg = path.ownerSVGElement;
+  pathLength = path.getTotalLength();
+}
+
+/* Center of icons (screen coords) */
+function getCenter(el) {
+  const r = el.getBoundingClientRect();
+  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+}
+
+function animate(time) {
+  if (!startTime) startTime = time;
+
+  const elapsed = (time - startTime) % duration;
+
+  const progress =
+    elapsed < duration / 2
+      ? elapsed / (duration / 2)
+      : 1 - (elapsed - duration / 2) / (duration / 2);
+
+  const point = path.getPointAtLength(progress * pathLength);
+
+  // Move ball
+  ball.setAttribute("cx", point.x);
+  ball.setAttribute("cy", point.y);
+
+  // Convert to screen coords
+  const pt = svg.createSVGPoint();
+  pt.x = point.x;
+  pt.y = point.y;
+  const screenPoint = pt.matrixTransform(svg.getScreenCTM());
+
+  // Distances
+  const flagPos = getCenter(flagIcon);
+  const destPos = getCenter(destIcon);
+
+  const distFlag = Math.hypot(screenPoint.x - flagPos.x, screenPoint.y - flagPos.y);
+  const distDest = Math.hypot(screenPoint.x - destPos.x, screenPoint.y - destPos.y);
+
+  flagImg.style.transform = distFlag < 42 ? "scale(1.35)" : "scale(1)";
+  destImg.style.transform = distDest < 42 ? "scale(1.35)" : "scale(1)";
+
+  requestAnimationFrame(animate);
+}
+
+/* INIT */
+setActivePath();
+requestAnimationFrame(animate);
+
+/* UPDATE ON RESIZE */
+window.addEventListener("resize", () => {
+  startTime = null;
+  setActivePath();
+});
+</script>
+
+
+
+
+
+
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+
+<script>
+function playAnimation() {
+
+  const btn = document.getElementById("applyBtn");
+
+  /* ================= RESET STATES ================= */
+  gsap.set("#backCard", { x: -220, y: 0, opacity: 0 });
+
+  gsap.set("#frontCard", {
+    x: 220,
+    y: 0,
+    opacity: 0,
+    scale: 1,
+    backgroundColor: "rgba(255,255,255,0.7)"
+  });
+
+  gsap.set("#clickArrow", {
+    opacity: 0,
+    x: 0,
+    y: 90,
+    scale: 1
+  });
+
+  /* ================= RESET BUTTON (FIXED) ================= */
+  btn.innerHTML = `
+    <span class="text-[5.35px] sm:text-[12px]
+                 leading-none
+                 whitespace-nowrap
+                 text-white">
+      Apply Now
+    </span>`;
+  btn.classList.remove("bg-green-500");
+  btn.classList.add("bg-[#3C49FF]");
+
+  const tl = gsap.timeline({
+    delay: 1,
+    onComplete: () => setTimeout(playAnimation, 100)
+  });
+
+  /* ================= 1️⃣ CARDS ENTER ================= */
+  tl.to("#backCard", {
+    x: 0,
+    opacity: 1,
+    duration: 1.4,
+    ease: "power3.out"
+  })
+  .to("#frontCard", {
+    x: 0,
+    opacity: 1,
+    duration: 1.4,
+    ease: "power3.out"
+  }, "-=0.9")
+
+  /* ================= 2️⃣ ARROW COMES ================= */
+  .to("#clickArrow", {
+    opacity: 1,
+    y: 0,
+    duration: 1.2,
+    ease: "power3.out"
+  })
+
+  /* ================= 3️⃣ CLICK FRONT CARD ================= */
+  .to("#clickArrow", {
+    x: -10,
+    y: 30,
+    duration: 1,
+    ease: "power2.inOut"
+  })
+  .to("#clickArrow", { scale: 0.85, duration: 0.25 })
+  .to("#clickArrow", { scale: 1, duration: 0.25 })
+
+  .to("#frontCard", {
+    backgroundColor: "#5A8EFF",
+    duration: 0.4,
+    ease: "power2.out"
+  }, "<")
+
+  .to("#frontCard", {
+    scale: 0.97,
+    duration: 0.3,
+    yoyo: true,
+    repeat: 1
+  }, "<")
+
+  /* ================= 4️⃣ CARDS ADJUST ================= */
+  .to("#backCard", {
+    x: 30,
+    duration: 0.8,
+    ease: "power2.out"
+  })
+  .to("#frontCard", {
+    x: -30,
+    duration: 0.8,
+    ease: "power2.out"
+  }, "<")
+
+  /* ================= 5️⃣ ARROW → APPLY BUTTON ================= */
+  .to("#clickArrow", {
+    x: 32,
+    y: 12,
+    duration: 0.9,
+    ease: "power2.inOut"
+  })
+  .to("#clickArrow", { scale: 0.85, duration: 0.25 })
+  .to("#clickArrow", { scale: 1, duration: 0.25 })
+
+  .to("#applyBtn", {
+    scale: 0.95,
+    duration: 0.25,
+    yoyo: true,
+    repeat: 1
+  }, "<")
+
+  /* ================= 6️⃣ APPLIED STATE (FIXED) ================= */
+  .call(() => {
+    btn.innerHTML = `
+      <span class="text-[5.35px] sm:text-[12px]
+                   leading-none
+                   whitespace-nowrap
+                   text-white">
+        Applied
+      </span>`;
+    btn.classList.remove("bg-[#3C49FF]");
+    btn.classList.add("bg-green-500");
+  })
+
+  /* ================= 7️⃣ EXIT ================= */
+  .to(["#frontCard", "#backCard"], {
+    y: 150,
+    opacity: 0,
+    duration: 1.4,
+    ease: "power3.in"
+  }, "+=0.6")
+
+  .to("#clickArrow", {
+    opacity: 0,
+    duration: 0.6
+  }, "-=0.8");
+}
+
+/* ================= START LOOP ================= */
+playAnimation();
+</script>
+
+<style>
+/* =========================
+   RESPONSIVE GRID
+========================= */
+
+/* Desktop – default (your current layout stays same) */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .cards-wrapper {
+    width: 100%;
+    padding: 0 16px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 380px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .cards-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .service-card {
+    min-height: 360px;
+    border-radius: 28px;
+    padding: 16px;
+  }
+
+  .service-card h2,
+  .service-card h3 {
+    font-size: 18px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+  }
+}
+</style>
+
+<script>
+const container = document.getElementById("sectionsWrapper");
+const sectionHeight = 330; // height of each section
+const totalSections = 3;
+
+// Duplicate sections for smooth loop
+container.innerHTML += container.innerHTML;
+
+let index = 0;
+
+function scrollStep() {
+  container.style.transition = "transform 0.8s ease-in-out";
+  container.style.transform = `translateY(-${index * sectionHeight}px)`;
+  index++;
+
+  // Reset seamlessly when reaching the original last section
+  if (index > totalSections) {
+    setTimeout(() => {
+      container.style.transition = "none";
+      container.style.transform = `translateY(0px)`;
+      index = 1;
+    }, 800); // match transition duration
+  }
+}
+
+// Scroll every 3 seconds
+setInterval(scrollStep, 2000);
+</script>
+<style>
+.icon {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+</style>
+
+<script>
+const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+tl.to(".icon1", { x: -110, y: -75, scale: 1, opacity: 1, duration: 0.5 }, 0)
+  .to(".icon2", { x: -100, y:  75, scale: 1, opacity: 1, duration: 0.5 }, 0)
+  .to(".icon3", { x:  100, y: -75, scale: 1, opacity: 1, duration: 0.5 }, 0)
+  .to(".icon4", { x:  100, y:  75, scale: 1, opacity: 1, duration: 0.5 }, 0)
+
+  // Draw lines one by one
+  .to("#line3", { strokeDashoffset: 0, duration: 0.3 })
+  .to("#line2", { strokeDashoffset: 0, duration: 0.3 })
+  .to("#line4", { strokeDashoffset: 0, duration: 0.3 })
+  .to("#line1", { strokeDashoffset: 0, duration: 0.3 })
+
+  .to({}, { duration: 0.8 })
+
+  .to(".icon", {
+    x: 0,
+    y: 0,
+    scale: 0,
+    opacity: 0,
+    duration: 0.5
+  })
+
+  .to("line", {
+    strokeDashoffset: 120,
+    duration: 0.4
+  }, "-=0.4");
+
+</script>
+
+
+
+
+<style>
+  @keyframes scrollY {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-y {
+  animation: scrollY 12s linear infinite;
+}
+
+</style>
+
+<style>
+  /* Blinking cursor */
+.typing-cursor::after {
+  content: "";
+  display: inline-block;
+
+  width: 2px;
+  height: 20px;              /* 👈 INCREASE HEIGHT HERE */
+  margin-left: 6px;
+
+  background-color: black;
+  vertical-align: middle;
+
+  animation: blink 1s infinite;
+}
+
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ================= DROPDOWN BASE ================= */
+.dropdown {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+
+  transition:
+    max-height 0.6s ease,
+    opacity 0.4s ease,
+    margin-top 0.4s ease;
+
+  /* Hide scrollbar (all browsers) */
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE / Edge */
+}
+
+.dropdown::-webkit-scrollbar {
+  display: none;               /* Chrome / Safari */
+}
+
+/* ================= OPEN STATE ================= */
+.dropdown-open {
+  max-height: 170px;           /* 👈 exactly 3 options visible */
+  opacity: 1;
+  margin-top: -24px;
+  overflow-y: auto; 
+            /* 👈 scrolling enabled */
+}
+
+/* ================= CLOSE STATE ================= */
+.dropdown-close {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+
+
+</style>
+<script>
+const dropdown = document.getElementById("dropdown");
+
+function runSearchAnimation() {
+
+  dropdown.classList.remove("dropdown-open", "dropdown-close");
+  dropdown.scrollTop = 0;
+
+  // OPEN
+  setTimeout(() => {
+    dropdown.classList.add("dropdown-open");
+  }, 1200);
+
+  // AUTO SCROLL (shows next options)
+  setTimeout(() => {
+    dropdown.scrollTo({
+      top: dropdown.scrollHeight,
+      behavior: "smooth"
+    });
+  }, 2600);
+
+  // CLOSE
+  setTimeout(() => {
+    dropdown.classList.add("dropdown-close");
+  }, 4600);
+}
+
+// START
+runSearchAnimation();
+setInterval(runSearchAnimation, 6000);
+
+</script>
+
+<style>
+.inner-white-shadow {
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.6),
+    inset 0 -2px 4px rgba(255,255,255,0.25),
+    0 8px 16px rgba(0,0,0,0.15);
+}
+</style>
+<script>
+  gsap.set("#saleBackCard", { y: 140, opacity: 0 });
+  gsap.set("#saleFrontCard", { y: 140, opacity: 0 });
+
+  const saleCardTl = gsap.timeline({
+    defaults: { ease: "power3.out" },
+    repeat: -1,
+    repeatDelay: 0.6,
+    repeatRefresh: true,
+    onRepeat: () => {
+      gsap.set("#saleBackCard", { y: 140, opacity: 0 });
+      gsap.set("#saleFrontCard", { y: 140, opacity: 0 });
+    }
+  });
+
+  saleCardTl
+    // 1️⃣ Back card comes from bottom
+    .to("#saleBackCard", {
+      y: 0,
+      opacity: 1,
+      duration: 0.8
+    })
+
+    // 2️⃣ Front card comes from bottom
+    .to("#saleFrontCard", {
+      y: 0,
+      opacity: 1,
+      duration: 0.8
+    }, "-=0.3")
+
+    // pause
+    .to({}, { duration: 0.5 })
+
+    // 3️⃣ Front card scrolls up (INSIDE MASK)
+    .to("#saleFrontCard", {
+      y: -240,
+      duration: 0.8
+    })
+
+    // 4️⃣ Back card scrolls up (INSIDE MASK)
+    .to("#saleBackCard", {
+      y: -220,
+      duration: 0.8
+    }, "-=0.4");
+</script>
+
+
+
+
+
+
+
+ {% endblock %}

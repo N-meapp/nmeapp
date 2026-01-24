@@ -7,13 +7,30 @@ from django.contrib.auth.hashers import check_password
 from cloudinary.uploader import upload
 import cloudinary.uploader
 from cloudinary.exceptions import Error
+from django.db.models import Q
+from django.db.models.functions import Cast
+from django.db.models import CharField
+from django.urls import reverse
+from django.contrib import messages
+
+
+
 # Create your views here.
 def base(request):
     return render(request, 'base.html')
 def home(request):
-    return render (request,'index.html')
+    testimonials = Testimonial.objects.all()
+    return render(request, "index.html", {"testimonials": testimonials})
+
 def about(request):
-    return render (request,'about.html')
+    # Get all team members from database
+    team_members = TeamMember.objects.all()
+
+    context = {
+        "team_members": team_members
+    }
+
+    return render(request, 'about.html', context)
 def register(request):
     return render (request,'register.html')
 def services(request):
@@ -30,13 +47,80 @@ def privacy(request):
 # def sitemap(request):
 #     return render (request,'sitemap.xml')
 
-def blog_list(request):
-    blogs = Post.objects.all().order_by('-created_at')  # Get all blogs ordered by latest
-    paginator = Paginator(blogs, 8)  # 8 blogs per page
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)  # Get current page
+def blogs(request):
+    query = request.GET.get('q', '').strip()
 
-    return render(request, 'blog.html', {'page_obj': page_obj})
+    blogs = Post.objects.all().order_by('-created_at')
+
+    if query:
+        date_filter = Q()
+
+        # Try parsing date formats safely
+        date_formats = [
+    "%Y-%m-%d",      # 2026-01-09
+    "%d-%m-%Y",      # 09-01-2026
+    "%d/%m/%Y",      # 09/01/2026
+
+    "%b %d %Y",      # Jan 09 2026
+    "%b %d, %Y",     # Jan 09, 2026 ✅ NEW
+
+    "%B %d %Y",      # January 09 2026
+    "%B %d, %Y",     # January 09, 2026 ✅ NEW
+
+    "%Y",            # 2026
+]
+
+
+        parsed_date = None
+        for fmt in date_formats:
+            try:
+                parsed_date = datetime.strptime(query, fmt)
+                break
+            except ValueError:
+                continue
+
+        # If a valid date is found → filter created_at
+        if parsed_date:
+            if len(query) == 4:  # year only
+                date_filter = Q(created_at__year=parsed_date.year)
+            else:
+                date_filter = Q(created_at__date=parsed_date.date())
+
+        blogs = blogs.filter(
+            Q(card_head__icontains=query) |
+            Q(card_paragraph__icontains=query) |
+            Q(keyword__icontains=query) |
+            Q(modal_head__icontains=query) |
+            Q(modal_paragraph__icontains=query) |
+            Q(date__icontains=query) |   # text date (optional)
+            date_filter
+        ).distinct()
+
+    paginator = Paginator(blogs, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'blog.html', {
+        'page_obj': page_obj,
+        'query': query
+    })
+
+
+def blog_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    # 👉 Latest 3 blogs (excluding current one – optional but recommended)
+    latest_blogs = Post.objects.exclude(id=post.id).order_by('-created_at')[:3]
+
+    return render(request, 'blog_detail.html', {
+        'post': post,
+        'latest_blogs': latest_blogs
+    })
+
+
+
+
+
 
 from django.http import JsonResponse
 from .forms import ContactForm
@@ -65,9 +149,27 @@ def contact(request):
     return render(request, 'contact.html', {'form': form})
 
 
+def contact_submit(request):
+    if request.method == "POST":
+        Contact.objects.create(
+            name=request.POST.get("name"),
+            email=request.POST.get("email"),
+            phone=request.POST.get("phone"),
+            subject=request.POST.get("subject"),
+            message=request.POST.get("message"),
+        )
+        # redirect to your custom admin panel instead of contact page
+        return redirect("dashboard")  # your admin_panel URL name
+    return redirect("contact")
+
+
+def delete_enquiry(request, id):
+    if request.method == "POST":
+        Contact.objects.filter(id=id).delete()  # delete the enquiry
+    return redirect("dashboard")  # redirect to admin panel
+ # reload admin panel
 
 def blog_post(request):
-    
     if request.method == "POST":
         card_head = request.POST.get('card_head')
         modal_head = request.POST.get('modal_head')
@@ -76,80 +178,159 @@ def blog_post(request):
         keyword = request.POST.get('keyword')
         image = request.FILES.get('image')
         date = request.POST.get('date')
+
         cloudinary_response = cloudinary.uploader.upload(image)
         cloudinary_url = cloudinary_response.get("secure_url")
 
-        blog_data = Post(card_head=card_head,modal_head=modal_head,card_paragraph=card_paragraph,modal_paragraph=modal_paragraph,keyword=keyword,image=cloudinary_url,date=date)
+        blog_data = Post(
+            card_head=card_head,
+            modal_head=modal_head,
+            card_paragraph=card_paragraph,
+            modal_paragraph=modal_paragraph,
+            keyword=keyword,
+            image=cloudinary_url,
+            date=date
+        )
         blog_data.save()
-        return HttpResponse("file saved!")
-    else:
-        return HttpResponse("cant save this instance!")
-    
 
+        # Add message
+        messages.success(request, "Blog added successfully!")
+        return redirect('dashboard')  
 def admin_panel(request):
-    if "name" in request.session:
-        blog = Post.objects.all()
-        contact = Contact.objects.all()
-
-        context = {
-            "blog":blog,
-            "contact":contact
-        }
-        print("Dashboard accessed, session name:", request.session.get("name"))
-        return render (request,'admin_panel.html',context)
-
-    else:
-        print("No session found, returning simple response")
-        # return HttpResponse("You are not logged in.")
+    if "name" not in request.session:
         return render(request, 'login.html')
+
+    blog = Post.objects.all()
+    contact = Contact.objects.all()
+    team_members = TeamMember.objects.all()
+    testimonials = Testimonial.objects.all().order_by('-id')
+
+
+    # Get the page parameter from URL (default: dashboard)
+    page = request.GET.get('page', 'dashboard')
+
+    context = {
+        "blog": blog,
+        "contact": contact,
+        "team_members": team_members,
+        'testimonials': testimonials,
+        "page": page,  # send to template
+    }
+
+    return render(request, 'admin_panel.html', context)
+def add_testimonial(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        rating = request.POST.get('rating')
+        opinion = request.POST.get('opinion')
+        image = request.FILES.get('image')
+
+        Testimonial.objects.create(
+            name=name,
+            rating=rating,
+            opinion=opinion,
+            image=image
+        )
+    return redirect('dashboard')  # or testimonials_page
+
+
+def edit_testimonial(request, id):
+    testimonial = Testimonial.objects.get(id=id)
+
+    if request.method == "POST":
+        testimonial.name = request.POST.get("name")
+        testimonial.rating = request.POST.get("rating")
+        testimonial.opinion = request.POST.get("opinion")
+
+        if request.FILES.get("image"):
+            testimonial.image = request.FILES.get("image")
+
+        testimonial.save()
+        return redirect("dashboard")  # change if needed
+
+
+
+# Delete testimonial
+def delete_testimonial(request, id):
+    testimonial = get_object_or_404(Testimonial, id=id)
+    testimonial.delete()
+    return redirect('dashboard')
+def add_team_member(request):
+    if request.method == "POST":
+        TeamMember.objects.create(
+            name=request.POST.get("name"),
+            designation=request.POST.get("designation"),
+            sentence=request.POST.get("sentence"),
+            photo=request.FILES.get("photo"),
+        )
+    return redirect("dashboard")  # ✅ FIXED
+
+
+def update_team_member(request, id):
+    member = get_object_or_404(TeamMember, id=id)
+
+    if request.method == "POST":
+        member.name = request.POST.get("name")
+        member.designation = request.POST.get("designation")
+        member.sentence = request.POST.get("sentence")
+
+        if request.FILES.get("photo"):
+            member.photo = request.FILES.get("photo")
+
+        member.save()
+
+    return redirect("dashboard")  # ✅ FIXED
+
+
+def delete_team_member(request, id):
+    member = get_object_or_404(TeamMember, id=id)
+    member.delete()
+    return redirect("dashboard")  # ✅ FIXED
 
 def update_blog(request):
     if request.method == 'POST':
+
         blog_id = request.POST.get('id')
-        print(f"Received blog ID: {blog_id}")
         if not blog_id:
-            return HttpResponse("Blog ID not received", status=400)
-        
+            return HttpResponse("Blog ID missing", status=400)
+
         blog = get_object_or_404(Post, id=blog_id)
-        
+
         # Update text fields
         blog.card_head = request.POST.get('card_head')
         blog.modal_head = request.POST.get('modal_head')
         blog.card_paragraph = request.POST.get('card_paragraph')
         blog.modal_paragraph = request.POST.get('modal_paragraph')
         blog.keyword = request.POST.get('keyword')
+        blog.date = request.POST.get('date')
 
-        # Check for new image
+        # Image update
         new_image = request.FILES.get('image')
         if new_image:
-            # Extract public_id from existing image URL
+            # delete old image safely
             if blog.image:
-                try:
-                    public_id = blog.image.split("/")[-1].split(".")[0]
-                    cloudinary.uploader.destroy(public_id)
-                except Exception as e:
-                    print(f"Error deleting old image: {e}")
+                cloudinary.uploader.destroy(blog.image.public_id)
 
-            # Upload new image
-            cloudinary_response = cloudinary.uploader.upload(new_image)
-            cloudinary_url = cloudinary_response.get("secure_url")
-            blog.image = cloudinary_url
+            uploaded = cloudinary.uploader.upload(new_image)
+            blog.image = uploaded['secure_url']
 
         blog.save()
         return redirect('dashboard')
 
     return redirect('dashboard')
-
         
 
      
 
-def delete_blog(request,id):
-    blog = Post.objects.get(id = id)
-    if blog:
-        blog.delete()
-    else:
-        return HttpResponse("cant delete this blog!")
+def delete_blog(request, id):
+    blog = get_object_or_404(Post, id=id)
+
+    # delete image from cloudinary
+    if blog.image:
+        public_id = blog.image.public_id
+        cloudinary.uploader.destroy(public_id)
+
+    blog.delete()
     return redirect('dashboard')
 
 def delete_message(request,id):

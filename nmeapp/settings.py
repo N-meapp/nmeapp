@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'cloudinary',
     'cloudinary_storage',
+    'django.contrib.humanize',  
 
 ]
 
@@ -172,7 +173,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # <-- Add this
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+# Optional: customize message tags
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
+}
 
 
 # Default primary key field type

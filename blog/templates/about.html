@@ -1342,7 +1342,7 @@ h-[421px] sm:h-[421px] h-auto
 
 
 
-<section class="w-full flex justify-center md:py-28 px-4 mt-6">
+<section class="w-full flex justify-center md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
          w-full max-w-[1320px]
@@ -1373,19 +1373,9 @@ h-[421px] sm:h-[421px] h-auto
                z-10">
 
           <!-- Video -->
-          <video 
-  autoplay 
-  muted 
-  loop 
-  playsinline
-  controls
-  preload="auto"
-  poster="{% static 'images/video-poster.jpg' %}"
-  class="w-full h-full object-cover object-top bg-black"
->
-  <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
-</video>
-
+          <video autoplay muted loop playsinline class="w-full h-full object-cover object-top">
+            <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
+          </video>
 
           <div class="absolute bottom-0 left-0 w-full h-[30px] pointer-events-none z-20"
      style="background: radial-gradient(
@@ -1434,7 +1424,6 @@ h-[421px] sm:h-[421px] h-auto
 
   </div>
 </section>
-
 
 
 

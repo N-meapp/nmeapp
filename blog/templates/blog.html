@@ -452,7 +452,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
 <section class="w-full flex justify-center md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
@@ -484,19 +483,9 @@ document.addEventListener("DOMContentLoaded", () => {
                z-10">
 
           <!-- Video -->
-          <video 
-  autoplay 
-  muted 
-  loop 
-  playsinline
-  controls
-  preload="auto"
-  poster="{% static 'images/video-poster.jpg' %}"
-  class="w-full h-full object-cover object-top bg-black"
->
-  <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
-</video>
-
+          <video autoplay muted loop playsinline class="w-full h-full object-cover object-top">
+            <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
+          </video>
 
           <div class="absolute bottom-0 left-0 w-full h-[30px] pointer-events-none z-20"
      style="background: radial-gradient(
@@ -512,7 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <!-- PHONE FRAME -->
-        <img src="./static/images/phoneframe.png" alt="Phone Frame"
+        <img src="{% static 'images/phoneframe.png' %}" alt="Phone Frame"
           class="absolute inset-0 w-full h-full object-contain z-30 pointer-events-none" />
       </div>
 </div>
@@ -538,13 +527,14 @@ document.addEventListener("DOMContentLoaded", () => {
       </p>
 
       <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6">
-        <img src="./static/images/app.png" class="h-[48px] md:h-[56px]" />
-        <img src="./static/images/playstore.png" class="h-[48px] md:h-[56px]" />
+        <img src="{% static 'images/app.png' %}" class="h-[48px] md:h-[56px]" />
+        <img src="{% static 'images/playstore.png' %}" class="h-[48px] md:h-[56px]" />
       </div>
     </div>
 
   </div>
 </section>
+
 
 
 

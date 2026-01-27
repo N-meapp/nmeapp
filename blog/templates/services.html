@@ -888,7 +888,6 @@ Quick access to medical help, emergency support, and skilled freelancers.    </p
 
 
 
-
 <section class="w-full flex justify-center md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
@@ -920,19 +919,9 @@ Quick access to medical help, emergency support, and skilled freelancers.    </p
                z-10">
 
           <!-- Video -->
-          <video 
-  autoplay 
-  muted 
-  loop 
-  playsinline
-  controls
-  preload="auto"
-  poster="{% static 'images/video-poster.jpg' %}"
-  class="w-full h-full object-cover object-top bg-black"
->
-  <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
-</video>
-
+          <video autoplay muted loop playsinline class="w-full h-full object-cover object-top">
+            <source src="{% static 'video/nmevd.mp4' %}" type="video/mp4" />
+          </video>
 
           <div class="absolute bottom-0 left-0 w-full h-[30px] pointer-events-none z-20"
      style="background: radial-gradient(
@@ -948,7 +937,7 @@ Quick access to medical help, emergency support, and skilled freelancers.    </p
         </div>
 
         <!-- PHONE FRAME -->
-        <img src="./static/images/phoneframe.png" alt="Phone Frame"
+        <img src="{% static 'images/phoneframe.png' %}" alt="Phone Frame"
           class="absolute inset-0 w-full h-full object-contain z-30 pointer-events-none" />
       </div>
 </div>
@@ -974,8 +963,8 @@ Quick access to medical help, emergency support, and skilled freelancers.    </p
       </p>
 
       <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6">
-        <img src="./static/images/app.png" class="h-[48px] md:h-[56px]" />
-        <img src="./static/images/playstore.png" class="h-[48px] md:h-[56px]" />
+        <img src="{% static 'images/app.png' %}" class="h-[48px] md:h-[56px]" />
+        <img src="{% static 'images/playstore.png' %}" class="h-[48px] md:h-[56px]" />
       </div>
     </div>
 
@@ -995,162 +984,6 @@ Quick access to medical help, emergency support, and skilled freelancers.    </p
 
 
 
-
-
-
-
-
-  <!-- NEWSLETTER + FOOTER WRAPPER -->
-  <section class="w-full max-w-[1400px] px-4  mx-auto mt-24">
-    <!-- OUTER CARD -->
-    <div class="w-full bg-gradient-to-br from-[#FFFFFF] to-[#D2DAFF]
-             rounded-[40px]
-             flex flex-col
-             overflow-hidden border-white border-[5px]">
-
-      <!-- NEWSLETTER (TOP) -->
-      <div class="py-20 px-6 text-center rounded-t-[40px]">
-        <h2 class="text-[30px] md:text-[36px] font-semibold text-black">
-          Join Our Newsletter
-        </h2>
-
-        <p class="mt-4 text-[16px] text-black font-medium max-w-xl mx-auto">
-          Subscribe to our newsletter so we can update you with services and offers.
-        </p>
-
-        <!-- INPUT + BUTTON -->
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div class="flex items-center bg-white rounded-full px-6 py-3
-                    w-full sm:w-[360px]
-                    shadow-[0_4px_8px_rgba(0,0,0,0.08)]">
-            <!-- ICON -->
-            <img src="./static/images/msg.png" class="w-[24px] h-[24px]">
-
-            <input type="email" placeholder="Enter your email"
-              class="w-full outline-none text-[14px] pl-4 font-manrope text-[#BBBBBB] placeholder-gray-400" />
-          </div>
-
-          <button class="px-10 py-3 rounded-full
-                       bg-gradient-to-r from-[#5b6cff] to-[#3b4bff]
-                       text-white font-semibold text-[16px]
-                       shadow-[0_6px_12px_rgba(59,75,255,0.35)]
-                       hover:opacity-90 transition">
-            Subscribe
-          </button>
-        </div>
-      </div>
-
-      <!-- FOOTER (BOTTOM) -->
-      <footer class="bg-black text-white px-4 sm:px-10 py-16 mt-auto rounded-[40px]">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-[40px] text-center sm:text-left">
-
-          <!-- BRAND -->
-          <div class="mx-auto sm:mx-0 max-w-[315px]">
-            <div
-              class="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-5">
-              <div class="w-[77px] h-[56px] ">
-                <img src="./static/images/footer_logo.png">
-              </div>
-              <h3 class="text-[30px] font-bold">N - ME APP</h3>
-            </div>
-
-            <h1 class="text-[16px] text-white font-medium max-w-[315px] mx-auto sm:mx-0">
-              All your needs are simplified, secure and just a tap away in one app
-            </h1>
-
-            <div class="flex justify-center sm:justify-start gap-4 mt-6 text-gray-400 text-lg">
-              <span class="w-[20px] h-[20px]"><img src="./static/images/instagram.png"></span>
-              <span class="w-[20px] h-[20px]"><img src="./static/images/facebook.png"></span>
-              <span class="w-[20px] h-[20px]"><img src="./static/images/twitter.png"></span>
-              <span class="w-[24px] h-[24px]"><img src="./static/images/youtube.png"></span>
-            </div>
-          </div>
-
-          <!-- MOBILE ROW WRAPPER -->
-          <div class="grid grid-cols-2 gap-6 sm:contents">
-
-            <!-- QUICK LINKS -->
-            <div class="mx-auto sm:mx-0">
-              <h2 class="font-semibold text-[20px] sm:text-[24px] mb-5">
-                Quick Links
-              </h2>
-              <ul class="space-y-3 text-[14px] sm:text-[16px] font-medium font-manrope">
-                <li>
-                  <a href="index.html" class="hover:text-[#3C5FFF] transition-colors duration-200">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="about.html" class="hover:text-[#3C5FFF] transition-colors duration-200">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="blog.html" class="hover:text-[#3C5FFF] transition-colors duration-200">
-                    Blogs
-                  </a>
-                </li>
-                <li>
-                  <a href="faq.html" class="hover:text-[#3C5FFF] transition-colors duration-200">
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a href="services.html" class="hover:text-[#3C5FFF] transition-colors duration-200">
-                    Service
-                  </a>
-                </li>
-                <li>
-                  <a href="contact.html" class="hover:text-[#3C5FFF] transition-colors duration-200">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-
-            </div>
-
-            <!-- SERVICES -->
-            <div class="mx-auto sm:mx-0">
-              <h2 class="font-semibold text-[20px] sm:text-[24px] mb-5">
-                Backend Offerings
-              </h2>
-              <ul class="space-y-3 text-[14px] sm:text-[16px] font-medium font-manrope">
-                <li>Web Development</li>
-                <li>App Development</li>
-                <li>Digital Marketing</li>
-                <li>Graphic Designing</li>
-                <li>Branding</li>
-              </ul>
-            </div>
-
-          </div>
-
-          <!-- CONTACT -->
-          <div class="mx-auto sm:mx-0">
-            <h2 class="font-semibold text-[24px] mb-5">Get in Touch</h2>
-            <ul class="space-y-3 text-[16px] font-medium font-manrope">
-              <li>Email: info@nmeapp.in</li>
-              <li>Email: cybexeltechnologies@gmail.com</li>
-              <li>Phone: +91 9072919991</li>
-              <li>Phone: +91 9745109190</li>
-              <li>
-                Location: Kochi, Thiruvananthapuram, Coimbatore,
-                Chennai, Bengaluru, Dubai
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- DIVIDER -->
-        <div class="mt-12 pt-6 text-center text-[16px] text-white font-manrope">
-          <div class="mx-auto w-full sm:w-[95%] border-t-[2px] border-white mb-6"></div>
-          © 2025 N-me App. All rights reserved.
-        </div>
-
-      </footer>
-
-    </div>
-  </section>
 
 
 

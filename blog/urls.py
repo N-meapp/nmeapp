@@ -1,6 +1,6 @@
 from django.urls import path
 from django.urls import re_path
-from . import views
+from . import views 
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import StaticViewSitemap
 
@@ -12,6 +12,7 @@ sitemaps = {
 urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('', views.home, name='home'),
+    path("message/", views.message, name="message"),  
     path('*', views.home, name='home'),
     path('base', views.base, name='base'),
     path('about', views.about, name='about'),
@@ -21,6 +22,8 @@ urlpatterns = [
     path("contact-submit/", views.contact_submit, name="contact_submit"),
     path('dashboard/', views.admin_panel, name='dashboard'),
 path("enquiry/delete/<int:id>/", views.delete_enquiry, name="delete_enquiry"),
+    path('delete_message/<int:id>/', views.delete_message, name='delete_message'),
+
 path("team/add/", views.add_team_member, name="add_team_member"),
     path("team/update/<int:id>/", views.update_team_member, name="update_team_member"),
     path("team/delete/<int:id>/", views.delete_team_member, name="delete_team_member"),
@@ -34,7 +37,7 @@ path("team/add/", views.add_team_member, name="add_team_member"),
     path('blog_post', views.blog_post, name='blog_post'),
     path('update_blog', views.update_blog, name='update_blog'),
     path('delete_blog/<int:id>', views.delete_blog, name='delete_blog'),
-    path('delete_message/<int:id>', views.delete_message, name='delete_message'),
+    path('delete_contact/<int:id>', views.delete_contact, name='delete_contact'),
     # path('sitemap', views.sitemap, name='sitemap'),
     path('login', views.login, name='login'),
     path('logout/', views.logout, name='logout'), 

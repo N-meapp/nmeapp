@@ -9,4 +9,5 @@ admin.site.register(Contact)
 admin.site.register(Login)
 admin.site.register(TeamMember)
 admin.site.register(Testimonial)
+admin.site.register(Enquiry)
 

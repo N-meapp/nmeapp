@@ -87,11 +87,13 @@
       </button>
 
       <!-- CHAT ICON (DESKTOP ONLY) -->
-      <div class="hidden md:flex h-12 w-12 rounded-full
-        bg-gradient-to-br from-blue-500 to-blue-700
-        shadow-md items-center justify-center">
-        <img src="{% static 'images/icon1.png' %}" class="w-6" />
-      </div>
+     <a href="{% url 'message' %}">
+    <div class="hidden md:flex h-12 w-12 rounded-full
+      bg-gradient-to-br from-blue-500 to-blue-700
+      shadow-md items-center justify-center">
+      <img src="{% static 'images/icon1.png' %}" class="w-6" />
+    </div>
+  </a>
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="absolute top-[70px] left-1/2 -translate-x-1/2
            w-[335px] h-[294px]
@@ -114,99 +116,98 @@
     </div>
   </nav>
 
-      <!-- HERO TEXT -->
-      <div class="flex flex-col items-center justify-center text-center mt-32  mx-auto">
-        <h2 id="animatedHero"
-      class="text-[26.83px] md:text-[48px] font-semibold text-[#1A1A1A]">
-    You <span class="text-blue-600">Today?</span> <br>
-    How Can We Help
+<!-- HERO TEXT -->
+<div class="flex flex-col items-center justify-center text-center mt-32 mx-auto">
+  
+  <h2 id="animatedHero"
+      class="text-[26.83px] md:text-[48px] font-semibold text-[#1A1A1A] leading-tight">
+    How Can We Help<br>
+    You <span class="text-blue-600">Today?</span> 
   </h2>
 
   <p id="animatedHeroPara"
-    class="mt-4 text-[16px] font-medium text-[#1A1A1A] opacity-0 transition-opacity duration-700">
-    Choose your role to get personalized answers and <br>
+     class="mt-4 text-[16px] font-medium text-[#1A1A1A] opacity-0 transition-opacity duration-700">
+    Choose your role to get personalized answers and<br>
     support tailored to your needs
   </p>
-  <style>
-    .letter {
-    display: inline-block;
-    opacity: 0;
-    transform: translateX(-6px);
-    animation: letterShow 0.25s ease forwards;
+
+</div>
+<style>
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: letterShow 0.3s ease forwards;
+}
+
+@keyframes letterShow {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+</style>
+<script>
+function animateText(containerId, paragraphId, speed = 55) {
+  const heading = document.getElementById(containerId);
+  const paragraph = document.getElementById(paragraphId);
+  if (!heading) return;
 
-  @keyframes letterShow {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+  const originalNodes = Array.from(heading.childNodes);
+  heading.innerHTML = "";
 
-  </style>
-  <script>
-  function animateText(containerId, paragraphId, speed = 60) {
-    const heading = document.getElementById(containerId);
-    const paragraph = document.getElementById(paragraphId);
-    if (!heading) return;
+  let delay = 0;
 
-    const originalHTML = heading.innerHTML;
-    const temp = document.createElement("div");
-    temp.innerHTML = originalHTML;
-    heading.innerHTML = "";
+  originalNodes.forEach(node => {
 
-    let delay = 0;
-
-    temp.childNodes.forEach(node => {
-
-      // Handle line break
-      if (node.nodeName === "BR") {
-        heading.appendChild(document.createElement("br"));
-        return;
-      }
-
-      // Normal text
-      if (node.nodeType === Node.TEXT_NODE) {
-        [...node.textContent].forEach(char => {
-          createLetter(char);
-        });
-      }
-
-      // Span text (keeps color)
-      else {
-        const text = node.innerText;
-        const className = node.className;
-
-        [...text].forEach(char => {
-          createLetter(char, className);
-        });
-      }
-    });
-
-    function createLetter(char, extraClass = "") {
-      const span = document.createElement("span");
-      span.className = `letter ${extraClass}`;
-      span.innerHTML = char === " " ? "&nbsp;" : char;
-      span.style.animationDelay = `${delay}ms`;
-      heading.appendChild(span);
-      delay += speed;
+    // Handle line break
+    if (node.nodeName === "BR") {
+      heading.appendChild(document.createElement("br"));
+      return;
     }
 
-    // Show paragraph after animation completes
-    if (paragraph) {
-      setTimeout(() => {
-        paragraph.classList.remove("opacity-0");
-      }, delay + 300);
+    // Handle normal text nodes (KEEP SPACES)
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;   // <-- don't trim or replace spaces
+      [...text].forEach(char => createLetter(char));
+      return;
     }
-  }
 
-  // Run animations
-  document.addEventListener("DOMContentLoaded", () => {
-    animateText("animatedHeading", "animatedParagraph", 55); // Blog section
-    animateText("animatedHero", "animatedHeroPara", 55);     // Hero section
+    // Handle span nodes (colored text)
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const text = node.textContent;
+      const className = node.className;
+
+      [...text].forEach(char => createLetter(char, className));
+    }
   });
-  </script>
 
-      </div>
+  function createLetter(char, extraClass = "") {
+    const span = document.createElement("span");
+    span.className = `letter ${extraClass}`;
+    
+    // Preserve spaces visually
+    span.innerHTML = char === " " ? "&nbsp;" : char;
+
+    span.style.animationDelay = `${delay}ms`;
+    heading.appendChild(span);
+    delay += speed;
+  }
+
+  // Reveal paragraph
+  if (paragraph) {
+    setTimeout(() => {
+      paragraph.classList.remove("opacity-0");
+    }, delay + 200);
+  }
+}
+
+// Run animation
+document.addEventListener("DOMContentLoaded", () => {
+  animateText("animatedHero", "animatedHeroPara", 55);
+});
+</script>
+
 
     </div>
   </div>
@@ -501,22 +502,22 @@ document.getElementById("faqList").addEventListener("click", e => {
   }
 });
 
-/* ================= ROLE TOGGLE ================= */
 document.querySelectorAll(".tab-toggle").forEach(btn => {
   btn.addEventListener("click", () => {
-    activeRole = btn.dataset.role;
-    activeCategory = "N ME App";
+    document.querySelectorAll(".tab-toggle").forEach(b => {
+      b.classList.remove("active");
+      b.classList.remove("text-white");
+      b.classList.add("text-[#1A1A1A]");
+      b.style.background = "transparent";
+    });
 
-    document.querySelectorAll(".tab-toggle").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-
-    document.querySelectorAll(".category-tab")
-      .forEach(t => t.classList.remove("text-[#3C79FF]"));
-    document.querySelector(".category-tab").classList.add("text-[#3C79FF]");
-
-    renderFAQs();
+    btn.classList.remove("text-[#1A1A1A]");
+    btn.classList.add("text-white");
+    btn.style.background = "linear-gradient(to bottom, #3C5FFF, #C4CFFF)";
   });
 });
+
 
 /* ================= CATEGORY ================= */
 document.querySelectorAll(".category-tab").forEach(tab => {
@@ -570,7 +571,7 @@ renderFAQs();
              w-full sm:w-auto">
 
       <!-- Button 1 -->
-      <a href="#"
+      <a href="{% url 'contact' %}"
          class="relative overflow-hidden inline-flex items-center gap-3
                 px-6 sm:px-8 py-3 sm:py-4
                 rounded-full
@@ -599,7 +600,7 @@ renderFAQs();
       </a>
 
       <!-- Button 2 -->
-      <a href="#"
+      <a href="{% url 'message' %}"
          class="relative overflow-hidden inline-flex items-center gap-3
                 px-6 sm:px-8 py-3 sm:py-4
                 rounded-full
@@ -634,8 +635,7 @@ renderFAQs();
 
 
 
-
-<section class="w-full flex justify-center md:py-28 px-4">
+<section class="w-full flex justify-center max-md:pb-6 max-md:mt-2 md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
          w-full max-w-[1320px]

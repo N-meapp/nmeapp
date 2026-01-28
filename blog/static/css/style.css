@@ -413,4 +413,19 @@ h1,input,p {
 }
   
 
-  
+.tab-toggle {
+  transition: 
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.25s ease,
+    box-shadow 0.35s ease;
+}
+
+.tab-toggle:not(.active) {
+  background: transparent;
+}
+
+.tab-toggle.active {
+  box-shadow: 0 6px 14px rgba(60,79,255,0.35);
+  transform: scale(1.03);
+}

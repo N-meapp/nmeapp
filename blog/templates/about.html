@@ -5,7 +5,7 @@
 
 <!-- ================= TOP VIDEO HERO ================= -->
 <div
-  class="hero-border relative max-w-[363px] md:max-w-[1400px] mx-auto mt-4
+  class="hero-border relative max-md:w-[355px] md:max-w-[1400px] mx-auto mt-4
        min-h-[720px] md:h-[720px]
        overflow-hidden rounded-[40px]"
 >
@@ -89,11 +89,13 @@
     </button>
 
     <!-- CHAT ICON (DESKTOP ONLY) -->
+         <a href="{% url 'message' %}">
     <div class="hidden md:flex h-12 w-12 rounded-full
       bg-gradient-to-br from-blue-500 to-blue-700
       shadow-md items-center justify-center">
       <img src="{% static 'images/icon1.png' %}" class="w-6" />
     </div>
+  </a>
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="absolute top-[70px] left-1/2 -translate-x-1/2
            w-[335px] h-[294px]
@@ -118,12 +120,12 @@
 
 
     <!-- HERO TEXT -->
-    <div class="flex flex-col items-center justify-center text-center mt-32 mx-auto overflow-hidden">
+    <div class="flex flex-col items-center justify-center text-center mt-32 mx-auto overflow-hidden max-md:mr-[-5rem]">
 
-      <h2 class="text-[26.83px] md:text-[48px] font-semibold text-[#1A1A1A] leading-tight">
+      <h2 class="text-[26.83px] md:text-[48px] font-semibold text-[#1A1A1A] leading-tight max-md:mr-[42px]">
 
         <!-- Line 1 -->
-        <div id="line1" class="overflow-hidden"></div>
+        <div id="line1" class="overflow-hidden max-md:mr-[3rem]"></div>
 
       <!-- Line 2 -->
   <!-- Line 2 -->
@@ -152,7 +154,7 @@
 
       </h2>
 
-      <p id="heroPara" class="mt-4 text-[16px] font-medium text-[#1A1A1A] opacity-0 translate-y-6">
+      <p id="heroPara" class="mt-4 text-[16px] font-medium text-[#1A1A1A] opacity-0 translate-y-6 max-md:w-[283px] max-md:mr-[6rem]">
         Everything you need organised, secure and easy to access in one app.
       </p>
 
@@ -534,7 +536,7 @@ Think of it as a modern, digital directory or marketplace that connects people a
 
 
 <!-- ================= EXPERIENCE N-ME APP ================= -->
-<section class="max-w-[1400px] mx-auto max-md:pt-0 px-6 py-10">
+<section class="max-w-[1400px] mx-auto max-md:pt-[2rem] px-6 py-10 max-md:pb-[3rem]">
 
   <!-- TITLE -->
   <div class="text-center mb-8 md:mb-16">
@@ -875,7 +877,7 @@ h-[421px] sm:h-[421px] h-auto
 
 
 
-<div class="cards-wrapper max-w-[1318px] w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-[20px] px-4">
+<div class="cards-wrapper max-w-[1318px] w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-[24px] px-4">
 <!-- Card 1 -->
 <div class="service-card bg-gradient-to-b from-[#DDE8FF]/10 to-[#A4C2FF]
             rounded-[28px] md:rounded-[40px] 
@@ -1207,7 +1209,7 @@ h-[421px] sm:h-[421px] h-auto
 
 
 
-<section class="max-w-[1318px] mx-auto md:py-20 px-4 max-md:mt-10">
+<section class="max-w-[1318px] max-md:pb-[3rem] mx-auto md:py-20 px-4 max-md:mt-10">
   <div class="grid grid-cols-1 lg:grid-cols-[782px_512px] gap-[24px]">
 
     <!-- LEFT CARD -->
@@ -1271,7 +1273,7 @@ h-[421px] sm:h-[421px] h-auto
     <div
       class="h-auto lg:h-[421px] relative rounded-[40px] border-[5px] border-white
              bg-gradient-to-b from-[#DDE8FF]/10 to-[#A4C2FF]
-              p-6 sm:p-8 lg:p-10 overflow-hidden shadow-[0px_4px_5px_rgba(0,0,0,0.25)]">
+              p-6 sm:p-8 lg:p-10 overflow-hidden shadow-[0px_4px_5px_rgba(0,0,0,0.25)] max-md:pb-6">
 
       <h2 class="text-[14px] md:text-[24px] font-semibold text-black mb-2">
         Easy Ad Publishing
@@ -1342,7 +1344,8 @@ h-[421px] sm:h-[421px] h-auto
 
 
 
-<section class="w-full flex justify-center md:py-28 px-4">
+
+<section class="w-full flex justify-center max-md:pb-6 max-md:mt-2 md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
          w-full max-w-[1320px]
@@ -1424,8 +1427,6 @@ h-[421px] sm:h-[421px] h-auto
 
   </div>
 </section>
-
-
 
 
 

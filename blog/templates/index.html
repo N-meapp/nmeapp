@@ -85,11 +85,13 @@
     </button>
 
     <!-- CHAT ICON (DESKTOP ONLY) -->
+     <a href="{% url 'message' %}">
     <div class="hidden md:flex h-12 w-12 rounded-full
       bg-gradient-to-br from-blue-500 to-blue-700
       shadow-md items-center justify-center">
       <img src="{% static 'images/icon1.png' %}" class="w-6" />
     </div>
+  </a>
 
   </div>
 </nav>
@@ -130,24 +132,24 @@
            text-center lg:text-left">
 
             <!-- USERS ROW -->
-            <div class="max-md:w-[252.47px] flex items-center justify-center lg:justify-start gap-3">
+            <div class="max-md:w-[252.47px] flex items-center justify-center lg:justify-start gap-0">
               <img src="{% static 'images/heroclients.png' %}" class="w-[75px] h-[26px] object-contain rounded-full">
 
-              <div class="flex items-center text-[14px] font-medium text-[#1A1A1A]">
+              <div class="flex items-center text-[14px] text-[#1A1A1A]">
                 <span class="digit" data-target="7"></span><span class="comma">,</span>
                 <span class="digit" data-target="2"></span>
                 <span class="digit" data-target="0"></span>
                 <span class="digit" data-target="0"></span>
-                <span class="ml-2">+ Trusted Users</span>
+                <span class="ml-2 font-manrope text-[14px] font-medium">+ Trusted Users</span>
               </div>
             </div>
 
             <!-- HERO TITLE -->
-            <div class="space-y-2">
+            <div class="">
               <h2 id="line1" class="text-black
                text-[32px]
                md:text-[48px]
-               font-semibold
+               font-medium
                flex justify-center lg:justify-start
                gap-2
                overflow-hidden">
@@ -156,13 +158,13 @@
               <!-- DESKTOP SCROLL TEXT -->
               <div id="scrollContainer" class="hidden md:block
          relative
-         min-h-[70px]
+         h-[70px]
          overflow-hidden">
 
                 <div id="scrollContent" class="absolute
            left-0 top-0
            flex flex-col
-           text-[48px]
+           text-[48px] font-manrope
            font-semibold
            text-[#3C79FF]
            text-left">
@@ -194,14 +196,27 @@
 
             <!-- BUTTONS (DESKTOP ONLY – already correct) -->
             <div class="hidden md:flex items-center gap-4">
-              <button class="bg-white shadow px-10 py-3 rounded-full text-black font-semibold">
-                Download
-              </button>
 
-              <button class="w-[48px] h-[48px] rounded-full bg-black text-white flex items-center justify-center">
-                <img src="{% static 'images/icon2.png' %}" class="w-[12px] h-[12px]" />
-              </button>
-            </div>
+  <!-- DOWNLOAD BUTTON -->
+  <a href="https://play.google.com/store/apps/details?id=com.smart.nme"
+     target="_blank"
+     class="block">
+    <button class="bg-white shadow px-10 py-3 rounded-full text-black font-semibold">
+      Download
+    </button>
+  </a>
+
+  <!-- ICON BUTTON -->
+  <a href="https://play.google.com/store/apps/details?id=com.smart.nme"
+     target="_blank"
+     class="block">
+    <button class="w-[48px] h-[48px] rounded-full bg-black text-white flex items-center justify-center">
+      <img src="{% static 'images/icon2.png' %}" class="w-[12px] h-[12px]" />
+    </button>
+  </a>
+
+</div>
+
           </div>
 
           <!-- RIGHT QR (DESKTOP ONLY) -->
@@ -209,7 +224,43 @@
             <p class="text-gray-700 text-lg font-medium mb-4">
               Scan QR code to download app
             </p>
-            <img src="{% static 'images/qr.png' %}" class="w-[250px] rounded-[30px]" />
+             <!-- CARD -->
+<div class="w-[280px] h-[336px] rounded-[40px] bg-gradient-to-b from-[#ffffff]/25 to-[#ffffff]/25 
+            shadow-xl flex flex-col items-center p-5 border border-[1px]">
+
+
+    <img
+      id="qrImage"
+      src="{% static 'images/playstore_qr.png' %}"
+      class="w-full h-full object-contain rounded-[20px] transition-all duration-300"
+      alt="QR Code"
+    />
+
+ 
+
+  <!-- STORE BUTTONS -->
+  <div class="flex gap-8 mt-3">
+
+    <!-- APPLE -->
+    <button onclick="setQR('apple')" 
+      class="w-[49px] h-[49px] bg-white rounded-full shadow-md 
+             flex items-center justify-center cursor-pointer 
+             hover:scale-105 transition active:scale-95">
+      <img src="{% static 'images/apple.png' %}" class="w-[34px] h-[34px]" />
+    </button>
+
+    <!-- PLAY STORE -->
+    <button onclick="setQR('play')" 
+      class="w-[49px] h-[49px] bg-white rounded-full shadow-md 
+             flex items-center justify-center cursor-pointer 
+             hover:scale-105 transition active:scale-95">
+      <img src="{% static 'images/plstore.png' %}" class="w-[34px] h-[34px]" />
+    </button>
+
+  </div>
+</div>
+
+
           </div>
 
         </div>
@@ -309,38 +360,38 @@
           <div class="pill-container marquee-track">
             <!-- PILL 1 -->
             <div class="pill-neu flex items-center max-md:py-[14.99px] justify-center gap-[10px]">
-              <img src="{% static 'images/dm.png' %}" class="w-[30px] h-[30px]" />
-              <p class="text-[20px] font-medium max-md:text-[16px]">Digital Marketing</p>
+              <img src="{% static 'images/fast.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Fast</p>
             </div>
 
             <!-- PILL 2 -->
             <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
-              <img src="{% static 'images/gd.png' %}" class="w-[30px] h-[30px]" />
-              <p class="text-[20px] font-medium max-md:text-[16px]">Graphic Designing</p>
+              <img src="{% static 'images/secure.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Secure</p>
             </div>
 
             <!-- PILL 3 -->
             <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
-              <img src="{% static 'images/wd.png' %}" class="w-[30px] h-[30px]" />
-              <p class="text-[20px] font-medium max-md:text-[16px]">Web Development</p>
+              <img src="{% static 'images/user_friendly.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">User-Friendly</p>
             </div>
 
             <!-- PILL 4 -->
             <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
-              <img src="{% static 'images/seo.png' %}" class="w-[30px] h-[30px]" />
-              <p class="text-[20px] font-medium max-md:text-[16px]">SEO</p>
+              <img src="{% static 'images/real.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Real-Time Access</p>
             </div>
 
             <!-- PILL 5 -->
             <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
-              <img src="{% static 'images/ud.png' %}" class="w-[30px] h-[30px]" />
-              <p class="text-[20px] font-medium max-md:text-[16px]">UI/UX Designing</p>
+              <img src="{% static 'images/verified.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Verified data</p>
             </div>
 
             <!-- PILL 6 -->
             <div class="pill-neu flex items-center max-md:py-[14.99px]  justify-center gap-[10px]">
-              <img src="{% static 'images/ad.png' %}" class="w-[30px] h-[30px]" />
-              <p class="text-[20px] font-medium max-md:text-[16px]">App Development</p>
+              <img src="{% static 'images/easy.png' %}" class="w-[30px] h-[30px]" />
+              <p class="text-[20px] font-medium max-md:text-[16px]">Easy Navigation</p>
             </div>
           </div>
         </div>
@@ -972,7 +1023,10 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
         <!-- LEFT TEXT -->
-<div class="flex flex-col items-center text-center md:items-start md:text-left">
+<div class="flex flex-col items-center text-center 
+            mx-auto w-[293px] md:w-full 
+            md:items-start md:text-left">
+
   <h2 class="text-[20px] md:text-[36px] font-semibold text-[#1A1A1A] leading-tight">
     Smarter Features for <br /> Smarter Users
   </h2>
@@ -980,7 +1034,9 @@
   <p class="text-[#1A1A1A] text-[14px] md:text-[16px] font-medium mt-4 max-w-md">
     Enjoy unique benefits designed to save time and make your daily needs easier than ever.
   </p>
+
 </div>
+
 
 
         <!-- RIGHT CARDS ROW -->
@@ -1433,38 +1489,91 @@ updateScale();
 
 
 
+<!-- STATS SECTION -->
+<section id="countersSection" class="w-full px-6 max-md:pb-10 md:mt-20">
+  <div class="max-w-[1400px] mx-auto bg-white rounded-[32px] md:shadow-[0_4px_5px_rgba(0,0,0,0.25)] py-12 px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[160px] text-center">
 
-  <!-- STATS SECTION -->
-  <section class="w-full px-6 max-md:py-16 md:mt-20">
-    <div class="max-w-[1400px] mx-auto bg-white rounded-[32px]
-           md:shadow-[0_4px_5px_rgba(0,0,0,0.25)]
-           py-12 px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-[160px] text-center">
-
-        <div class="space-y-3">
-          <h3 class="text-[64px] font-semibold text-[#1A1A1A]">7,500+</h3>
-          <p class="text-[16px] font-medium text-[#1A1A1A]">
-            Trusted by thousands of active users.
-          </p>
-        </div>
-
-        <div class="space-y-3">
-          <h3 class="text-[64px] font-semibold text-[#1A1A1A]">1,200+</h3>
-          <p class="text-[16px] font-medium text-[#1A1A1A]">
-            Shops and brands growing with N-Me.
-          </p>
-        </div>
-
-        <div class="space-y-3">
-          <h3 class="text-[64px] font-semibold text-[#1A1A1A]">900+</h3>
-          <p class="text-[16px] font-medium text-[#1A1A1A]">
-            Verified professionals offering quality services.
-          </p>
-        </div>
-
+      <div class="space-y-3">
+        <h3 class="text-[64px] font-semibold text-black">
+          <span class="counter" data-target="7500">0</span>+
+        </h3>
+        <p class="text-[16px] font-medium text-black">
+          Trusted by thousands of active users.
+        </p>
       </div>
+
+      <div class="space-y-3">
+        <h3 class="text-[64px] font-semibold text-black">
+          <span class="counter" data-target="6500">0</span>+
+        </h3>
+        <p class="text-[16px] font-medium text-black">
+          Shops and brands growing with N-Me.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="text-[64px] font-semibold text-black">
+          <span class="counter" data-target="900">0</span>+
+        </h3>
+        <p class="text-[16px] font-medium text-black">
+          Verified professionals offering quality services.
+        </p>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
+<script>
+function animateCounters() {
+  const counters = document.querySelectorAll('.counter');
+
+  counters.forEach(counter => {
+    const target = +counter.getAttribute('data-target'); // numeric value
+    const duration = 2000; // total animation time in ms
+    const startTime = performance.now();
+
+    // Ease-out function for smooth finish
+    function easeOutQuad(t) {
+      return t * (2 - t);
+    }
+
+    function updateCounter(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutQuad(progress);
+
+      const count = Math.ceil(target * easedProgress);
+      counter.innerText = count.toLocaleString(); // format with commas
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.innerText = target.toLocaleString(); // ensure exact final number
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
+  });
+}
+
+// Trigger animation when section is in viewport
+const section = document.getElementById('countersSection');
+let counted = false;
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !counted) {
+      animateCounters();
+      counted = true;
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+observer.observe(section);
+</script>
 
 
 
@@ -1473,7 +1582,9 @@ updateScale();
 
 
 
-<section class="w-full flex justify-center md:py-28 px-4">
+
+
+<section class="w-full flex justify-center max-md:pb-6 max-md:mt-2 md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
          w-full max-w-[1320px]

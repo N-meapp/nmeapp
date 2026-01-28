@@ -400,3 +400,13 @@ ScrollTrigger.matchMedia({
   
 
 
+
+function setQR(type) {
+  const qrImage = document.getElementById("qrImage");
+
+  if (type === "apple") {
+    qrImage.src = "/static/images/apple_qr.png";
+  } else {
+    qrImage.src = "/static/images/playstore_qr.png";
+  }
+}

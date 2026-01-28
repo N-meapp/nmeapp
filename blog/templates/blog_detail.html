@@ -12,21 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
-  <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          poppins: ['Poppins', 'sans-serif'],
-           manrope: ['Manrope', 'sans-serif'],
-          roboto: ['Roboto', 'sans-serif'],
-          inter: ['Inter', 'sans-serif'],
 
-        }
-      }
-    }
-  }
-</script>
 </head>
 <body class="min-h-screen overflow-x-hidden" style="background-image: linear-gradient(135deg, rgba(49, 49, 49,0.07) 0%, rgba(49, 49, 49,0.07) 12.5%,rgba(76, 76, 76,0.07) 12.5%, rgba(76, 76, 76,0.07) 25%,rgba(102, 102, 102,0.07) 25%, rgba(102, 102, 102,0.07) 37.5%,rgba(129, 129, 129,0.07) 37.5%, rgba(129, 129, 129,0.07) 50%,rgba(155, 155, 155,0.07) 50%, rgba(155, 155, 155,0.07) 62.5%,rgba(182, 182, 182,0.07) 62.5%, rgba(182, 182, 182,0.07) 75%,rgba(208, 208, 208,0.07) 75%, rgba(208, 208, 208,0.07) 87.5%,rgba(235, 235, 235,0.07) 87.5%, rgba(235, 235, 235,0.07) 100%),linear-gradient(45deg, rgba(5, 5, 5,0.07) 0%, rgba(5, 5, 5,0.07) 12.5%,rgba(39, 39, 39,0.07) 12.5%, rgba(39, 39, 39,0.07) 25%,rgba(73, 73, 73,0.07) 25%, rgba(73, 73, 73,0.07) 37.5%,rgba(107, 107, 107,0.07) 37.5%, rgba(107, 107, 107,0.07) 50%,rgba(141, 141, 141,0.07) 50%, rgba(141, 141, 141,0.07) 62.5%,rgba(175, 175, 175,0.07) 62.5%, rgba(175, 175, 175,0.07) 75%,rgba(209, 209, 209,0.07) 75%, rgba(209, 209, 209,0.07) 87.5%,rgba(243, 243, 243,0.07) 87.5%, rgba(243, 243, 243,0.07) 100%),linear-gradient(90deg, #ffffff,#ffffff);">
   <div class=" p-2 md:p-4 lg:p-6">
@@ -200,11 +186,26 @@
             </h1>
 
             <div class="flex justify-center sm:justify-start gap-4 mt-6 text-gray-400 text-lg">
-              <span class="w-[20px] h-[20px]"><img src="./static/images/instagram.png"></span>
-              <span class="w-[20px] h-[20px]"><img src="./static/images/facebook.png"></span>
-              <span class="w-[20px] h-[20px]"><img src="./static/images/twitter.png"></span>
-              <span class="w-[24px] h-[24px]"><img src="./static/images/youtube.png"></span>
-            </div>
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/nme_app/?hl=en" target="_blank" rel="noopener noreferrer" class="w-[20px] h-[20px]">
+    <img src="./static/images/instagram.png" alt="Instagram">
+  </a>
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/profile.php?id=100076151802998" target="_blank" rel="noopener noreferrer" class="w-[20px] h-[20px]">
+    <img src="./static/images/facebook.png" alt="Facebook">
+  </a>
+
+  <!-- Twitter -->
+  <a href="https://x.com/nmeapp" target="_blank" rel="noopener noreferrer" class="w-[20px] h-[20px]">
+    <img src="./static/images/twitter.png" alt="Twitter">
+  </a>
+
+  <!-- YouTube -->
+  <a href="https://youtube.com/@nme-app?si=F8sHQuXpcUrIpbdx" target="_blank" rel="noopener noreferrer" class="w-[24px] h-[24px]">
+    <img src="./static/images/youtube.png" alt="YouTube">
+  </a>
+</div>
           </div>
 
           <!-- MOBILE ROW WRAPPER -->
@@ -215,13 +216,14 @@
   <h2 class="font-semibold text-[16px] md:text-[24px] mb-5 ml-4">
     Quick Links
   </h2>
- <ul class="space-y-3 text-[14px] md:text-[16px] font-medium font-manrope md:text-left footer-list">
-  <li><a href="index.html" class="transition-colors duration-200">Home</a></li>
-  <li><a href="about.html" class="transition-colors duration-200">About</a></li>
-  <li><a href="blog.html" class="transition-colors duration-200">Blogs</a></li>
-  <li><a href="faq.html" class="transition-colors duration-200">FAQ</a></li>
-  <li><a href="services.html" class="transition-colors duration-200">Service</a></li>
-  <li><a href="contact.html" class="transition-colors duration-200">Contact</a></li>
+<ul class="space-y-3 text-[14px] md:text-[16px] font-medium font-manrope 
+           md:text-left footer-list whitespace-nowrap">
+  <li><a href="{% url 'home' %}" class="transition-colors duration-200">Home</a></li>
+  <li><a href="{% url 'about' %}" class="transition-colors duration-200">About</a></li>
+  <li><a href="{% url 'blogs' %}" class="transition-colors duration-200">Blogs</a></li>
+  <li><a href="{% url 'faq' %}" class="transition-colors duration-200">FAQ</a></li>
+  <li><a href="{% url 'services' %}" class="transition-colors duration-200">Service</a></li>
+  <li><a href="{% url 'contact' %}" class="transition-colors duration-200">Contact</a></li>
 </ul>
 </div>
 

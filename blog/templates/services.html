@@ -4,7 +4,7 @@
 {% block content %}
 
 <div
-  class="max-md:w-[340px] md:max-w-[1400px] mx-auto relative mt-8 p-6 rounded-3xl 
+  class="max-md:w-[324px] md:max-w-[1400px] mx-auto relative mt-8 p-6 rounded-3xl 
          ring-4 ring-white/80 overflow-hidden
          h-[434px] md:min-h-[600px] bg-move-box"
   style="background: linear-gradient(135deg, #E4EEFF,#7D99FF);"
@@ -63,11 +63,13 @@
     </button>
 
     <!-- CHAT ICON (DESKTOP ONLY) -->
+     <a href="{% url 'message' %}">
     <div class="hidden md:flex h-12 w-12 rounded-full
       bg-gradient-to-br from-blue-500 to-blue-700
       shadow-md items-center justify-center">
       <img src="{% static 'images/icon1.png' %}" class="w-6" />
     </div>
+  </a>
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="absolute top-[70px] left-1/2 -translate-x-1/2
            w-[335px] h-[294px]
@@ -520,7 +522,7 @@ Connect with gyms, trainers, and fitness centers to stay active and healthy.    
     </div>
 
     <!-- CARDS -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8  md:px-0">
 
 
 <!-- CARD -->
@@ -888,7 +890,7 @@ Quick access to medical help, emergency support, and skilled freelancers.    </p
 
 
 
-<section class="w-full flex justify-center md:py-28 px-4">
+<section class="w-full flex justify-center max-md:pb-6 max-md:mt-2 md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
          w-full max-w-[1320px]

@@ -87,11 +87,13 @@
     </button>
 
     <!-- CHAT ICON (DESKTOP ONLY) -->
+     <a href="{% url 'message' %}">
     <div class="hidden md:flex h-12 w-12 rounded-full
       bg-gradient-to-br from-blue-500 to-blue-700
       shadow-md items-center justify-center">
       <img src="{% static 'images/icon1.png' %}" class="w-6" />
     </div>
+  </a>
 <!-- MOBILE MENU -->
 <div id="mobileMenu" class="absolute top-[70px] left-1/2 -translate-x-1/2
            w-[335px] h-[294px]
@@ -277,7 +279,7 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
                 bg-gradient-to-b from-[#4f6bff] to-[#8aa2ff] text-[14px] md:text-[24px] font-semibold font-poppins text-white
                 flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
          data-city="Kochi"
-         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_KOCHI">
+data-link="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3927.256041205028!2d76.339424!3d10.011831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d5c46000001%3A0x0!2sKakkanad%2C%20Kochi%2C%20Kerala%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000">
       Kochi
     </div>
 
@@ -286,8 +288,7 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
                 md:border-[5px] border-white rounded-[22px]
                 bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
                 flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
-         data-city="Trivandrum"
-         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_TRIVANDRUM">
+         >
       Trivandrum
     </div>
 
@@ -296,8 +297,7 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
                 md:border-[5px] border-white rounded-[22px]
                 bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
                 flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
-         data-city="Coimbatore"
-         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_COIMBATORE">
+         >
       Coimbatore
     </div>
 
@@ -306,8 +306,7 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
                 md:border-[5px] border-white rounded-[22px]
                 bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
                 flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
-         data-city="Bangalore"
-         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_BANGALORE">
+         >
       Bangalore
     </div>
 
@@ -316,8 +315,7 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
                 md:border-[5px] border-white rounded-[22px]
                 bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
                 flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
-         data-city="Chennai"
-         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_CHENNAI">
+         >
       Chennai
     </div>
 
@@ -326,8 +324,7 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
                 md:border-[5px] border-white rounded-[22px]
                 bg-gradient-to-b from-white to-[#D2DAFF]/60 text-[14px] md:text-[24px] font-semibold font-poppins text-black
                 flex items-center justify-center shadow-[0_3px_3px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer"
-         data-city="Dubai"
-         data-link="https://www.google.com/maps/embed?pb=PLACEHOLDER_DUBAI">
+          >
       Dubai
     </div>
 
@@ -413,7 +410,8 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
 
 </section>
 
-<section class="w-full flex justify-center md:py-28 px-4">
+
+<section class="w-full flex justify-center max-md:pb-6 max-md:mt-2 md:py-28 px-4">
   <!-- SECTION CONTAINER -->
   <div class="flex flex-col lg:flex-row gap-10 items-center
          w-full max-w-[1320px]
@@ -495,7 +493,6 @@ Let's connect! Whether it's feedback, inquiries, or collaboration <br>ideas, we'
 
   </div>
 </section>
-
 
 
 

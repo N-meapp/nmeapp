@@ -36,3 +36,4 @@ class ContactForm(forms.ModelForm):
         if not re.match(r'^[A-Za-z0-9\s\.\-]+$', message):
             raise ValidationError("Message can only include letters, numbers, spaces, dots, and hyphens.")
         return message
+    

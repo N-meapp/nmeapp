@@ -22,6 +22,28 @@ def home(request):
     testimonials = Testimonial.objects.all()
     return render(request, "index.html", {"testimonials": testimonials})
 
+def message(request):
+    if request.method == "POST":
+        try:
+            Enquiry.objects.create(
+                full_name=request.POST.get("full_name"),
+                email=request.POST.get("email"),
+                phone=request.POST.get("phone"),
+                business_name=request.POST.get("business_name"),
+                business_category=request.POST.get("business_category"),
+                subject=request.POST.get("subject"),
+                message=request.POST.get("message"),
+            )
+            return JsonResponse({"success": True})
+
+        except Exception as e:
+            return JsonResponse({
+                "success": False,
+                "errors": {"server": str(e)}
+            }, status=400)
+
+    return render(request, "message.html")
+
 def about(request):
     # Get all team members from database
     team_members = TeamMember.objects.all()
@@ -202,9 +224,9 @@ def admin_panel(request):
 
     blog = Post.objects.all()
     contact = Contact.objects.all()
+    messages = Enquiry.objects.all().order_by("-created_at")
     team_members = TeamMember.objects.all()
     testimonials = Testimonial.objects.all().order_by('-id')
-
 
     # Get the page parameter from URL (default: dashboard)
     page = request.GET.get('page', 'dashboard')
@@ -212,12 +234,23 @@ def admin_panel(request):
     context = {
         "blog": blog,
         "contact": contact,
+        "messages": messages,
         "team_members": team_members,
-        'testimonials': testimonials,
-        "page": page,  # send to template
+        "testimonials": testimonials,
+        "page": page,
     }
 
-    return render(request, 'admin_panel.html', context)
+    # ✅ THIS LINE WAS MISSING
+    return render(request, "admin_panel.html", context)
+def delete_message(request, id):
+    if request.method == "POST":
+        msg = get_object_or_404(Enquiry, id=id)
+        msg.delete()
+        return redirect("dashboard")
+    return redirect("dashboard")  # redirect for GET requests
+
+
+    
 def add_testimonial(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -333,7 +366,7 @@ def delete_blog(request, id):
     blog.delete()
     return redirect('dashboard')
 
-def delete_message(request,id):
+def delete_contact(request,id):
     contact = Contact.objects.get(id = id)
     if contact:
         contact.delete()

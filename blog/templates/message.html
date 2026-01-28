@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Send Your Enquiry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="bg-[#F6F7FB]">
+
+<section class="max-w-7xl mx-auto px-4 py-12">
+    {% if errors %}
+<div class="mb-4 p-4 rounded-xl bg-red-100 text-red-700 text-sm">
+  {% for field, error in errors.items %}
+    <p>• {{ error }}</p>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+
+    <!-- LEFT FORM CARD -->
+    <div class="bg-gradient-to-r from-[#FFFFFF] to-[#D2DAFF]/60
+                rounded-[32px] p-8 md:p-10
+                shadow-lg border-[5px] border-white ">
+
+      <h2 class="text-[36px] font-poppins font-semibold text-[#453CFF]">
+        Send Your Enquiry
+      </h2>
+
+      <p class="font-manrope font-medium text-[#1A1A1A] text-[16px] mt-2 mb-6">
+        Have a question or need more details?<br>
+        Fill in the form below and we’ll get back to you shortly.
+      </p>
+
+<form id="enquiryForm"
+      method="POST"
+      action="{% url 'message' %}"
+      class="space-y-4 font-inter">
+ {% csrf_token %}
+        <input name="full_name" type="text" placeholder="Full Name" required
+          class="w-full rounded-full px-5 py-4 bg-white shadow text-sm outline-none">
+
+<input name="email" type="email" placeholder="Email Address" required
+          class="w-full rounded-full px-5 py-4 bg-white shadow text-sm outline-none">
+
+        <input name="phone" type="text" placeholder="Phone Number" required
+          class="w-full rounded-full px-5 py-4 bg-white shadow text-sm outline-none">
+
+        <input name="business_name" type="text" placeholder="Business Name"
+          class="w-full rounded-full px-5 py-4 bg-white shadow text-sm outline-none">
+
+        <input name="business_category" type="text" placeholder="Business Category"
+          class="w-full rounded-full px-5 py-4 bg-white shadow text-sm outline-none">
+
+        <input name="subject" type="text" placeholder="Subject" required
+          class="w-full rounded-full px-5 py-4 bg-white shadow text-sm outline-none">
+
+        <textarea name="message" rows="5" placeholder="Write your enquiry here" required
+          class="w-full rounded-[24px] px-5 py-4 bg-white shadow text-sm resize-none outline-none"></textarea>
+
+        
+          <button
+  class="w-full mt-4 py-3 rounded-full text-white font-medium
+         bg-[#3C49FF]
+         shadow-[inset_0_0_9.36px_#D9F0FF]
+         hover:opacity-90 transition">
+  Submit
+</button>
+
+
+      </form>
+    </div>
+
+    <!-- RIGHT IMAGE CARD -->
+    <div class="relative rounded-[32px] overflow-hidden shadow-xl">
+
+      <img src="{% static 'images/message.jpg' %}"
+           class="w-[650px] h-[678px] object-cover" />
+
+      <!-- Overlay Card -->
+      <div class="absolute bottom-6 left-6 right-6
+                  bg-[#FFFFFF]/40 backdrop-blur-[50px]
+                  text-white rounded-2xl p-6">
+
+        <h3 class="text-[30px] font-poppins font-semibold">
+          Let’s Grow Your Business with N Me
+        </h3>
+
+        <p class="text-[14px] font-medium text-[#F5F7FA]   mt-2 opacity-90">
+          Have questions about business listing, promotions, or backend support?
+          Send us your enquiry and our team will assist you soon.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- SUCCESS MODAL -->
+<div id="successModal"
+     class="fixed inset-0 bg-black/40 hidden flex items-center justify-center z-50">
+
+  <div class="bg-white rounded-2xl p-8 w-[90%] max-w-md text-center shadow-xl animate-scaleIn">
+
+    <h3 class="text-[24px] font-semibold text-green-600">
+      ✅ Enquiry Submitted!
+    </h3>
+
+    <p class="mt-3 text-gray-600">
+      Thank you for contacting us. Our team will get back to you shortly.
+    </p>
+
+    <button onclick="closeModal()"
+      class="mt-6 px-6 py-2 rounded-full bg-[#3C49FF] text-white hover:opacity-90">
+      Close
+    </button>
+
+  </div>
+</div>
+<style>
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out;
+}
+</style>
+<script>
+const form = document.getElementById("enquiryForm");
+const modal = document.getElementById("successModal");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Clear any previous error messages
+  document.querySelectorAll(".field-error").forEach(el => el.remove());
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch("{% url 'message' %}", {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      form.reset();
+      modal.classList.remove("hidden");
+    } else {
+      // Display field-specific errors below each input
+      if (result.errors) {
+        for (const field in result.errors) {
+          const input = form.querySelector(`[name=${field}]`);
+          if (input) {
+            const errorMsg = document.createElement("p");
+            errorMsg.className = "field-error text-red-600 text-sm mt-1";
+            errorMsg.innerText = result.errors[field];
+            input.parentNode.insertBefore(errorMsg, input.nextSibling);
+          }
+        }
+      } else {
+        alert("Something went wrong. Try again.");
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Network error. Please try again later.");
+  }
+});
+
+function closeModal() {
+  modal.classList.add("hidden");
+}
+</script>
+
+</body>
+</html>

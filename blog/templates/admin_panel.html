@@ -51,6 +51,13 @@
   Testimonials
 </a>
 
+<a onclick="showPage('messages', this)"
+   class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 cursor-pointer transition"
+   data-page="messages">
+<i class="fa-solid fa-message text-lg"></i>
+  Messages
+</a>
+
 
 
 </nav>
@@ -551,6 +558,64 @@ function closeEditModal() {
 </section>
 
 
+<section id="messages" class="page hidden p-6">
+  <div class="bg-white rounded-3xl shadow p-6">
+
+    <!-- Heading -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Messages</h2>
+      <p class="text-gray-500 mt-1">
+        All messages submitted from the website Message form.
+      </p>
+    </div>
+
+    <!-- Table Container -->
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse table-auto">
+        <thead class="bg-gray-100 text-gray-600">
+          <tr>
+            <th class="p-3 text-left rounded-l-xl">Name</th>
+            <th class="p-3 text-left">Email</th>
+            <th class="p-3 text-left">Phone</th>
+            <th class="p-3 text-left">Subject</th>
+            <th class="p-3 text-left">Message</th>
+            <th class="p-3 text-center rounded-r-xl">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="text-gray-700">
+          {% for msg in messages %}
+          <tr class="border-b hover:bg-gray-50">
+            <td class="p-3 font-medium">{{ msg.full_name }}</td>
+            <td class="p-3">{{ msg.email }}</td>
+            <td class="p-3">{{ msg.phone }}</td>
+            <td class="p-3">{{ msg.subject }}</td>
+            <td class="p-3 max-w-xs truncate">{{ msg.message }}</td>
+
+            <td class="p-3 text-center">
+              <form method="POST" action="{% url 'delete_message' msg.id %}">
+                {% csrf_token %}
+                <button type="submit" class="text-red-500 hover:text-red-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28"><path fill="#e30909" d="M11.5 6h5a2.5 2.5 0 0 0-5 0M10 6a4 4 0 0 1 8 0h6.25a.75.75 0 0 1 0 1.5h-1.31l-1.217 14.603A4.25 4.25 0 0 1 17.488 26h-6.976a4.25 4.25 0 0 1-4.235-3.897L5.06 7.5H3.75a.75.75 0 0 1 0-1.5zm2.5 5.75a.75.75 0 0 0-1.5 0v8.5a.75.75 0 0 0 1.5 0zm3.75-.75a.75.75 0 0 0-.75.75v8.5a.75.75 0 0 0 1.5 0v-8.5a.75.75 0 0 0-.75-.75"/></svg></button>
+
+                </button>
+              </form>
+            </td>
+          </tr>
+
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center text-gray-400 py-4">
+              No messages yet
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
 
 
 
@@ -840,7 +905,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-{% if messages %}
+{% comment %} {% if messages %}
   <div class="fixed top-6 right-6 z-50 space-y-2">
     {% for message in messages %}
       <div class="bg-white border-l-4 border-purple-600 text-purple-700 px-6 py-4 rounded shadow-lg flex items-center gap-2">
@@ -849,7 +914,7 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
     {% endfor %}
   </div>
-{% endif %}
+{% endif %} {% endcomment %}
 
 <script>
   window.addEventListener('DOMContentLoaded', () => {

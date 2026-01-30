@@ -79,27 +79,31 @@ document.addEventListener("DOMContentLoaded", function () {
  
 
 
-
-
 // hero section text animation
-
-
-
 const wordDelay = 400;
 const afterWordsPause = 300;
 const slideDuration = 600;
 const pauseBetweenSlides = 1200;
 const slideHeight = 70;
 
+// 📱 mobile detection
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+// weights
+const HEADING_WEIGHT = '500';                 // All Your Needs (always)
+const CONTENT_WEIGHT = isMobile ? '600' : '500'; // Only solution lines
+
 const line1 = document.getElementById('line1');
 const scrollContent = document.getElementById('scrollContent');
 
-/* ---------- Animate 'All Your Needs' ---------- */
+/* ---------- Animate 'All Your Needs' (NO mobile change) ---------- */
 const line1Words = ["All", "Your", "Needs"];
 line1Words.forEach((w, i) => {
   const span = document.createElement('span');
   span.className = 'word';
   span.textContent = w;
+  span.style.fontFamily = "'Poppins', sans-serif";
+  span.style.fontWeight = HEADING_WEIGHT; // ✅ stays same
   line1.appendChild(span);
 
   setTimeout(() => {
@@ -110,12 +114,14 @@ line1Words.forEach((w, i) => {
 
 const allYourNeedsTotal = line1Words.length * wordDelay + afterWordsPause;
 
-/* ---------- Animate words left->right ---------- */
+/* ---------- Animate words left -> right ---------- */
 function animateWordsLeftToRight(text, onComplete) {
   const container = document.createElement('div');
   container.style.display = 'flex';
   container.style.alignItems = 'center';
-  container.style.gap = '8px'; // spacing between words
+  container.style.gap = '8px';
+  container.style.fontFamily = "'Poppins', sans-serif";
+  container.style.fontWeight = CONTENT_WEIGHT; // ✅ mobile 600
   scrollContent.appendChild(container);
 
   const words = text.split(' ');
@@ -123,6 +129,8 @@ function animateWordsLeftToRight(text, onComplete) {
     const span = document.createElement('span');
     span.className = 'word';
     span.textContent = w;
+    span.style.fontFamily = "'Poppins', sans-serif";
+    span.style.fontWeight = CONTENT_WEIGHT; // ✅
     container.appendChild(span);
 
     setTimeout(() => {
@@ -139,23 +147,28 @@ function animateWordsLeftToRight(text, onComplete) {
 function animateLettersByWord(text, onComplete) {
   const container = document.createElement('div');
   container.style.display = 'flex';
-  container.style.gap = '12px'; // spacing between words
+  container.style.gap = '12px';
+  container.style.fontFamily = "'Poppins', sans-serif";
+  container.style.fontWeight = CONTENT_WEIGHT; // ✅
   scrollContent.appendChild(container);
 
   const words = text.split(' ');
-
   let totalDelay = 0;
 
   words.forEach((word) => {
     const wordSpan = document.createElement('span');
     wordSpan.style.display = 'flex';
-    wordSpan.style.gap = '0px'; // tight letters inside word
+    wordSpan.style.gap = '0px';
+    wordSpan.style.fontFamily = "'Poppins', sans-serif";
+    wordSpan.style.fontWeight = CONTENT_WEIGHT; // ✅
     container.appendChild(wordSpan);
 
     [...word].forEach((letter, i) => {
       const letterSpan = document.createElement('span');
       letterSpan.className = 'letter';
       letterSpan.textContent = letter;
+      letterSpan.style.fontFamily = "'Poppins', sans-serif";
+      letterSpan.style.fontWeight = CONTENT_WEIGHT; // ✅
       letterSpan.style.opacity = '0';
       letterSpan.style.transform = 'translateX(-20px)';
       letterSpan.style.display = 'inline-block';
@@ -168,7 +181,7 @@ function animateLettersByWord(text, onComplete) {
       }, totalDelay + i * 80);
     });
 
-    totalDelay += word.length * 80 + 100; // small pause between words
+    totalDelay += word.length * 80 + 100;
   });
 
   setTimeout(() => onComplete(container), totalDelay + 300);
@@ -177,15 +190,17 @@ function animateLettersByWord(text, onComplete) {
 /* ---------- Sequence ---------- */
 setTimeout(() => {
 
-  // 1️⃣ FIRST LINE (letter-by-letter with proper word spacing)
+  // 1️⃣ One Strong Solution (mobile 600)
   animateLettersByWord("One Strong Solution", () => {
 
-    // 2️⃣ SECOND LINE (instant display)
+    // 2️⃣ One Smart Solution (mobile 600)
     const smartDiv = document.createElement('div');
     smartDiv.textContent = "One Smart Solution";
+    smartDiv.style.fontFamily = "'Poppins', sans-serif";
+    smartDiv.style.fontWeight = CONTENT_WEIGHT; // ✅
     scrollContent.appendChild(smartDiv);
 
-    // 3️⃣ THIRD LINE (animated words)
+    // 3️⃣ One Small Solution (mobile 600)
     animateWordsLeftToRight("One Small Solution", () => {
 
       let currentIndex = 0;
@@ -206,7 +221,6 @@ setTimeout(() => {
   });
 
 }, allYourNeedsTotal);
-
 
 
 // phone animation of index page hero section

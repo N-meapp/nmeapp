@@ -183,8 +183,8 @@ near me,clothes shopping mall near me, best shopping centres near me{% endblock 
                 <div id="scrollContent" class="absolute
            left-0 top-0
            flex flex-col
-           text-[48px] font-poppins!
-           font-semibold
+           text-[46px] font-poppins!
+           {% comment %} font-medium! {% endcomment %}
            text-[#3C79FF]
            text-left">
                 </div>
@@ -214,27 +214,27 @@ near me,clothes shopping mall near me, best shopping centres near me{% endblock 
             </p>
 
             <!-- BUTTONS (DESKTOP ONLY – already correct) -->
-            <div class="hidden md:flex items-center gap-4">
+            <div class="hidden md:flex items-center ">
 
-  <!-- DOWNLOAD BUTTON -->
   <a href="https://play.google.com/store/apps/details?id=com.smart.nme"
      target="_blank"
-     class="block">
-    <button class="bg-white shadow px-10 py-3 rounded-full text-black font-semibold">
+     class="group inline-flex items-center bg-white rounded-full  w-[182px] h-[48px] pl-10  py-2  transition">
+
+    <!-- TEXT -->
+    <span class="text-black font-semibold font-manrope text-[16px] ">
       Download
-    </button>
-  </a>
+    </span>
 
-  <!-- ICON BUTTON -->
-  <a href="https://play.google.com/store/apps/details?id=com.smart.nme"
-     target="_blank"
-     class="block">
-    <button class="w-[48px] h-[48px] rounded-full bg-black text-white flex items-center justify-center">
-      <img src="{% static 'images/icon2.png' %}" class="w-[12px] h-[12px]" />
-    </button>
+    <!-- RIGHT CIRCLE -->
+    <span class="w-[45px] h-[45px] ml-[20px] rounded-full bg-black flex items-center justify-center
+                 shadow-inner transition group-hover:scale-105">
+      <img src="{% static 'images/icon2.png' %}" class="w-[14px] h-[14px]" />
+    </span>
+
   </a>
 
 </div>
+
 
           </div>
 

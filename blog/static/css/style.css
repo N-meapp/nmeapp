@@ -405,12 +405,12 @@ h1,input,p {
 }
 
 
-#cardTrack {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem; /* or your current gap */
-  will-change: transform;
-}
+  #cardTrack {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* or your current gap */
+    will-change: transform;
+  }
   
 
 .tab-toggle {

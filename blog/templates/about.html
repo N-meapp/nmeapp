@@ -403,7 +403,7 @@ Think of it as a modern, digital directory or marketplace that connects people a
 
 
 
-<!-- BRAND AMBASSADOR CARD -->
+{% comment %} <!-- BRAND AMBASSADOR CARD -->
 <div class="max-w-[1372px] mx-auto mt-10 md:mt-32 px-4">
   <div class="relative overflow-hidden rounded-[28px] border-[5px] border-white shadow-lg
               bg-gradient-to-r from-[#cfe0ff] via-[#eaf1ff] to-[#f8fbff]
@@ -452,10 +452,105 @@ Think of it as a modern, digital directory or marketplace that connects people a
 
   </div>
 </div>
+ {% endcomment %}
 
 
 
+<section class="w-full px-6 py-10 md:py-16 bg-[#f4f7ff]">
+<div class="max-w-[1372px] md:h-[393px] mx-auto 
+            bg-gradient-to-b from-[#A4C2FF]/60 to-[#DDE8FF]/10 
+            border border-white border-[5px] 
+            rounded-[40px] 
+            shadow-[0px_4px_5px_rgba(0,0,0,0.25)] p-6
+            md:p-10 flex items-center mt-6 md:mt-10">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-10 w-full">
 
+
+      <!-- LEFT CONTENT -->
+      <div>
+        <h2 class="text-[24.39px] md:text-[36px] font-semibold mb-4 font-poppins">
+          About Our Founder
+        </h2>
+
+      <span class="inline-block font-manrope bg-[#453CFF] text-white text-[12px] md:text-[14px] px-4 py-1 rounded-full mb-4">
+          Saied K Muhammed
+        </span>
+
+        <p class="font-manrope text-[14px] md:text-[16px] font-medium leading-relaxed mb-6 w-[301px] md:w-[757px]">
+          Saied K Muhammed is the Founder & CEO of Cybexel Technologies Pvt. Ltd. 
+          and the visionary behind the N-ME App. A passionate software developer 
+          turned entrepreneur, he focuses on building human-centric technology 
+          that makes life simpler, safer, and more connected.
+        </p>
+
+<div class="flex items-start justify-between gap-4 md:items-center">
+
+  <!-- LEFT TEXT -->
+  <div class="flex flex-col gap-1">
+    <p class="font-extrabold text-[14px] md:text-[16px] font-manrope">
+      Saied K Muhammed
+    </p>
+    <p class="text-[14px] md:text-[16px] font-medium font-manrope text-[#4154FF]">
+      Founder & CEO
+    </p>
+    <p class="text-[14px] md:text-[16px] font-manrope">
+      Cybexel Technologies Pvt. Ltd.
+    </p>
+  </div>
+
+  <!-- RIGHT ACTION -->
+  <div class="flex flex-col gap-2 md:gap-3 items-end pl-0 md:pl-[80px]">
+    <p class="text-[13px] md:text-[16px] font-manrope font-extrabold">
+      Connect with CEO
+    </p>
+
+    <a
+      href="#"
+      class="flex items-center justify-center gap-2
+             w-[120px] md:w-[140px] h-[32px] md:h-[34px]
+             bg-white rounded-full
+             transition
+             shadow-[0px_4px_4px_rgba(0,0,0,0.25)]
+             hover:shadow-[0px_6px_8px_rgba(0,0,0,0.25)]"
+    >
+      <img
+        src="{% static 'images/founder_linkedin.png' %}"
+        class="w-4 h-4 md:w-5 md:h-5"
+        alt="LinkedIn"
+      />
+      <span class="text-[14px] md:text-[16px] font-manrope font-medium">
+        LinkedIn
+      </span>
+    </a>
+  </div>
+
+</div>
+
+      </div>
+
+      <!-- RIGHT IMAGE STACK -->
+<div class="hidden md:flex relative ml-[200px] justify-center items-center mt-8 pl-20">
+
+        <!-- BACKGROUND IMAGE -->
+        <img
+          src="{% static 'images/f.jpeg' %}"
+          class="absolute w-[322px] h-[322px] object-cover rounded-full "
+          alt="Background Shape"
+        />
+
+        <!-- FOREGROUND IMAGE -->
+        <img
+          src="{% static 'images/founder3.png' %}"
+          class="relative right-[2.7px] top-[8px] w-[310px] h-[437px] object-cover "
+          alt="Founder"
+        />
+
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 

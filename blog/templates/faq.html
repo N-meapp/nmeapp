@@ -523,6 +523,14 @@ document.getElementById("faqList").addEventListener("click", e => {
 
 document.querySelectorAll(".tab-toggle").forEach(btn => {
   btn.addEventListener("click", () => {
+
+    // ✅ Update activeRole
+    activeRole = btn.dataset.role;
+
+    // ✅ Reset category when switching role (important!)
+    activeCategory = "N ME App";
+
+    // UI styling
     document.querySelectorAll(".tab-toggle").forEach(b => {
       b.classList.remove("active");
       b.classList.remove("text-white");
@@ -534,6 +542,16 @@ document.querySelectorAll(".tab-toggle").forEach(btn => {
     btn.classList.remove("text-[#1A1A1A]");
     btn.classList.add("text-white");
     btn.style.background = "linear-gradient(to bottom, #3C5FFF, #C4CFFF)";
+
+    // ✅ Reset category highlight
+    document.querySelectorAll(".category-tab")
+      .forEach(t => t.classList.remove("text-[#3C79FF]"));
+
+    document.querySelectorAll(".category-tab")[0]
+      .classList.add("text-[#3C79FF]");
+
+    // ✅ Re-render FAQs
+    renderFAQs();
   });
 });
 
